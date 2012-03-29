@@ -1,0 +1,305 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D4A325C15247B01004C515E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325B15247B01004C515E /* UIKit.framework */; };
+		0D4A325E15247B01004C515E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325D15247B01004C515E /* Foundation.framework */; };
+		0D4A326015247B01004C515E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325F15247B01004C515E /* CoreGraphics.framework */; };
+		0D4A326615247B01004C515E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A326415247B01004C515E /* InfoPlist.strings */; };
+		0D4A326815247B01004C515E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A326715247B01004C515E /* main.m */; };
+		0D4A326C15247B01004C515E /* EPDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A326B15247B01004C515E /* EPDAppDelegate.m */; };
+		0D4A326F15247B01004C515E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A326D15247B01004C515E /* MainStoryboard.storyboard */; };
+		0D4A327215247B01004C515E /* EPDFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A327115247B01004C515E /* EPDFirstViewController.m */; };
+		0D4A327415247B01004C515E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A327315247B01004C515E /* first.png */; };
+		0D4A327615247B01004C515E /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A327515247B01004C515E /* first@2x.png */; };
+		0D4A327915247B01004C515E /* EPDSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A327815247B01004C515E /* EPDSecondViewController.m */; };
+		0D4A327B15247B01004C515E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A327A15247B01004C515E /* second.png */; };
+		0D4A327D15247B01004C515E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A327C15247B01004C515E /* second@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0D4A325715247B01004C515E /* NeverLate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeverLate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D4A325B15247B01004C515E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0D4A325D15247B01004C515E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0D4A325F15247B01004C515E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0D4A326315247B01004C515E /* NeverLate-Info.plist */ = {isa = PBXFileReference; path = "NeverLate-Info.plist"; sourceTree = "<group>"; };
+		0D4A326515247B01004C515E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0D4A326715247B01004C515E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0D4A326915247B01004C515E /* NeverLate-Prefix.pch */ = {isa = PBXFileReference; path = "NeverLate-Prefix.pch"; sourceTree = "<group>"; };
+		0D4A326A15247B01004C515E /* EPDAppDelegate.h */ = {isa = PBXFileReference; path = EPDAppDelegate.h; sourceTree = "<group>"; };
+		0D4A326B15247B01004C515E /* EPDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPDAppDelegate.m; sourceTree = "<group>"; };
+		0D4A326E15247B01004C515E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		0D4A327015247B01004C515E /* EPDFirstViewController.h */ = {isa = PBXFileReference; path = EPDFirstViewController.h; sourceTree = "<group>"; };
+		0D4A327115247B01004C515E /* EPDFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPDFirstViewController.m; sourceTree = "<group>"; };
+		0D4A327315247B01004C515E /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
+		0D4A327515247B01004C515E /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		0D4A327715247B01004C515E /* EPDSecondViewController.h */ = {isa = PBXFileReference; path = EPDSecondViewController.h; sourceTree = "<group>"; };
+		0D4A327815247B01004C515E /* EPDSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPDSecondViewController.m; sourceTree = "<group>"; };
+		0D4A327A15247B01004C515E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
+		0D4A327C15247B01004C515E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0D4A325415247B01004C515E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D4A325C15247B01004C515E /* UIKit.framework in Frameworks */,
+				0D4A325E15247B01004C515E /* Foundation.framework in Frameworks */,
+				0D4A326015247B01004C515E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0D4A324C15247B01004C515E = {
+			isa = PBXGroup;
+			children = (
+				0D4A326115247B01004C515E /* NeverLate */,
+				0D4A325A15247B01004C515E /* Frameworks */,
+				0D4A325815247B01004C515E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0D4A325815247B01004C515E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0D4A325715247B01004C515E /* NeverLate.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0D4A325A15247B01004C515E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0D4A325B15247B01004C515E /* UIKit.framework */,
+				0D4A325D15247B01004C515E /* Foundation.framework */,
+				0D4A325F15247B01004C515E /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0D4A326115247B01004C515E /* NeverLate */ = {
+			isa = PBXGroup;
+			children = (
+				0D4A326A15247B01004C515E /* EPDAppDelegate.h */,
+				0D4A326B15247B01004C515E /* EPDAppDelegate.m */,
+				0D4A326D15247B01004C515E /* MainStoryboard.storyboard */,
+				0D4A327015247B01004C515E /* EPDFirstViewController.h */,
+				0D4A327115247B01004C515E /* EPDFirstViewController.m */,
+				0D4A327315247B01004C515E /* first.png */,
+				0D4A327515247B01004C515E /* first@2x.png */,
+				0D4A327715247B01004C515E /* EPDSecondViewController.h */,
+				0D4A327815247B01004C515E /* EPDSecondViewController.m */,
+				0D4A327A15247B01004C515E /* second.png */,
+				0D4A327C15247B01004C515E /* second@2x.png */,
+				0D4A326215247B01004C515E /* Supporting Files */,
+			);
+			path = NeverLate;
+			sourceTree = "<group>";
+		};
+		0D4A326215247B01004C515E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0D4A326315247B01004C515E /* NeverLate-Info.plist */,
+				0D4A326415247B01004C515E /* InfoPlist.strings */,
+				0D4A326715247B01004C515E /* main.m */,
+				0D4A326915247B01004C515E /* NeverLate-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0D4A325615247B01004C515E /* NeverLate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D4A328015247B01004C515E /* Build configuration list for PBXNativeTarget "NeverLate" */;
+			buildPhases = (
+				0D4A325315247B01004C515E /* Sources */,
+				0D4A325415247B01004C515E /* Frameworks */,
+				0D4A325515247B01004C515E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NeverLate;
+			productName = NeverLate;
+			productReference = 0D4A325715247B01004C515E /* NeverLate.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0D4A324E15247B01004C515E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = EPD;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = EPD;
+			};
+			buildConfigurationList = 0D4A325115247B01004C515E /* Build configuration list for PBXProject "NeverLate" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0D4A324C15247B01004C515E;
+			productRefGroup = 0D4A325815247B01004C515E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0D4A325615247B01004C515E /* NeverLate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0D4A325515247B01004C515E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D4A326615247B01004C515E /* InfoPlist.strings in Resources */,
+				0D4A326F15247B01004C515E /* MainStoryboard.storyboard in Resources */,
+				0D4A327415247B01004C515E /* first.png in Resources */,
+				0D4A327615247B01004C515E /* first@2x.png in Resources */,
+				0D4A327B15247B01004C515E /* second.png in Resources */,
+				0D4A327D15247B01004C515E /* second@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0D4A325315247B01004C515E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D4A326815247B01004C515E /* main.m in Sources */,
+				0D4A326C15247B01004C515E /* EPDAppDelegate.m in Sources */,
+				0D4A327215247B01004C515E /* EPDFirstViewController.m in Sources */,
+				0D4A327915247B01004C515E /* EPDSecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0D4A326415247B01004C515E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0D4A326515247B01004C515E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0D4A326D15247B01004C515E /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0D4A326E15247B01004C515E /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0D4A327E15247B01004C515E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0D4A327F15247B01004C515E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0D4A328115247B01004C515E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
+				INFOPLIST_FILE = "NeverLate/NeverLate-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0D4A328215247B01004C515E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
+				INFOPLIST_FILE = "NeverLate/NeverLate-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0D4A325115247B01004C515E /* Build configuration list for PBXProject "NeverLate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D4A327E15247B01004C515E /* Debug */,
+				0D4A327F15247B01004C515E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D4A328015247B01004C515E /* Build configuration list for PBXNativeTarget "NeverLate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D4A328115247B01004C515E /* Debug */,
+				0D4A328215247B01004C515E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0D4A324E15247B01004C515E /* Project object */;
+}
