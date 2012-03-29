@@ -15,11 +15,15 @@
 		0D4A326C15247B01004C515E /* EPDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A326B15247B01004C515E /* EPDAppDelegate.m */; };
 		0D4A326F15247B01004C515E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A326D15247B01004C515E /* MainStoryboard.storyboard */; };
 		0D4A327215247B01004C515E /* EPDFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A327115247B01004C515E /* EPDFirstViewController.m */; };
-		0D4A327415247B01004C515E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A327315247B01004C515E /* first.png */; };
-		0D4A327615247B01004C515E /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A327515247B01004C515E /* first@2x.png */; };
 		0D4A327915247B01004C515E /* EPDSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A327815247B01004C515E /* EPDSecondViewController.m */; };
-		0D4A327B15247B01004C515E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A327A15247B01004C515E /* second.png */; };
-		0D4A327D15247B01004C515E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A327C15247B01004C515E /* second@2x.png */; };
+		0D4A328615247D1D004C515E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A328415247D1D004C515E /* Icon.png */; };
+		0D4A328715247D1D004C515E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A328515247D1D004C515E /* Icon@2x.png */; };
+		0D4A328B15248444004C515E /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A328915248444004C515E /* bus.png */; };
+		0D4A328C15248444004C515E /* bus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A328A15248444004C515E /* bus@2x.png */; };
+		0D4A328F15248486004C515E /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A328D15248486004C515E /* calendar.png */; };
+		0D4A329015248486004C515E /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A328E15248486004C515E /* calendar@2x.png */; };
+		0D4A3293152484A2004C515E /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A3291152484A2004C515E /* map.png */; };
+		0D4A3294152484A2004C515E /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A3292152484A2004C515E /* map@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,21 +31,26 @@
 		0D4A325B15247B01004C515E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0D4A325D15247B01004C515E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0D4A325F15247B01004C515E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		0D4A326315247B01004C515E /* NeverLate-Info.plist */ = {isa = PBXFileReference; path = "NeverLate-Info.plist"; sourceTree = "<group>"; };
+		0D4A326315247B01004C515E /* NeverLate-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NeverLate-Info.plist"; sourceTree = "<group>"; };
 		0D4A326515247B01004C515E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0D4A326715247B01004C515E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		0D4A326915247B01004C515E /* NeverLate-Prefix.pch */ = {isa = PBXFileReference; path = "NeverLate-Prefix.pch"; sourceTree = "<group>"; };
-		0D4A326A15247B01004C515E /* EPDAppDelegate.h */ = {isa = PBXFileReference; path = EPDAppDelegate.h; sourceTree = "<group>"; };
+		0D4A326915247B01004C515E /* NeverLate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NeverLate-Prefix.pch"; sourceTree = "<group>"; };
+		0D4A326A15247B01004C515E /* EPDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPDAppDelegate.h; sourceTree = "<group>"; };
 		0D4A326B15247B01004C515E /* EPDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPDAppDelegate.m; sourceTree = "<group>"; };
 		0D4A326E15247B01004C515E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		0D4A327015247B01004C515E /* EPDFirstViewController.h */ = {isa = PBXFileReference; path = EPDFirstViewController.h; sourceTree = "<group>"; };
+		0D4A327015247B01004C515E /* EPDFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPDFirstViewController.h; sourceTree = "<group>"; };
 		0D4A327115247B01004C515E /* EPDFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPDFirstViewController.m; sourceTree = "<group>"; };
-		0D4A327315247B01004C515E /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		0D4A327515247B01004C515E /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		0D4A327715247B01004C515E /* EPDSecondViewController.h */ = {isa = PBXFileReference; path = EPDSecondViewController.h; sourceTree = "<group>"; };
+		0D4A327715247B01004C515E /* EPDSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPDSecondViewController.h; sourceTree = "<group>"; };
 		0D4A327815247B01004C515E /* EPDSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPDSecondViewController.m; sourceTree = "<group>"; };
-		0D4A327A15247B01004C515E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		0D4A327C15247B01004C515E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		0D4A328415247D1D004C515E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		0D4A328515247D1D004C515E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		0D4A328815248345004C515E /* metro-times.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "metro-times.sqlite3"; sourceTree = "<group>"; };
+		0D4A328915248444004C515E /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
+		0D4A328A15248444004C515E /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@2x.png"; sourceTree = "<group>"; };
+		0D4A328D15248486004C515E /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
+		0D4A328E15248486004C515E /* calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar@2x.png"; sourceTree = "<group>"; };
+		0D4A3291152484A2004C515E /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		0D4A3292152484A2004C515E /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +70,7 @@
 		0D4A324C15247B01004C515E = {
 			isa = PBXGroup;
 			children = (
+				0D4A328315247B08004C515E /* Assets */,
 				0D4A326115247B01004C515E /* NeverLate */,
 				0D4A325A15247B01004C515E /* Frameworks */,
 				0D4A325815247B01004C515E /* Products */,
@@ -90,15 +100,10 @@
 			children = (
 				0D4A326A15247B01004C515E /* EPDAppDelegate.h */,
 				0D4A326B15247B01004C515E /* EPDAppDelegate.m */,
-				0D4A326D15247B01004C515E /* MainStoryboard.storyboard */,
 				0D4A327015247B01004C515E /* EPDFirstViewController.h */,
 				0D4A327115247B01004C515E /* EPDFirstViewController.m */,
-				0D4A327315247B01004C515E /* first.png */,
-				0D4A327515247B01004C515E /* first@2x.png */,
 				0D4A327715247B01004C515E /* EPDSecondViewController.h */,
 				0D4A327815247B01004C515E /* EPDSecondViewController.m */,
-				0D4A327A15247B01004C515E /* second.png */,
-				0D4A327C15247B01004C515E /* second@2x.png */,
 				0D4A326215247B01004C515E /* Supporting Files */,
 			);
 			path = NeverLate;
@@ -113,6 +118,23 @@
 				0D4A326915247B01004C515E /* NeverLate-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0D4A328315247B08004C515E /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0D4A328815248345004C515E /* metro-times.sqlite3 */,
+				0D4A326D15247B01004C515E /* MainStoryboard.storyboard */,
+				0D4A328415247D1D004C515E /* Icon.png */,
+				0D4A328515247D1D004C515E /* Icon@2x.png */,
+				0D4A328915248444004C515E /* bus.png */,
+				0D4A328A15248444004C515E /* bus@2x.png */,
+				0D4A328D15248486004C515E /* calendar.png */,
+				0D4A328E15248486004C515E /* calendar@2x.png */,
+				0D4A3291152484A2004C515E /* map.png */,
+				0D4A3292152484A2004C515E /* map@2x.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,10 +191,14 @@
 			files = (
 				0D4A326615247B01004C515E /* InfoPlist.strings in Resources */,
 				0D4A326F15247B01004C515E /* MainStoryboard.storyboard in Resources */,
-				0D4A327415247B01004C515E /* first.png in Resources */,
-				0D4A327615247B01004C515E /* first@2x.png in Resources */,
-				0D4A327B15247B01004C515E /* second.png in Resources */,
-				0D4A327D15247B01004C515E /* second@2x.png in Resources */,
+				0D4A328615247D1D004C515E /* Icon.png in Resources */,
+				0D4A328715247D1D004C515E /* Icon@2x.png in Resources */,
+				0D4A328B15248444004C515E /* bus.png in Resources */,
+				0D4A328C15248444004C515E /* bus@2x.png in Resources */,
+				0D4A328F15248486004C515E /* calendar.png in Resources */,
+				0D4A329015248486004C515E /* calendar@2x.png in Resources */,
+				0D4A3293152484A2004C515E /* map.png in Resources */,
+				0D4A3294152484A2004C515E /* map@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +233,7 @@
 				0D4A326E15247B01004C515E /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			path = NeverLate;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -263,6 +290,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
 				INFOPLIST_FILE = "NeverLate/NeverLate-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -274,6 +302,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
 				INFOPLIST_FILE = "NeverLate/NeverLate-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
