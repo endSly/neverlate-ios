@@ -11,7 +11,7 @@
 
 @class EPDStation;
 
-@interface EPDMetroViewController : UITableViewController {
+@interface EPDMetroViewController : UITableViewController <CLLocationManagerDelegate> {
     NSArray *_stations;
     
     EPDStation *_selectedStation;

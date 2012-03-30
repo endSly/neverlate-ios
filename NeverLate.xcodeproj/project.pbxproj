@@ -26,6 +26,8 @@
 		0D4A32AD15248635004C515E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A32AC15248635004C515E /* QuartzCore.framework */; };
 		0D4A32AF1524863A004C515E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A32AE1524863A004C515E /* CoreLocation.framework */; };
 		0D4A32B11524863F004C515E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A32B01524863F004C515E /* MapKit.framework */; };
+		0D8776251525B32B000C7AB6 /* metro-annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8776231525B32B000C7AB6 /* metro-annotation.png */; };
+		0D8776261525B32B000C7AB6 /* metro-annotation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */; };
 		0DB9C54915248850006B337C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB9C54815248850006B337C /* CoreData.framework */; };
 		0DB9C57515248CF2006B337C /* libFMDB_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB9C57215248CEA006B337C /* libFMDB_iOS.a */; };
 		0DB9C57815248D31006B337C /* EPDObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB9C57715248D31006B337C /* EPDObjectManager.m */; };
@@ -100,6 +102,8 @@
 		0D4A32AC15248635004C515E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0D4A32AE1524863A004C515E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0D4A32B01524863F004C515E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0D8776231525B32B000C7AB6 /* metro-annotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-annotation.png"; sourceTree = "<group>"; };
+		0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-annotation@2x.png"; sourceTree = "<group>"; };
 		0DB9C54815248850006B337C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fmdb.xcodeproj; path = fmdb/fmdb.xcodeproj; sourceTree = "<group>"; };
 		0DB9C57615248D31006B337C /* EPDObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDObjectManager.h; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				0D4A3292152484A2004C515E /* map@2x.png */,
 				0DC9D4B51524B16600B855AD /* metro-bilbao@2x.png */,
 				0DC9D4B61524B16600B855AD /* metro-bilbao.png */,
+				0D8776231525B32B000C7AB6 /* metro-annotation.png */,
+				0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -372,6 +378,8 @@
 				0D4A3294152484A2004C515E /* map@2x.png in Resources */,
 				0DC9D4B71524B16600B855AD /* metro-bilbao@2x.png in Resources */,
 				0DC9D4B81524B16600B855AD /* metro-bilbao.png in Resources */,
+				0D8776251525B32B000C7AB6 /* metro-annotation.png in Resources */,
+				0D8776261525B32B000C7AB6 /* metro-annotation@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

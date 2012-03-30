@@ -14,6 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     return YES;
 }
 							

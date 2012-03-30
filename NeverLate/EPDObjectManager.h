@@ -14,6 +14,8 @@
 
 + (NSString *)tableName;
 
++ (id)findById:(NSNumber *)id;
+
 + (void)findAll:(void(^)(NSArray *))block;
 + (void)findWhere:(NSString *)predicate params:(NSArray *)params block:(void(^)(NSArray *))block;
 

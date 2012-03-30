@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface EPDMapViewController : UIViewController
+@class EPDStation;
+
+@interface EPDMapViewController : UIViewController <MKMapViewDelegate> {
+    
+    EPDStation *_selectedStation;
+}
+
+@property (nonatomic, assign) IBOutlet MKMapView *mapView;
 
 @end

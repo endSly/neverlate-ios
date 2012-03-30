@@ -33,6 +33,8 @@
     [super viewDidLoad];
 
     _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    [_locationManager startUpdatingLocation];
     
     [EPDStation findAll:^(NSArray *stations) {
         _stations = stations;
@@ -87,7 +89,7 @@
             
         }
         
-        return distance1 < distance2;
+        return distance1 > distance2;
     }];
 }
 
@@ -127,7 +129,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
         cell.textLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:20.0f];
     }
@@ -135,47 +137,23 @@
     
     cell.textLabel.text = station.name;
     
+    float distance = INFINITY;
+    
+    for (EPDStationLocation *loc in station.stationLocations) {
+        distance = MIN(distance, [self distanceFrom:_locationManager.location.coordinate 
+                                           toLatitude:loc.lat.floatValue
+                                            longitude:loc.lng.floatValue]);
+        
+    }
+    
+    if (distance > 2000.0) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1fKm", distance / 1000.0f];
+    } else {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0fm", distance];
+    }
+    
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -185,6 +163,15 @@
     [self performSegueWithIdentifier:@"StationDetailSegue" sender:self];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Location Manager delegate
+
+- (void)locationManager:(CLLocationManager *)manager
+	didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    [self.tableView reloadData];
 }
 
 @end

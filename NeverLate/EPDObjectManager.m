@@ -10,6 +10,13 @@
 
 @implementation EPDManagedObject
 
++ (id)findById:(NSNumber *)id
+{
+    return [[[EPDObjectManager sharedManager] 
+             findObjectsOfType:self where:@"id = ?" params:[NSArray arrayWithObject:id]]
+            lastObject];
+}
+
 + (void)findAll:(void(^)(NSArray *))block
 {
     [[EPDObjectManager sharedManager] findObjectsOfType:self block:block];
