@@ -14,8 +14,7 @@
 		0D4A326815247B01004C515E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A326715247B01004C515E /* main.m */; };
 		0D4A326C15247B01004C515E /* EPDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A326B15247B01004C515E /* EPDAppDelegate.m */; };
 		0D4A326F15247B01004C515E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A326D15247B01004C515E /* MainStoryboard.storyboard */; };
-		0D4A327215247B01004C515E /* EPDFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A327115247B01004C515E /* EPDFirstViewController.m */; };
-		0D4A327915247B01004C515E /* EPDSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A327815247B01004C515E /* EPDSecondViewController.m */; };
+		0D4A327915247B01004C515E /* EPDMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D4A327815247B01004C515E /* EPDMapViewController.m */; };
 		0D4A328615247D1D004C515E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A328415247D1D004C515E /* Icon.png */; };
 		0D4A328715247D1D004C515E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A328515247D1D004C515E /* Icon@2x.png */; };
 		0D4A328B15248444004C515E /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A328915248444004C515E /* bus.png */; };
@@ -24,7 +23,57 @@
 		0D4A329015248486004C515E /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A328E15248486004C515E /* calendar@2x.png */; };
 		0D4A3293152484A2004C515E /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A3291152484A2004C515E /* map.png */; };
 		0D4A3294152484A2004C515E /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4A3292152484A2004C515E /* map@2x.png */; };
+		0D4A32AD15248635004C515E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A32AC15248635004C515E /* QuartzCore.framework */; };
+		0D4A32AF1524863A004C515E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A32AE1524863A004C515E /* CoreLocation.framework */; };
+		0D4A32B11524863F004C515E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A32B01524863F004C515E /* MapKit.framework */; };
+		0DB9C54915248850006B337C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB9C54815248850006B337C /* CoreData.framework */; };
+		0DB9C57515248CF2006B337C /* libFMDB_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB9C57215248CEA006B337C /* libFMDB_iOS.a */; };
+		0DB9C57815248D31006B337C /* EPDObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB9C57715248D31006B337C /* EPDObjectManager.m */; };
+		0DB9C58415249E55006B337C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB9C58315249E55006B337C /* libsqlite3.dylib */; };
+		0DC9D47D1524A04400B855AD /* EPDStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D47C1524A04400B855AD /* EPDStation.m */; };
+		0DC9D4A91524A8C600B855AD /* EPDTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4A81524A8C600B855AD /* EPDTime.m */; };
+		0DC9D4AC1524AA1E00B855AD /* EPDStationLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4AB1524AA1E00B855AD /* EPDStationLocation.m */; };
+		0DC9D4AF1524B01200B855AD /* EPDMetroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4AE1524B01200B855AD /* EPDMetroViewController.m */; };
+		0DC9D4B71524B16600B855AD /* metro-bilbao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9D4B51524B16600B855AD /* metro-bilbao@2x.png */; };
+		0DC9D4B81524B16600B855AD /* metro-bilbao.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9D4B61524B16600B855AD /* metro-bilbao.png */; };
+		0DC9D4BB1524B43600B855AD /* EPDStationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4BA1524B43600B855AD /* EPDStationDetailViewController.m */; };
+		0DC9D4BF1524C40900B855AD /* EPDTimePanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4BE1524C40900B855AD /* EPDTimePanelView.m */; };
+		0DC9D4C61524ED8A00B855AD /* myriadprobold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9D4C51524ED8100B855AD /* myriadprobold.ttf */; };
+		0DC9D4C71524EF3700B855AD /* myriadpro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9D4C01524C58F00B855AD /* myriadpro.ttf */; };
+		0DC9D4CB1525091700B855AD /* metro-times.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9D4CA1525090E00B855AD /* metro-times.sqlite3 */; };
+		0DC9D4CE1525093900B855AD /* EPDConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4CD1525093800B855AD /* EPDConnection.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0DB9C55715248C5F006B337C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
+			remoteInfo = fmdb;
+		};
+		0DB9C55915248C5F006B337C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE4290EF12B42F870088BD94;
+			remoteInfo = FMDB;
+		};
+		0DB9C57115248CEA006B337C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0DB9C56215248CE4006B337C;
+			remoteInfo = FMDB_iOS;
+		};
+		0DB9C57315248CEE006B337C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0DB9C56115248CE4006B337C;
+			remoteInfo = FMDB_iOS;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0D4A325715247B01004C515E /* NeverLate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeverLate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,19 +87,43 @@
 		0D4A326A15247B01004C515E /* EPDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPDAppDelegate.h; sourceTree = "<group>"; };
 		0D4A326B15247B01004C515E /* EPDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPDAppDelegate.m; sourceTree = "<group>"; };
 		0D4A326E15247B01004C515E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		0D4A327015247B01004C515E /* EPDFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPDFirstViewController.h; sourceTree = "<group>"; };
-		0D4A327115247B01004C515E /* EPDFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPDFirstViewController.m; sourceTree = "<group>"; };
-		0D4A327715247B01004C515E /* EPDSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPDSecondViewController.h; sourceTree = "<group>"; };
-		0D4A327815247B01004C515E /* EPDSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPDSecondViewController.m; sourceTree = "<group>"; };
+		0D4A327715247B01004C515E /* EPDMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EPDMapViewController.h; sourceTree = "<group>"; };
+		0D4A327815247B01004C515E /* EPDMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EPDMapViewController.m; sourceTree = "<group>"; };
 		0D4A328415247D1D004C515E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		0D4A328515247D1D004C515E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		0D4A328815248345004C515E /* metro-times.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "metro-times.sqlite3"; sourceTree = "<group>"; };
 		0D4A328915248444004C515E /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
 		0D4A328A15248444004C515E /* bus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bus@2x.png"; sourceTree = "<group>"; };
 		0D4A328D15248486004C515E /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		0D4A328E15248486004C515E /* calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar@2x.png"; sourceTree = "<group>"; };
 		0D4A3291152484A2004C515E /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		0D4A3292152484A2004C515E /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
+		0D4A32AC15248635004C515E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0D4A32AE1524863A004C515E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0D4A32B01524863F004C515E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0DB9C54815248850006B337C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fmdb.xcodeproj; path = fmdb/fmdb.xcodeproj; sourceTree = "<group>"; };
+		0DB9C57615248D31006B337C /* EPDObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDObjectManager.h; sourceTree = "<group>"; };
+		0DB9C57715248D31006B337C /* EPDObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDObjectManager.m; sourceTree = "<group>"; };
+		0DB9C58315249E55006B337C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		0DC9D47B1524A04400B855AD /* EPDStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDStation.h; sourceTree = "<group>"; };
+		0DC9D47C1524A04400B855AD /* EPDStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDStation.m; sourceTree = "<group>"; };
+		0DC9D4A71524A8C600B855AD /* EPDTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDTime.h; sourceTree = "<group>"; };
+		0DC9D4A81524A8C600B855AD /* EPDTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDTime.m; sourceTree = "<group>"; };
+		0DC9D4AA1524AA1E00B855AD /* EPDStationLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDStationLocation.h; sourceTree = "<group>"; };
+		0DC9D4AB1524AA1E00B855AD /* EPDStationLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDStationLocation.m; sourceTree = "<group>"; };
+		0DC9D4AD1524B01200B855AD /* EPDMetroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDMetroViewController.h; sourceTree = "<group>"; };
+		0DC9D4AE1524B01200B855AD /* EPDMetroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDMetroViewController.m; sourceTree = "<group>"; };
+		0DC9D4B51524B16600B855AD /* metro-bilbao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-bilbao@2x.png"; sourceTree = "<group>"; };
+		0DC9D4B61524B16600B855AD /* metro-bilbao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-bilbao.png"; sourceTree = "<group>"; };
+		0DC9D4B91524B43600B855AD /* EPDStationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDStationDetailViewController.h; sourceTree = "<group>"; };
+		0DC9D4BA1524B43600B855AD /* EPDStationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDStationDetailViewController.m; sourceTree = "<group>"; };
+		0DC9D4BD1524C40900B855AD /* EPDTimePanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDTimePanelView.h; sourceTree = "<group>"; };
+		0DC9D4BE1524C40900B855AD /* EPDTimePanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDTimePanelView.m; sourceTree = "<group>"; };
+		0DC9D4C01524C58F00B855AD /* myriadpro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = myriadpro.ttf; sourceTree = "<group>"; };
+		0DC9D4C51524ED8100B855AD /* myriadprobold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = myriadprobold.ttf; sourceTree = "<group>"; };
+		0DC9D4CA1525090E00B855AD /* metro-times.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "metro-times.sqlite3"; sourceTree = "<group>"; };
+		0DC9D4CC1525093800B855AD /* EPDConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDConnection.h; sourceTree = "<group>"; };
+		0DC9D4CD1525093800B855AD /* EPDConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDConnection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +131,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DB9C58415249E55006B337C /* libsqlite3.dylib in Frameworks */,
+				0DB9C57515248CF2006B337C /* libFMDB_iOS.a in Frameworks */,
+				0DB9C54915248850006B337C /* CoreData.framework in Frameworks */,
+				0D4A32B11524863F004C515E /* MapKit.framework in Frameworks */,
+				0D4A32AF1524863A004C515E /* CoreLocation.framework in Frameworks */,
+				0D4A32AD15248635004C515E /* QuartzCore.framework in Frameworks */,
 				0D4A325C15247B01004C515E /* UIKit.framework in Frameworks */,
 				0D4A325E15247B01004C515E /* Foundation.framework in Frameworks */,
 				0D4A326015247B01004C515E /* CoreGraphics.framework in Frameworks */,
@@ -88,6 +167,12 @@
 		0D4A325A15247B01004C515E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0DB9C58315249E55006B337C /* libsqlite3.dylib */,
+				0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */,
+				0DB9C54815248850006B337C /* CoreData.framework */,
+				0D4A32B01524863F004C515E /* MapKit.framework */,
+				0D4A32AE1524863A004C515E /* CoreLocation.framework */,
+				0D4A32AC15248635004C515E /* QuartzCore.framework */,
 				0D4A325B15247B01004C515E /* UIKit.framework */,
 				0D4A325D15247B01004C515E /* Foundation.framework */,
 				0D4A325F15247B01004C515E /* CoreGraphics.framework */,
@@ -98,12 +183,11 @@
 		0D4A326115247B01004C515E /* NeverLate */ = {
 			isa = PBXGroup;
 			children = (
+				0DC9D4BC1524C3D800B855AD /* Views */,
+				0DC9D4B01524B01800B855AD /* Controllers */,
+				0DC9D47A1524A02700B855AD /* Models */,
 				0D4A326A15247B01004C515E /* EPDAppDelegate.h */,
 				0D4A326B15247B01004C515E /* EPDAppDelegate.m */,
-				0D4A327015247B01004C515E /* EPDFirstViewController.h */,
-				0D4A327115247B01004C515E /* EPDFirstViewController.m */,
-				0D4A327715247B01004C515E /* EPDSecondViewController.h */,
-				0D4A327815247B01004C515E /* EPDSecondViewController.m */,
 				0D4A326215247B01004C515E /* Supporting Files */,
 			);
 			path = NeverLate;
@@ -123,8 +207,10 @@
 		0D4A328315247B08004C515E /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				0D4A328815248345004C515E /* metro-times.sqlite3 */,
+				0DC9D4CA1525090E00B855AD /* metro-times.sqlite3 */,
 				0D4A326D15247B01004C515E /* MainStoryboard.storyboard */,
+				0DC9D4C01524C58F00B855AD /* myriadpro.ttf */,
+				0DC9D4C51524ED8100B855AD /* myriadprobold.ttf */,
 				0D4A328415247D1D004C515E /* Icon.png */,
 				0D4A328515247D1D004C515E /* Icon@2x.png */,
 				0D4A328915248444004C515E /* bus.png */,
@@ -133,8 +219,59 @@
 				0D4A328E15248486004C515E /* calendar@2x.png */,
 				0D4A3291152484A2004C515E /* map.png */,
 				0D4A3292152484A2004C515E /* map@2x.png */,
+				0DC9D4B51524B16600B855AD /* metro-bilbao@2x.png */,
+				0DC9D4B61524B16600B855AD /* metro-bilbao.png */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		0DB9C54F15248C5F006B337C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DB9C55815248C5F006B337C /* fmdb */,
+				0DB9C55A15248C5F006B337C /* libFMDB.a */,
+				0DB9C57215248CEA006B337C /* libFMDB_iOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0DC9D47A1524A02700B855AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0DB9C57615248D31006B337C /* EPDObjectManager.h */,
+				0DB9C57715248D31006B337C /* EPDObjectManager.m */,
+				0DC9D47B1524A04400B855AD /* EPDStation.h */,
+				0DC9D47C1524A04400B855AD /* EPDStation.m */,
+				0DC9D4A71524A8C600B855AD /* EPDTime.h */,
+				0DC9D4A81524A8C600B855AD /* EPDTime.m */,
+				0DC9D4AA1524AA1E00B855AD /* EPDStationLocation.h */,
+				0DC9D4AB1524AA1E00B855AD /* EPDStationLocation.m */,
+				0DC9D4CC1525093800B855AD /* EPDConnection.h */,
+				0DC9D4CD1525093800B855AD /* EPDConnection.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		0DC9D4B01524B01800B855AD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0DC9D4AD1524B01200B855AD /* EPDMetroViewController.h */,
+				0DC9D4AE1524B01200B855AD /* EPDMetroViewController.m */,
+				0DC9D4B91524B43600B855AD /* EPDStationDetailViewController.h */,
+				0DC9D4BA1524B43600B855AD /* EPDStationDetailViewController.m */,
+				0D4A327715247B01004C515E /* EPDMapViewController.h */,
+				0D4A327815247B01004C515E /* EPDMapViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		0DC9D4BC1524C3D800B855AD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0DC9D4BD1524C40900B855AD /* EPDTimePanelView.h */,
+				0DC9D4BE1524C40900B855AD /* EPDTimePanelView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +288,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0DB9C57415248CEE006B337C /* PBXTargetDependency */,
 			);
 			name = NeverLate;
 			productName = NeverLate;
@@ -177,6 +315,12 @@
 			mainGroup = 0D4A324C15247B01004C515E;
 			productRefGroup = 0D4A325815247B01004C515E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0DB9C54F15248C5F006B337C /* Products */;
+					ProjectRef = 0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0D4A325615247B01004C515E /* NeverLate */,
@@ -184,11 +328,38 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		0DB9C55815248C5F006B337C /* fmdb */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = fmdb;
+			remoteRef = 0DB9C55715248C5F006B337C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0DB9C55A15248C5F006B337C /* libFMDB.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFMDB.a;
+			remoteRef = 0DB9C55915248C5F006B337C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0DB9C57215248CEA006B337C /* libFMDB_iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFMDB_iOS.a;
+			remoteRef = 0DB9C57115248CEA006B337C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		0D4A325515247B01004C515E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DC9D4CB1525091700B855AD /* metro-times.sqlite3 in Resources */,
+				0DC9D4C71524EF3700B855AD /* myriadpro.ttf in Resources */,
+				0DC9D4C61524ED8A00B855AD /* myriadprobold.ttf in Resources */,
 				0D4A326615247B01004C515E /* InfoPlist.strings in Resources */,
 				0D4A326F15247B01004C515E /* MainStoryboard.storyboard in Resources */,
 				0D4A328615247D1D004C515E /* Icon.png in Resources */,
@@ -199,6 +370,8 @@
 				0D4A329015248486004C515E /* calendar@2x.png in Resources */,
 				0D4A3293152484A2004C515E /* map.png in Resources */,
 				0D4A3294152484A2004C515E /* map@2x.png in Resources */,
+				0DC9D4B71524B16600B855AD /* metro-bilbao@2x.png in Resources */,
+				0DC9D4B81524B16600B855AD /* metro-bilbao.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,12 +384,27 @@
 			files = (
 				0D4A326815247B01004C515E /* main.m in Sources */,
 				0D4A326C15247B01004C515E /* EPDAppDelegate.m in Sources */,
-				0D4A327215247B01004C515E /* EPDFirstViewController.m in Sources */,
-				0D4A327915247B01004C515E /* EPDSecondViewController.m in Sources */,
+				0D4A327915247B01004C515E /* EPDMapViewController.m in Sources */,
+				0DB9C57815248D31006B337C /* EPDObjectManager.m in Sources */,
+				0DC9D47D1524A04400B855AD /* EPDStation.m in Sources */,
+				0DC9D4A91524A8C600B855AD /* EPDTime.m in Sources */,
+				0DC9D4AC1524AA1E00B855AD /* EPDStationLocation.m in Sources */,
+				0DC9D4AF1524B01200B855AD /* EPDMetroViewController.m in Sources */,
+				0DC9D4BB1524B43600B855AD /* EPDStationDetailViewController.m in Sources */,
+				0DC9D4BF1524C40900B855AD /* EPDTimePanelView.m in Sources */,
+				0DC9D4CE1525093900B855AD /* EPDConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0DB9C57415248CEE006B337C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FMDB_iOS;
+			targetProxy = 0DB9C57315248CEE006B337C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0D4A326415247B01004C515E /* InfoPlist.strings */ = {
@@ -289,6 +477,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
+				HEADER_SEARCH_PATHS = "fmdb/src/**";
 				INFOPLIST_FILE = "NeverLate/NeverLate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -301,6 +490,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
+				HEADER_SEARCH_PATHS = "fmdb/src/**";
 				INFOPLIST_FILE = "NeverLate/NeverLate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -327,6 +517,7 @@
 				0D4A328215247B01004C515E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
