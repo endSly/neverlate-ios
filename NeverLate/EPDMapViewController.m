@@ -77,28 +77,46 @@
     detailController.station = _selectedStation;
 }
 
+- (IBAction)showUserHeadding:(id)sender
+{
+    self.mapView.showsUserLocation = YES;
+    
+    if (!_navigate) {
+        [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
+    } else {
+        self.mapView.userTrackingMode = MKUserTrackingModeNone;
+    }
+    _navigate = !_navigate;
+}
+
 #pragma mark - Map Delegate
 
 - (MKAnnotationView *) mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
 {
     static NSString *annotationIdentifier = @"MetroIdentifier";
     
-    MKAnnotationView *annotationView = [map dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
-    if (!annotationView) {
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
-    
-        annotationView.image = [UIImage imageNamed:@"metro-annotation"];
+    if ([annotation isKindOfClass:[EPDStationAnnotation class]]) {
+        MKAnnotationView *annotationView = [map dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
+        if (!annotationView) {
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
+            
+            annotationView.image = [UIImage imageNamed:@"metro-annotation"];
+            
+            annotationView.enabled = YES;
+            annotationView.canShowCallout = YES;
+        }
+        if ([annotation isKindOfClass:[EPDStationAnnotation class]]) {
+            UIButton *stationDetailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            stationDetailButton.tag = ((EPDStationAnnotation *) annotation).location.station_id.intValue;
+            [stationDetailButton addTarget:self action:@selector(stationSelected:) forControlEvents:UIControlEventTouchDown];
+            annotationView.rightCalloutAccessoryView = stationDetailButton;
+        }
         
-        annotationView.enabled = YES;
-        annotationView.canShowCallout = YES;
+        return annotationView;
+
     }
     
-    UIButton *stationDetailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    stationDetailButton.tag = ((EPDStationAnnotation *) annotation).location.station_id.intValue;
-    [stationDetailButton addTarget:self action:@selector(stationSelected:) forControlEvents:UIControlEventTouchDown];
-    annotationView.rightCalloutAccessoryView = stationDetailButton;
-    
-    return annotationView;
+    return nil;
 }
 
 @end
@@ -122,7 +140,7 @@
 
 - (NSString *)subtitle
 {
-    return _location.station.joints;
+    return _location.location_name;
 }
 
 @end

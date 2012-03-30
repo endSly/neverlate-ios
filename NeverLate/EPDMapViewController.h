@@ -14,8 +14,12 @@
 @interface EPDMapViewController : UIViewController <MKMapViewDelegate> {
     
     EPDStation *_selectedStation;
+    
+    BOOL _navigate;
 }
 
 @property (nonatomic, assign) IBOutlet MKMapView *mapView;
+
+- (IBAction)showUserHeadding:(id)sender;
 
 @end

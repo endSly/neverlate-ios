@@ -34,7 +34,7 @@
         self.layer.shadowRadius = 4;
         self.layer.shadowOpacity = 0.5;
         
-        UIFont *boldFont = [UIFont fontWithName:@"MyriadPro-Bold" size:12.0f];
+        UIFont *boldFont = [UIFont fontWithName:@"AtRotisSemiSans" size:12.0f];
         UIFont *regularFont = [UIFont fontWithName:@"MyriadPro-Regular" size:30.0f];
         
         _stationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 22)];

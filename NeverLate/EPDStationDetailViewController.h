@@ -16,8 +16,11 @@
     EPDTimePanelView *_headerView;
     
     NSArray *_connections;
+    
+    NSArray *_stations;
 }
 
 @property (nonatomic, retain) EPDStation * station;
+@property (nonatomic, retain) EPDStation * destinationStation;
 
 @end

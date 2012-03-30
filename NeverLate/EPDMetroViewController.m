@@ -51,6 +51,21 @@
     [self.tableView reloadData];
 }
 
+- (IBAction)orderSelectionChanged:(UISegmentedControl *)sender
+{
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            [self orderStationsByProximity];
+            break;
+            
+        case 1:
+            [self orderStationsAlphabeticaly];
+            break;
+    }
+    
+    [self.tableView reloadData];
+}
+
 #define DEG_TO_RAD(deg) ((deg) * 3.14159265f / 180.0f)
 
 - (float)distanceFrom:(CLLocationCoordinate2D)coordinate toLatitude:(float)lat longitude:(float)lon
@@ -67,6 +82,13 @@
     const float d = R * c;
     
     return d;
+}
+
+- (void)orderStationsAlphabeticaly
+{
+    self.stations = [_stations sortedArrayUsingComparator:^NSComparisonResult(EPDStation *station1, EPDStation *station2) {
+        return [station1.name compare:station2.name];
+    }];
 }
 
 - (void)orderStationsByProximity
@@ -131,7 +153,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
-        cell.textLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:20.0f];
+        cell.textLabel.font = [UIFont fontWithName:@"AtRotisSemiSans" size:20.0f];
     }
     EPDStation *station = [_stations objectAtIndex:indexPath.row];
     

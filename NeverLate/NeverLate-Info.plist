@@ -37,7 +37,7 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>myriadprobold.ttf</string>
+		<string>atrotissemisans.ttf</string>
 		<string>myriadpro.ttf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>

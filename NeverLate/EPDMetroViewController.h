@@ -19,4 +19,6 @@
     CLLocationManager *_locationManager;
 }
 
+- (IBAction)orderSelectionChanged:(UISegmentedControl *)sender;
+
 @end

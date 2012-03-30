@@ -17,6 +17,11 @@
             lastObject];
 }
 
++ (NSArray *)findAll
+{
+    return [[EPDObjectManager sharedManager] findObjectsOfType:self];
+}
+
 + (void)findAll:(void(^)(NSArray *))block
 {
     [[EPDObjectManager sharedManager] findObjectsOfType:self block:block];
