@@ -23,31 +23,55 @@
 @implementation EPDMapViewController
 
 @synthesize mapView = _mapView;
+@synthesize stationToShow = _stationToShow;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
     
-    self.navigationController.navigationBar.translucent = YES;
+    float minLat = locationManager.location.coordinate.latitude, 
+        minLng = locationManager.location.coordinate.longitude, 
+        maxLat = minLat, 
+        maxLng = minLng;
     
-    self.mapView.region = (MKCoordinateRegion) {
-        .center = {
-            .latitude = 43.256944,
-            .longitude = -2.923611
-        },
-        .span = {
-            .latitudeDelta = .10f,
-            .longitudeDelta = .10f
-        }
-    };
+    NSArray *stations;
     
-    [EPDStationLocation findAll:^(NSArray *locations) {
-        for (EPDStationLocation *location in locations) {
+    if (_stationToShow) {
+        stations = [NSArray arrayWithObject:_stationToShow];
+    } else {
+        stations = [EPDStation findAll];
+    }
+    
+    for (EPDStation *station in stations) {
+        for (EPDStationLocation *location in station.stationLocations) {
+            minLat = MIN(minLat, location.lat.floatValue);
+            minLng = MIN(minLng, location.lng.floatValue);
+            maxLat = MAX(maxLat, location.lat.floatValue);
+            maxLng = MAX(maxLng, location.lng.floatValue);
+            
             EPDStationAnnotation *annotation = [[EPDStationAnnotation alloc] init];
             annotation.location = location;
             [self.mapView addAnnotation:annotation];
         }
-    }];
+    }
+    
+    self.mapView.region = (MKCoordinateRegion) {
+        .center = {
+            .latitude = (minLat + maxLat) / 2,
+            .longitude = (minLng + maxLng) / 2
+        },
+        .span = {
+            .latitudeDelta = maxLat - minLat,
+            .longitudeDelta = maxLng - minLng + 0.08f
+        }
+    };
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)viewDidUnload
@@ -94,7 +118,7 @@
 - (MKAnnotationView *) mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
 {
     static NSString *annotationIdentifier = @"MetroIdentifier";
-    
+
     if ([annotation isKindOfClass:[EPDStationAnnotation class]]) {
         MKAnnotationView *annotationView = [map dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
         if (!annotationView) {
@@ -105,7 +129,7 @@
             annotationView.enabled = YES;
             annotationView.canShowCallout = YES;
         }
-        if ([annotation isKindOfClass:[EPDStationAnnotation class]]) {
+        if (!self.stationToShow && [annotation isKindOfClass:[EPDStationAnnotation class]]) {
             UIButton *stationDetailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             stationDetailButton.tag = ((EPDStationAnnotation *) annotation).location.station_id.intValue;
             [stationDetailButton addTarget:self action:@selector(stationSelected:) forControlEvents:UIControlEventTouchDown];

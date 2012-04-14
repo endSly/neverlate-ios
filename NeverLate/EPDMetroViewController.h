@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "GADBannerView.h"
 
 @class EPDStation;
 
@@ -17,6 +18,13 @@
     EPDStation *_selectedStation;
     
     CLLocationManager *_locationManager;
+    
+    NSMutableDictionary *_stationsTimes;
+    
+    NSTimer *_reloadTimer;
+    NSTimer *_reloadAllDataTimer;
+    
+    GADBannerView *_bannerView;
 }
 
 - (IBAction)orderSelectionChanged:(UISegmentedControl *)sender;

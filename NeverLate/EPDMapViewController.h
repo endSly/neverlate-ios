@@ -19,6 +19,7 @@
 }
 
 @property (nonatomic, assign) IBOutlet MKMapView *mapView;
+@property (nonatomic, retain) EPDStation *stationToShow;
 
 - (IBAction)showUserHeadding:(id)sender;
 

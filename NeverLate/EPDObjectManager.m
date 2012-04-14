@@ -22,6 +22,11 @@
     return [[EPDObjectManager sharedManager] findObjectsOfType:self];
 }
 
++ (NSArray *)findWhere:(NSString *)predicate params:(NSArray *)params
+{
+    return [[EPDObjectManager sharedManager] findObjectsOfType:self where:predicate params:params];
+}
+
 + (void)findAll:(void(^)(NSArray *))block
 {
     [[EPDObjectManager sharedManager] findObjectsOfType:self block:block];
@@ -91,6 +96,8 @@
 - (NSArray *)findObjectsOfType:(__unsafe_unretained Class)class
 {
     NSMutableString *query = [NSMutableString stringWithFormat:@"SELECT * FROM %@", [class tableName]];
+    NSLog(@"Q: %@", query);
+    
     FMResultSet *resultSet = [_databse executeQuery:query];
     
     NSMutableArray *objects = [[NSMutableArray alloc] init];
@@ -109,6 +116,8 @@
 - (NSArray *)findObjectsOfType:(__unsafe_unretained Class)class  where:(NSString *)predicate params:(NSArray *)params
 {
     NSMutableString *query = [NSMutableString stringWithFormat:@"SELECT * FROM %@ WHERE %@", [class tableName], predicate];
+    NSLog(@"Q: %@, %@", query, params);
+    
     FMResultSet *resultSet = [_databse executeQuery:query withArgumentsInArray:params];
     
     NSMutableArray *objects = [[NSMutableArray alloc] init];

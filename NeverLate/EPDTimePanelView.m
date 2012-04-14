@@ -34,10 +34,10 @@
         self.layer.shadowRadius = 4;
         self.layer.shadowOpacity = 0.5;
         
-        UIFont *boldFont = [UIFont fontWithName:@"AtRotisSemiSans" size:12.0f];
+        UIFont *boldFont = [UIFont fontWithName:@"AtRotisSemiSans" size:18.0f];
         UIFont *regularFont = [UIFont fontWithName:@"MyriadPro-Regular" size:30.0f];
         
-        _stationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 22)];
+        _stationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 28)];
         _stationLabel.font = boldFont;
         _stationLabel.textColor = [UIColor whiteColor];
         _stationLabel.backgroundColor = [UIColor redColor];
@@ -46,7 +46,7 @@
         UIColor *panelColor = [UIColor colorWithRed:0xAA/255.0 green:0xAA/255.0 blue:0x66/255.0 alpha:1];
         
         {
-            UIView *panelContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 25, 320, 80)];
+            UIView *panelContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 28, 320, 80)];
             panelContainer.backgroundColor = [UIColor colorWithRed:0x77/255.0 green:0x77/255.0 blue:0x40/255.0 alpha:1];
             
             _dest1Label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 280, 35)];
@@ -79,7 +79,7 @@
         }
         
         {
-            UIView *panelContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 108, 320, 80)];
+            UIView *panelContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 110, 320, 80)];
             panelContainer.backgroundColor = [UIColor colorWithRed:0x77/255.0 green:0x77/255.0 blue:0x40/255.0 alpha:1];
             
             _dest2Label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 280, 35)];

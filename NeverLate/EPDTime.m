@@ -10,12 +10,21 @@
 
 #import "EPDStation.h"
 
+static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
+
 @implementation EPDTime
 
 @synthesize station_id;
 @synthesize direction;
 @synthesize daytype;
 @synthesize time;
+
++ (int)dayTypeForDate:(NSDate *)date
+{
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSWeekdayCalendarUnit) fromDate:date];
+    
+    return daytypes[comps.weekday];
+}
 
 + (NSString *)tableName
 {
@@ -24,12 +33,14 @@
 
 - (EPDStation *)directionStation
 {
-    return (EPDStation *) [self hasOne:[EPDStation class] foreignKey:@"id" value:self.direction];
+    return [EPDStation findById:self.direction];
 }
 
 - (EPDStation *)station
 {
-    return (EPDStation *) [self belongsTo:[EPDStation class] foreignKey:@"id" value:self.station_id];
+    return [EPDStation findById:self.station_id];
 }
+
+
 
 @end

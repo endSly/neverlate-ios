@@ -24,7 +24,7 @@
 
 - (EPDStation *)station
 {
-    return (EPDStation *) [self belongsTo:[EPDStation class] foreignKey:@"id" value:self.station_id];
+    return [EPDStation findById:self.station_id];
 }
 
 @end

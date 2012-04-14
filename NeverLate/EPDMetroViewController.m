@@ -9,46 +9,52 @@
 #import "EPDMetroViewController.h"
 
 #import <math.h>
+#import "EPDMetroStationCell.h"
+#import "EPDStationDetailViewController.h"
 #import "EPDTime.h"
 #import "EPDStation.h"
 #import "EPDStationLocation.h"
 
 @interface EPDMetroViewController ()
 
+- (float)distanceFrom:(CLLocationCoordinate2D)coordinate toLatitude:(float)lat longitude:(float)lon;
+
+- (void)orderStationsAlphabeticaly;
+
+- (void)orderStationsByProximity;
+
 @end
 
 @implementation EPDMetroViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    _bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    _bannerView.adUnitID = @"a14f75833f65366";
+    _bannerView.rootViewController = self;
+    [_bannerView loadRequest:[GADRequest request]];
+    
+    [self reloadAllData];
+    
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     [_locationManager startUpdatingLocation];
     
-    [EPDStation findAll:^(NSArray *stations) {
-        _stations = stations;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self orderStationsByProximity];
-        });
-    }];
-}
-
-- (void)setStations:(NSArray *)stations
-{
-    _stations = stations;
+    _reloadTimer = [NSTimer scheduledTimerWithTimeInterval:30 target:self.tableView selector:@selector(reloadData) userInfo:nil repeats:YES];
+    
+    _reloadAllDataTimer = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(reloadAllData) userInfo:nil repeats:YES];
     
     [self.tableView reloadData];
+}
+
+- (void)reloadAllData
+{
+    _stations = [EPDStation findAll];
+    _stationsTimes = [NSMutableDictionary dictionaryWithCapacity:_stations.count];
+    [self orderStationsByProximity];
 }
 
 - (IBAction)orderSelectionChanged:(UISegmentedControl *)sender
@@ -86,14 +92,14 @@
 
 - (void)orderStationsAlphabeticaly
 {
-    self.stations = [_stations sortedArrayUsingComparator:^NSComparisonResult(EPDStation *station1, EPDStation *station2) {
+    _stations = [_stations sortedArrayUsingComparator:^NSComparisonResult(EPDStation *station1, EPDStation *station2) {
         return [station1.name compare:station2.name];
     }];
 }
 
 - (void)orderStationsByProximity
 {
-    self.stations = [_stations sortedArrayUsingComparator:^NSComparisonResult(EPDStation *station1, EPDStation *station2) {
+    _stations = [_stations sortedArrayUsingComparator:^NSComparisonResult(EPDStation *station1, EPDStation *station2) {
         
         float distance1 = INFINITY, distance2 = INFINITY;
         
@@ -129,8 +135,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [segue.destinationViewController performSelector:@selector(setStation:) withObject:_selectedStation];
-    
+    EPDStationDetailViewController *controller = segue.destinationViewController;
+    controller.station = _selectedStation;
+    controller.bannerView = _bannerView;
 }
 
 #pragma mark - Table view data source
@@ -148,15 +155,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    EPDMetroStationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[EPDMetroStationCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     
         cell.textLabel.font = [UIFont fontWithName:@"AtRotisSemiSans" size:20.0f];
     }
     EPDStation *station = [_stations objectAtIndex:indexPath.row];
-    
+    cell.station = station;
     cell.textLabel.text = station.name;
     
     float distance = INFINITY;
@@ -168,13 +176,91 @@
         
     }
     
+    NSArray *stationTimes = [_stationsTimes objectForKey:station.id];
+    
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit) 
+                                                              fromDate:[NSDate date]];
+    
+    const int current = comps.hour * 60 + comps.minute;
+    
+    if (!stationTimes) {
+        [EPDTime findWhere:@"station_id = ? AND daytype = ?" 
+                    params:[NSArray arrayWithObjects:station.id, [NSNumber numberWithInt:[EPDTime dayTypeForDate:[NSDate date]]], nil]
+                     block:^(NSArray *times) {
+                         times = [times sortedArrayUsingComparator:^NSComparisonResult(EPDTime *time1, EPDTime *time2) {
+                             int time1Diff = time1.time.intValue - current;
+                             if (time1Diff < 0)
+                                 time1Diff += 24 * 60;
+                             
+                             int time2Diff = time2.time.intValue - current;
+                             if (time2Diff < 0)
+                                 time2Diff += 24 * 60;
+                             
+                             return time1Diff > time2Diff;
+                         }];
+                         
+                         [_stationsTimes setObject:times forKey:station.id];
+                         
+                         if (cell.station == ((EPDTime *)[times objectAtIndex:0]).station) {
+                             dispatch_async(dispatch_get_main_queue(), ^{
+                                 EPDTime *time1 = [times objectAtIndex:0];
+                                 EPDTime *time2 = [times objectAtIndex:1];
+                                 
+                                 int minutes1 = time1.time.intValue - current + 1;
+                                 int minutes2 = time2.time.intValue - current + 1;
+                                 
+                                 cell.time1Label.text = [NSString stringWithFormat:@"%@ %02i", time1.directionStation.name,  minutes1];
+                                 cell.time2Label.text = [NSString stringWithFormat:@"%@ %02i", time2.directionStation.name, minutes2];
+                             });
+                         }
+                     }];
+    } else {
+        stationTimes = [stationTimes sortedArrayUsingComparator:^NSComparisonResult(EPDTime *time1, EPDTime *time2) {
+            int time1Diff = time1.time.intValue - current;
+            if (time1Diff < 0)
+                time1Diff += 24 * 60;
+            
+            int time2Diff = time2.time.intValue - current;
+            if (time2Diff < 0)
+                time2Diff += 24 * 60;
+            
+            return time1Diff > time2Diff;
+        }];
+        [_stationsTimes setObject:stationTimes forKey:station.id];
+        
+        
+        EPDTime *time1 = [stationTimes objectAtIndex:0];
+        EPDTime *time2 = [stationTimes objectAtIndex:1];
+        
+        int minutes1 = time1.time.intValue - current + 1;
+        int minutes2 = time2.time.intValue - current + 1;
+        
+        cell.time1Label.text = [NSString stringWithFormat:@"%@ %02i", time1.directionStation.name,  minutes1];
+        cell.time2Label.text = [NSString stringWithFormat:@"%@ %02i", time2.directionStation.name, minutes2];
+    }
+    
     if (distance > 2000.0) {
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1fKm", distance / 1000.0f];
     } else {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0fm", distance];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%im", ((int) round(distance / 10.0f)) * 10];
     }
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 56.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return _bannerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 50.0f;
 }
 
 #pragma mark - Table view delegate
@@ -193,6 +279,13 @@
 	didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
+    GADRequest *request = [GADRequest request];
+    [request setLocationWithLatitude:newLocation.coordinate.latitude 
+                           longitude:newLocation.coordinate.longitude 
+                            accuracy:newLocation.horizontalAccuracy];
+    [_bannerView loadRequest:request];
+    
+    [self orderStationsByProximity];
     [self.tableView reloadData];
 }
 

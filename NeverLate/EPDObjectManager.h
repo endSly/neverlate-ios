@@ -17,6 +17,7 @@
 + (id)findById:(NSNumber *)id;
 
 + (NSArray *)findAll;
++ (NSArray *)findWhere:(NSString *)predicate params:(NSArray *)params;
 + (void)findAll:(void(^)(NSArray *))block;
 + (void)findWhere:(NSString *)predicate params:(NSArray *)params block:(void(^)(NSArray *))block;
 

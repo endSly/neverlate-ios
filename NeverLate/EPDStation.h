@@ -10,7 +10,11 @@
 
 #import "EPDObjectManager.h"
 
-@interface EPDStation : EPDManagedObject
+@interface EPDStation : EPDManagedObject {
+    NSArray *_locations;
+    NSArray *_connections;
+    NSArray *_connectedStations;
+}
 
 @property (nonatomic, retain) NSNumber *id;
 @property (nonatomic, retain) NSString *name;
@@ -18,5 +22,14 @@
 
 @property (nonatomic, readonly) NSArray *times;
 @property (nonatomic, readonly) NSArray *stationLocations;
+@property (nonatomic, readonly) NSArray *connections;
+
+@property (nonatomic, readonly) NSArray *connectedStations;
+
++ (id)findById:(NSNumber *)id;
+
+- (int)getDirectionToStation:(EPDStation *)to;
+
+- (void)timeToStation:(EPDStation *)to time:(int *)time direction:(int *)direction;
 
 @end

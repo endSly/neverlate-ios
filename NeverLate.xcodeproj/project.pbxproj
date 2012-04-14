@@ -26,6 +26,13 @@
 		0D4A32AD15248635004C515E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A32AC15248635004C515E /* QuartzCore.framework */; };
 		0D4A32AF1524863A004C515E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A32AE1524863A004C515E /* CoreLocation.framework */; };
 		0D4A32B11524863F004C515E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A32B01524863F004C515E /* MapKit.framework */; };
+		0D7B59A3152E15A000DC8A31 /* EPDTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7B59A2152E15A000DC8A31 /* EPDTimesViewController.m */; };
+		0D7F837A152CBD7F003C650E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7F8379152CBD7F003C650E /* MessageUI.framework */; };
+		0D7F837C152CBD84003C650E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7F837B152CBD84003C650E /* SystemConfiguration.framework */; };
+		0D7F837E152CBDA8003C650E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7F837D152CBDA8003C650E /* AudioToolbox.framework */; };
+		0D7F8381152CC1A9003C650E /* map-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F837F152CC1A9003C650E /* map-white.png */; };
+		0D7F8382152CC1A9003C650E /* map-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F8380152CC1A9003C650E /* map-white@2x.png */; };
+		0D7F8385152CC396003C650E /* EPDMetroStationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F8384152CC396003C650E /* EPDMetroStationCell.m */; };
 		0D8776251525B32B000C7AB6 /* metro-annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8776231525B32B000C7AB6 /* metro-annotation.png */; };
 		0D8776261525B32B000C7AB6 /* metro-annotation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */; };
 		0D8936881525C8D200FB839B /* atrotissemisans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D8936871525C8CA00FB839B /* atrotissemisans.ttf */; };
@@ -47,6 +54,9 @@
 		0DC9D4CB1525091700B855AD /* metro-times.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9D4CA1525090E00B855AD /* metro-times.sqlite3 */; };
 		0DC9D4CE1525093900B855AD /* EPDConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4CD1525093800B855AD /* EPDConnection.m */; };
 		0DCAB78A1525BB3D00B5D386 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCAB7891525BB3D00B5D386 /* libGoogleAdMobAds.a */; };
+		0DF53862152C77B50045DAE9 /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0DF53861152C77B50045DAE9 /* TapkuLibrary.bundle */; };
+		0DF53863152C78190045DAE9 /* libTapkuLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF5385E152C77A80045DAE9 /* libTapkuLibrary.a */; };
+		0DF53891152C78DF0045DAE9 /* EPDTimetableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF53890152C78DF0045DAE9 /* EPDTimetableController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +88,27 @@
 			remoteGlobalIDString = 0DB9C56115248CE4006B337C;
 			remoteInfo = FMDB_iOS;
 		};
+		0DF5385D152C77A80045DAE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DF53855152C77A80045DAE9 /* TapkuLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = TapkuLibrary;
+		};
+		0DF5385F152C77A80045DAE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DF53855152C77A80045DAE9 /* TapkuLibrary.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3B45DDF1134C736600D24C1A;
+			remoteInfo = LogicTests;
+		};
+		0DF53864152C781F0045DAE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0DF53855152C77A80045DAE9 /* TapkuLibrary.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = TapkuLibrary;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +136,15 @@
 		0D4A32AC15248635004C515E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0D4A32AE1524863A004C515E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0D4A32B01524863F004C515E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0D7B59A1152E15A000DC8A31 /* EPDTimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDTimesViewController.h; sourceTree = "<group>"; };
+		0D7B59A2152E15A000DC8A31 /* EPDTimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDTimesViewController.m; sourceTree = "<group>"; };
+		0D7F8379152CBD7F003C650E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		0D7F837B152CBD84003C650E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0D7F837D152CBDA8003C650E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		0D7F837F152CC1A9003C650E /* map-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-white.png"; sourceTree = "<group>"; };
+		0D7F8380152CC1A9003C650E /* map-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-white@2x.png"; sourceTree = "<group>"; };
+		0D7F8383152CC396003C650E /* EPDMetroStationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDMetroStationCell.h; sourceTree = "<group>"; };
+		0D7F8384152CC396003C650E /* EPDMetroStationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDMetroStationCell.m; sourceTree = "<group>"; };
 		0D8776231525B32B000C7AB6 /* metro-annotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-annotation.png"; sourceTree = "<group>"; };
 		0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-annotation@2x.png"; sourceTree = "<group>"; };
 		0D8936871525C8CA00FB839B /* atrotissemisans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = atrotissemisans.ttf; sourceTree = "<group>"; };
@@ -140,6 +180,10 @@
 		0DCAB78F1525BB5800B5D386 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
 		0DCAB7901525BB5800B5D386 /* GADRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
 		0DCAB7911525BB5800B5D386 /* GADRequestError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		0DF53855152C77A80045DAE9 /* TapkuLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapkuLibrary.xcodeproj; path = tapkulibrary/src/TapkuLibrary.xcodeproj; sourceTree = "<group>"; };
+		0DF53861152C77B50045DAE9 /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TapkuLibrary.bundle; path = tapkulibrary/src/TapkuLibrary.bundle; sourceTree = "<group>"; };
+		0DF5388F152C78DF0045DAE9 /* EPDTimetableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDTimetableController.h; sourceTree = "<group>"; };
+		0DF53890152C78DF0045DAE9 /* EPDTimetableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDTimetableController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +191,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7F837E152CBDA8003C650E /* AudioToolbox.framework in Frameworks */,
+				0D7F837C152CBD84003C650E /* SystemConfiguration.framework in Frameworks */,
+				0D7F837A152CBD7F003C650E /* MessageUI.framework in Frameworks */,
+				0DF53863152C78190045DAE9 /* libTapkuLibrary.a in Frameworks */,
 				0DB9C58415249E55006B337C /* libsqlite3.dylib in Frameworks */,
 				0DB9C57515248CF2006B337C /* libFMDB_iOS.a in Frameworks */,
 				0DB9C54915248850006B337C /* CoreData.framework in Frameworks */,
@@ -184,9 +232,13 @@
 		0D4A325A15247B01004C515E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */,
+				0DF53855152C77A80045DAE9 /* TapkuLibrary.xcodeproj */,
 				0DCAB7891525BB3D00B5D386 /* libGoogleAdMobAds.a */,
 				0DB9C58315249E55006B337C /* libsqlite3.dylib */,
-				0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */,
+				0D7F837D152CBDA8003C650E /* AudioToolbox.framework */,
+				0D7F8379152CBD7F003C650E /* MessageUI.framework */,
+				0D7F837B152CBD84003C650E /* SystemConfiguration.framework */,
 				0DB9C54815248850006B337C /* CoreData.framework */,
 				0D4A32B01524863F004C515E /* MapKit.framework */,
 				0D4A32AE1524863A004C515E /* CoreLocation.framework */,
@@ -230,6 +282,7 @@
 				0D4A326D15247B01004C515E /* MainStoryboard.storyboard */,
 				0DC9D4C01524C58F00B855AD /* myriadpro.ttf */,
 				0D8936871525C8CA00FB839B /* atrotissemisans.ttf */,
+				0DF53861152C77B50045DAE9 /* TapkuLibrary.bundle */,
 				0D4A328415247D1D004C515E /* Icon.png */,
 				0D4A328515247D1D004C515E /* Icon@2x.png */,
 				0D4A328915248444004C515E /* bus.png */,
@@ -238,6 +291,8 @@
 				0D4A328E15248486004C515E /* calendar@2x.png */,
 				0D4A3291152484A2004C515E /* map.png */,
 				0D4A3292152484A2004C515E /* map@2x.png */,
+				0D7F837F152CC1A9003C650E /* map-white.png */,
+				0D7F8380152CC1A9003C650E /* map-white@2x.png */,
 				0DC9D4B51524B16600B855AD /* metro-bilbao@2x.png */,
 				0DC9D4B61524B16600B855AD /* metro-bilbao.png */,
 				0D8776231525B32B000C7AB6 /* metro-annotation.png */,
@@ -282,6 +337,10 @@
 				0DC9D4AE1524B01200B855AD /* EPDMetroViewController.m */,
 				0DC9D4B91524B43600B855AD /* EPDStationDetailViewController.h */,
 				0DC9D4BA1524B43600B855AD /* EPDStationDetailViewController.m */,
+				0DF5388F152C78DF0045DAE9 /* EPDTimetableController.h */,
+				0DF53890152C78DF0045DAE9 /* EPDTimetableController.m */,
+				0D7B59A1152E15A000DC8A31 /* EPDTimesViewController.h */,
+				0D7B59A2152E15A000DC8A31 /* EPDTimesViewController.m */,
 				0D4A327715247B01004C515E /* EPDMapViewController.h */,
 				0D4A327815247B01004C515E /* EPDMapViewController.m */,
 			);
@@ -293,6 +352,8 @@
 			children = (
 				0DC9D4BD1524C40900B855AD /* EPDTimePanelView.h */,
 				0DC9D4BE1524C40900B855AD /* EPDTimePanelView.m */,
+				0D7F8383152CC396003C650E /* EPDMetroStationCell.h */,
+				0D7F8384152CC396003C650E /* EPDMetroStationCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -310,6 +371,15 @@
 			name = GoogleAdsMob;
 			sourceTree = "<group>";
 		};
+		0DF53856152C77A80045DAE9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0DF5385E152C77A80045DAE9 /* libTapkuLibrary.a */,
+				0DF53860152C77A80045DAE9 /* LogicTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -324,6 +394,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0DF53865152C781F0045DAE9 /* PBXTargetDependency */,
 				0DB9C57415248CEE006B337C /* PBXTargetDependency */,
 			);
 			name = NeverLate;
@@ -356,6 +427,10 @@
 					ProductGroup = 0DB9C54F15248C5F006B337C /* Products */;
 					ProjectRef = 0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */;
 				},
+				{
+					ProductGroup = 0DF53856152C77A80045DAE9 /* Products */;
+					ProjectRef = 0DF53855152C77A80045DAE9 /* TapkuLibrary.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -386,6 +461,20 @@
 			remoteRef = 0DB9C57115248CEA006B337C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		0DF5385E152C77A80045DAE9 /* libTapkuLibrary.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTapkuLibrary.a;
+			remoteRef = 0DF5385D152C77A80045DAE9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0DF53860152C77A80045DAE9 /* LogicTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = LogicTests.octest;
+			remoteRef = 0DF5385F152C77A80045DAE9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -412,6 +501,9 @@
 				0D8776261525B32B000C7AB6 /* metro-annotation@2x.png in Resources */,
 				0D8936B41525CEC100FB839B /* location-arrow.png in Resources */,
 				0D8936B51525CEC100FB839B /* location-arrow@2x.png in Resources */,
+				0DF53862152C77B50045DAE9 /* TapkuLibrary.bundle in Resources */,
+				0D7F8381152CC1A9003C650E /* map-white.png in Resources */,
+				0D7F8382152CC1A9003C650E /* map-white@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +525,9 @@
 				0DC9D4BB1524B43600B855AD /* EPDStationDetailViewController.m in Sources */,
 				0DC9D4BF1524C40900B855AD /* EPDTimePanelView.m in Sources */,
 				0DC9D4CE1525093900B855AD /* EPDConnection.m in Sources */,
+				0DF53891152C78DF0045DAE9 /* EPDTimetableController.m in Sources */,
+				0D7F8385152CC396003C650E /* EPDMetroStationCell.m in Sources */,
+				0D7B59A3152E15A000DC8A31 /* EPDTimesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +538,11 @@
 			isa = PBXTargetDependency;
 			name = FMDB_iOS;
 			targetProxy = 0DB9C57315248CEE006B337C /* PBXContainerItemProxy */;
+		};
+		0DF53865152C781F0045DAE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TapkuLibrary;
+			targetProxy = 0DF53864152C781F0045DAE9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -517,12 +617,19 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
-				HEADER_SEARCH_PATHS = "fmdb/src/**";
+				HEADER_SEARCH_PATHS = (
+					"fmdb/src/**",
+					tapkulibrary/src,
+				);
 				INFOPLIST_FILE = "NeverLate/NeverLate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -534,12 +641,19 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
-				HEADER_SEARCH_PATHS = "fmdb/src/**";
+				HEADER_SEARCH_PATHS = (
+					"fmdb/src/**",
+					tapkulibrary/src,
+				);
 				INFOPLIST_FILE = "NeverLate/NeverLate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -20,4 +20,6 @@
 @property (nonatomic, readonly) EPDStation *directionStation;
 @property (nonatomic, readonly) EPDStation *station;
 
++ (int)dayTypeForDate:(NSDate *)date;
+
 @end

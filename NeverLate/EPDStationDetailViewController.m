@@ -13,8 +13,7 @@
 #import "EPDConnection.h"
 #import "EPDTime.h"
 #import "EPDStationLocation.h"
-
-static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
+#import "EPDMapViewController.h"
 
 
 @interface EPDStationDetailViewController ()
@@ -27,34 +26,36 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
 
 @synthesize station = _station;
 @synthesize destinationStation = _destinationStation;
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize bannerView = _bannerView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     self.title = _station.name;
+    
     _headerView = [[EPDTimePanelView alloc] init];
     
     NSMutableArray *mutableStations = [[EPDStation findAll] mutableCopy];
     [mutableStations removeObject:_station];
-    _stations = mutableStations;
-    
-    [EPDConnection findAll:^(NSArray *connections) {
-        _connections = connections;
-        
-        [self reloadTimeTable];
+    _stations = [mutableStations sortedArrayUsingComparator:^NSComparisonResult(EPDStation *obj1, EPDStation *obj2) {
+        return [obj1.name compare:obj2.name];
     }];
     
+    _timeRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:30 
+                                                         target:self 
+                                                       selector:@selector(reloadTimeTable) 
+                                                       userInfo:nil 
+                                                        repeats:YES];
     
+    _connections = [EPDConnection findAll];
+    
+    [self reloadTimeTable];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.navigationController.navigationBar.translucent = NO;
 }
 
 - (void)viewDidUnload
@@ -71,35 +72,23 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
 
 - (void)reloadTimeTable
 {
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSWeekdayCalendarUnit) fromDate:[NSDate date]];
+    NSNumber *daytype = [NSNumber numberWithInt:[EPDTime dayTypeForDate:[NSDate date]]];
     
-    NSNumber *daytype = [NSNumber numberWithInt:daytypes[comps.weekday]];
+    NSArray *times = [EPDTime findWhere:@"station_id = ? AND daytype = ?" 
+                                 params:[NSArray arrayWithObjects:_station.id, daytype, nil]];
     
-    [EPDTime findWhere:@"station_id = ? AND daytype = ?" 
-                params:[NSArray arrayWithObjects:_station.id, daytype, nil] 
-                 block:^(NSArray *times) {
-                     [self updateTimes:times];
-                 }];
+    [self updateTimes:times];
 }
 
-- (int)getDirectionToStation:(EPDStation *)to from:(EPDStation *)from
+- (IBAction)showMap:(id)sender
 {
-    // Returns
-    if ([from.id isEqual:to.id])
-        return 0;
-    
-    for (EPDConnection *connection in _connections) {
-        if ([connection.station_1_id isEqual:to.id] 
-            || [connection.station_2_id isEqual:to.id]) {
-            return -1;
-        }
-        
-        if ([connection.station_1_id isEqual:from.id] 
-            || [connection.station_2_id isEqual:from.id]) {
-            return 1;
-        }
-    }
-    return 2; // Should not return 2
+    [self performSegueWithIdentifier:@"StationMapSegue" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    EPDMapViewController *mapController = segue.destinationViewController;
+    mapController.stationToShow = self.station;
 }
 
 - (void)updateTimes:(NSArray *)times
@@ -135,16 +124,17 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
     
     const int current = comps.hour * 60 + comps.minute;
     
-    int stationDirection = 0;
+    int stationDirection = 0, totalTime = 0;
     if (self.destinationStation) {
-        stationDirection = [self getDirectionToStation:self.destinationStation from:self.station];
+        [self.station  timeToStation:self.destinationStation time:&totalTime  direction:&stationDirection];
+        NSLog(@"From: %@ To: %@ Time:%i Direction: %i", self.station.name, self.destinationStation.name, totalTime, stationDirection);
     }
     
     EPDTime *soonTimes[4] = {nil, nil, nil, nil};
     int dir1 = 0, dir2 = 0, dir0 = 0;
     
     for (EPDTime *time in _times) {
-        int direction = [self getDirectionToStation:time.directionStation from:_station];
+        int direction = [_station getDirectionToStation:time.directionStation];
         if (direction == 0)
             dir0++;
         
@@ -163,7 +153,9 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
     }
     
     if (self.destinationStation) {
-        _headerView.stationLabel.text = [NSString stringWithFormat:@"%@ > %@", _station.name, self.destinationStation.name];
+        int time, direction;
+        [_station timeToStation:self.destinationStation time:&time direction:&direction];
+        _headerView.stationLabel.text = [NSString stringWithFormat:@"%@ > %@ en %i minutos", _station.name, self.destinationStation.name, time];
     } else {
         _headerView.stationLabel.text = _station.name;
     }
@@ -225,6 +217,8 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
         _headerView.time2Label2.text = nil;
         
     }
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -245,22 +239,28 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    static UIFont *font = nil;
+    if (!font)
+        font = [UIFont fontWithName:@"AtRotisSemiSans" size:18.0f];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (!cell)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.textLabel.font = font;
+    }
 
     if (self.destinationStation) {
         EPDTime *time = [_times objectAtIndex:indexPath.row];
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ %i:%02i", 
-                               time.directionStation.name, time.time.intValue / 60, time.time.intValue % 60];
+        cell.textLabel.text = time.directionStation.name;
+        
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%i:%02i", time.time.intValue / 60, time.time.intValue % 60];
         
     } else {
         EPDStation *station = [_stations objectAtIndex:indexPath.row];
         cell.textLabel.text = station.name;
+        
     }
     
     return cell;
@@ -271,19 +271,40 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
     return _headerView;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return _bannerView;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 192.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 50.0f;
 }
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.destinationStation = [_stations objectAtIndex:indexPath.row];
-    
-    [self.tableView reloadData];
-    [self updateTimeTable];
+    if (!self.destinationStation) {
+        self.destinationStation = [_stations objectAtIndex:indexPath.row];
+        
+        int direction = [_station getDirectionToStation:self.destinationStation];
+        NSMutableArray *newTimes = [NSMutableArray arrayWithCapacity:_times.count / 2];
+        for (EPDTime *t in _times) {
+            if ([_station getDirectionToStation:t.directionStation] == direction)
+                [newTimes addObject:t];
+        }
+        _times = newTimes;
+        
+        [self.tableView reloadData];
+        [self updateTimeTable];
+        self.tableView.contentOffset = CGPointMake(0,0);
+    }
 }
 
 @end

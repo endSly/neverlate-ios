@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSNumber *station_id;
 @property (nonatomic, retain) NSNumber *lat;
 @property (nonatomic, retain) NSNumber *lng;
-@property (nonatomic, retain) NSNumber *location_name;
+@property (nonatomic, retain) NSString *location_name;
 
 @property (nonatomic, readonly) EPDStation *station;
 

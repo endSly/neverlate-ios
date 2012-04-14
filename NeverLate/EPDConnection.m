@@ -16,6 +16,28 @@
 @synthesize station_2_id;
 @synthesize gap;
 
++ (NSArray *)getCache
+{
+    static NSArray *connectionsCache = nil;
+    
+    if (!connectionsCache) {
+        connectionsCache = [[EPDObjectManager sharedManager] findObjectsOfType:self];
+    }
+    
+    return connectionsCache;
+}
+
++ (NSArray *)findAll
+{
+    return [self getCache];
+}
+
++ (void)findAll:(void(^)(NSArray *))block
+{
+    block([self getCache]);
+}
+
+
 + (NSString *)tableName
 {
     return @"connections";
@@ -23,12 +45,12 @@
 
 - (EPDStation *)stationFrom
 {
-    return (EPDStation *) [self hasOne:[EPDStation class] foreignKey:@"id" value:self.station_1_id];
+    return [EPDStation findById:self.station_1_id];
 }
 
 - (EPDStation *)stationTo
 {
-    return (EPDStation *) [self hasOne:[EPDStation class] foreignKey:@"id" value:self.station_2_id];
+    return [EPDStation findById:self.station_2_id];
 }
 
 @end

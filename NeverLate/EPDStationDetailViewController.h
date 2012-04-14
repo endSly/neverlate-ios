@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GADBannerView.h"
 
 @class EPDStation;
 @class EPDTimePanelView;
 
 @interface EPDStationDetailViewController : UITableViewController {
+    NSTimer *_timeRefreshTimer;
+    
     NSArray *_times;
     EPDTimePanelView *_headerView;
     
@@ -22,5 +25,9 @@
 
 @property (nonatomic, retain) EPDStation * station;
 @property (nonatomic, retain) EPDStation * destinationStation;
+
+@property (nonatomic, assign) GADBannerView * bannerView;
+
+- (IBAction)showMap:(id)sender;
 
 @end
