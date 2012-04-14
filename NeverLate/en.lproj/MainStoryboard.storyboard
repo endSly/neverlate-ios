@@ -192,7 +192,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="aLg-kO-nJW">
-                        <barButtonItem key="rightBarButtonItem" image="map-white.png" id="uzb-L3-Ex7">
+                        <barButtonItem key="rightBarButtonItem" image="location-arrow.png" id="uzb-L3-Ex7">
                             <connections>
                                 <action selector="showMap:" destination="4NL-gU-xpG" id="LQ1-CX-sE8"/>
                             </connections>
@@ -246,7 +246,6 @@
     <resources>
         <image name="calendar.png" width="23" height="25"/>
         <image name="location-arrow.png" width="18" height="18"/>
-        <image name="map-white.png" width="26" height="21"/>
         <image name="map.png" width="26" height="21"/>
         <image name="metro-bilbao.png" width="39" height="24"/>
     </resources>
@@ -288,8 +287,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="rJC-Du-mQi"/>
-        <segue reference="tiG-4g-2D1"/>
-    </inferredMetricsTieBreakers>
 </document>

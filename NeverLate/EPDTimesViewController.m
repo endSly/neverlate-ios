@@ -42,13 +42,14 @@
                          [self.tableView reloadData];
                      });
                      
+                     self.title = [NSString stringWithFormat:@"%@ - %@", _originStation.name, _destinationStation.name];
                      
                  }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 
@@ -103,7 +104,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"%@ > %@  %i minutos", _originStation.name, _destinationStation.name, _travelTime];
+    return [NSString stringWithFormat:@"%@ a %@ en %i minutos", _originStation.name, _destinationStation.name, _travelTime];
 }
 
 /*

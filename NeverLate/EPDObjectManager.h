@@ -30,12 +30,16 @@
 @interface EPDObjectManager : NSObject {
     dispatch_queue_t _databaseQueue;
     
-    NSMutableDictionary *_queuesCache;
+    NSMutableDictionary *_queriesCache;
 }
 
 @property (nonatomic, readonly) FMDatabase * database;
 
 + (EPDObjectManager *)sharedManager;
+
+- (void)drainCache;
+
+- (NSArray *)cachedObjectsOfType:(__unsafe_unretained Class)class  where:(NSString *)predicate params:(NSArray *)params;
 
 - (NSArray *)findObjectsOfType:(__unsafe_unretained Class)class;
 - (NSArray *)findObjectsOfType:(__unsafe_unretained Class)class  where:(NSString *)predicate params:(NSArray *)params;

@@ -21,11 +21,14 @@
 {
     [super viewDidLoad];
     
-    self.tableView.frame = CGRectMake(0, 264, 320, 102);
+    self.tableView.frame = CGRectMake(0, 264, 320, 148);
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
     _originStation = nil;
     _destinationStation = nil;
     _date = [NSDate date];

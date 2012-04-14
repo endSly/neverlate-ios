@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D0907BD1539978000162D44 /* arrow-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D0907BB1539978000162D44 /* arrow-small.png */; };
+		0D0907BE1539978000162D44 /* arrow-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D0907BC1539978000162D44 /* arrow-small@2x.png */; };
 		0D4A325C15247B01004C515E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325B15247B01004C515E /* UIKit.framework */; };
 		0D4A325E15247B01004C515E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325D15247B01004C515E /* Foundation.framework */; };
 		0D4A326015247B01004C515E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325F15247B01004C515E /* CoreGraphics.framework */; };
@@ -112,6 +114,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D0907BB1539978000162D44 /* arrow-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-small.png"; sourceTree = "<group>"; };
+		0D0907BC1539978000162D44 /* arrow-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-small@2x.png"; sourceTree = "<group>"; };
 		0D4A325715247B01004C515E /* NeverLate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeverLate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4A325B15247B01004C515E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0D4A325D15247B01004C515E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -297,6 +301,8 @@
 				0DC9D4B61524B16600B855AD /* metro-bilbao.png */,
 				0D8776231525B32B000C7AB6 /* metro-annotation.png */,
 				0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */,
+				0D0907BB1539978000162D44 /* arrow-small.png */,
+				0D0907BC1539978000162D44 /* arrow-small@2x.png */,
 				0D8936B21525CEC100FB839B /* location-arrow.png */,
 				0D8936B31525CEC100FB839B /* location-arrow@2x.png */,
 			);
@@ -504,6 +510,8 @@
 				0DF53862152C77B50045DAE9 /* TapkuLibrary.bundle in Resources */,
 				0D7F8381152CC1A9003C650E /* map-white.png in Resources */,
 				0D7F8382152CC1A9003C650E /* map-white@2x.png in Resources */,
+				0D0907BD1539978000162D44 /* arrow-small.png in Resources */,
+				0D0907BE1539978000162D44 /* arrow-small@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

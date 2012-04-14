@@ -85,7 +85,7 @@
         _databse = [FMDatabase databaseWithPath:[[NSBundle mainBundle] pathForResource:@"metro-times" ofType:@"sqlite3"]];
         _databaseQueue = dispatch_queue_create("databaseDispatchQueue", 0);
         
-        _queuesCache = [[NSMutableDictionary alloc] initWithCapacity:20];
+        _queriesCache = [[NSMutableDictionary alloc] initWithCapacity:100];
 
         [_databse open];
     }
@@ -93,46 +93,47 @@
     return self;
 }
 
+- (void)drainCache
+{
+    [_queriesCache removeAllObjects];
+}
+
+- (NSArray *)executeQuery:(NSString *)query withArguments:(NSArray *)args forObjectsOfClass:(__unsafe_unretained Class)class
+{
+    NSString *queryHash = [NSString stringWithFormat:@"%@%@", query, args];
+    NSArray *result = [_queriesCache objectForKey:queryHash];
+    
+    if (!result) {
+        FMResultSet *resultSet = [_databse executeQuery:query withArgumentsInArray:args];
+        
+        NSMutableArray *objects = [[NSMutableArray alloc] init];
+        
+        while ([resultSet next]) {
+            EPDManagedObject* object = [[class alloc] init];
+            for (int i = 0; i < resultSet.columnCount; i++) {
+                [object setValue:[resultSet objectForColumnIndex:i] forKey:[resultSet columnNameForIndex:i]];
+            }
+            
+            
+            [objects addObject:object];
+        }
+        [_queriesCache setObject:objects forKey:queryHash];
+        result = objects;
+    }
+    
+    return result;
+}
+
 - (NSArray *)findObjectsOfType:(__unsafe_unretained Class)class
 {
     NSMutableString *query = [NSMutableString stringWithFormat:@"SELECT * FROM %@", [class tableName]];
-    NSLog(@"Q: %@", query);
-    
-    FMResultSet *resultSet = [_databse executeQuery:query];
-    
-    NSMutableArray *objects = [[NSMutableArray alloc] init];
-    
-    while ([resultSet next]) {
-        EPDManagedObject* object = [[class alloc] init];
-        for (int i = 0; i < resultSet.columnCount; i++) {
-            [object setValue:[resultSet objectForColumnIndex:i] forKey:[resultSet columnNameForIndex:i]];
-        }
-        [objects addObject:object];
-    }
-    
-    return objects;
+    return [self executeQuery:query withArguments:nil forObjectsOfClass:class];
 }
 
 - (NSArray *)findObjectsOfType:(__unsafe_unretained Class)class  where:(NSString *)predicate params:(NSArray *)params
 {
     NSMutableString *query = [NSMutableString stringWithFormat:@"SELECT * FROM %@ WHERE %@", [class tableName], predicate];
-    NSLog(@"Q: %@, %@", query, params);
-    
-    FMResultSet *resultSet = [_databse executeQuery:query withArgumentsInArray:params];
-    
-    NSMutableArray *objects = [[NSMutableArray alloc] init];
-    
-    while ([resultSet next]) {
-        EPDManagedObject* object = [[class alloc] init];
-        for (int i = 0; i < resultSet.columnCount; i++) {
-            [object setValue:[resultSet objectForColumnIndex:i] forKey:[resultSet columnNameForIndex:i]];
-        }
-        
-        
-        [objects addObject:object];
-    }
-    
-    return objects;
+    return [self executeQuery:query withArguments:params forObjectsOfClass:class];
 }
 
 - (void)findObjectsOfType:(__unsafe_unretained Class)class block:(void(^)(NSArray *))block
