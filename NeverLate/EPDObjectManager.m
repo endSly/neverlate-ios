@@ -87,7 +87,7 @@
         
         _queriesCache = [[NSMutableDictionary alloc] initWithCapacity:100];
 
-        [_databse open];
+        [_databse openWithFlags:SQLITE_OPEN_READONLY | SQLITE_OPEN_NOMUTEX];
     }
     
     return self;

@@ -44,18 +44,33 @@
     [_locationManager startUpdatingLocation];
     [_locationManager startUpdatingHeading];
     
-    _reloadTimer = [NSTimer scheduledTimerWithTimeInterval:30 target:self.tableView selector:@selector(reloadData) userInfo:nil repeats:YES];
+    _reloadTimer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(reloadData) userInfo:nil repeats:YES];
     
-    _reloadAllDataTimer = [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(reloadAllData) userInfo:nil repeats:YES];
+    _reloadAllDataTimer = [NSTimer scheduledTimerWithTimeInterval:120 target:self selector:@selector(reloadAllData) userInfo:nil repeats:YES];
     
+    [self reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self reloadData];
+}
+
+- (void)reloadData
+{
     [self.tableView reloadData];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit) 
+                                                              fromDate:[NSDate date]];
+    
+    _currentTime = comps.hour * 60 + comps.minute;
 }
 
 - (void)reloadAllData
 {
     _stations = [EPDStation findAll];
     _stationsTimes = [NSMutableDictionary dictionaryWithCapacity:_stations.count];
-    [self orderStationsByProximity];
+
+    [self reloadData];
 }
 
 - (IBAction)orderSelectionChanged:(UISegmentedControl *)sender
@@ -172,52 +187,48 @@
 
 - (void)updateTimes:(NSArray *)times ofStation:(EPDStation *)station forCell:(EPDMetroStationCell *)cell async:(BOOL)async
 {
-    
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit) 
-                                                              fromDate:[NSDate date]];
-    
-    const int current = comps.hour * 60 + comps.minute;
-    
-    times = [times sortedArrayUsingComparator:^NSComparisonResult(EPDTime *time1, EPDTime *time2) {
-        int time1Diff = time1.time.intValue - current;
-        if (time1Diff < 0)
-            time1Diff += 24 * 60;
-        
-        int time2Diff = time2.time.intValue - current;
-        if (time2Diff < 0)
-            time2Diff += 24 * 60;
-        
-        return time1Diff > time2Diff;
-    }];
+    if (((EPDTime *)[times objectAtIndex:0]).time.intValue < _currentTime) {
+        times = [times sortedArrayUsingComparator:^NSComparisonResult(EPDTime *time1, EPDTime *time2) {
+            int time1Diff = time1.time.intValue - _currentTime;
+            if (time1Diff < 0)
+                time1Diff += 24 * 60;
+            
+            int time2Diff = time2.time.intValue - _currentTime;
+            if (time2Diff < 0)
+                time2Diff += 24 * 60;
+            
+            return time1Diff > time2Diff;
+        }];
+    }
     
     [_stationsTimes setObject:times forKey:station.id];
     
-    if (cell.station == ((EPDTime *)[times objectAtIndex:0]).station) {
+    const dispatch_block_t updateCellTimes = ^{
+        if (cell.station != ((EPDTime *)[times objectAtIndex:0]).station)
+            return;
         
-        const dispatch_block_t updateCellTimes = ^{
-            EPDTime *time1 = [times objectAtIndex:0];
-            EPDTime *time2 = [times objectAtIndex:1];
-            
-            int minutes1 = time1.time.intValue - current + 1;
-            int minutes2 = time2.time.intValue - current + 1;
-            
-            if (minutes1 <= 120) {
-                cell.time1Label.text = [NSString stringWithFormat:@"%@ %02i", time1.directionStation.name,  minutes1];
-            } else {
-                cell.time1Label.text = [NSString stringWithFormat:@"%@ +120", time1.directionStation.name];
-            }
-            
-            if (minutes2 <= 120) {
-                cell.time2Label.text = [NSString stringWithFormat:@"%@ %02i", time2.directionStation.name, minutes2];
-            } else {
-                cell.time2Label.text = [NSString stringWithFormat:@"%@ +120", time2.directionStation.name];
-            }
-        };
-        if (async) {
-            dispatch_async(dispatch_get_main_queue(), updateCellTimes);
+        EPDTime *time1 = [times objectAtIndex:0];
+        EPDTime *time2 = [times objectAtIndex:1];
+        
+        int minutes1 = time1.time.intValue - _currentTime + 1;
+        int minutes2 = time2.time.intValue - _currentTime + 1;
+        
+        if (minutes1 <= 120) {
+            cell.time1Label.text = [NSString stringWithFormat:@"%@ %02i", time1.directionStation.name,  minutes1];
         } else {
-            updateCellTimes();
+            cell.time1Label.text = [NSString stringWithFormat:@"%@ +120", time1.directionStation.name];
         }
+        
+        if (minutes2 <= 120) {
+            cell.time2Label.text = [NSString stringWithFormat:@"%@ %02i", time2.directionStation.name, minutes2];
+        } else {
+            cell.time2Label.text = [NSString stringWithFormat:@"%@ +120", time2.directionStation.name];
+        }
+    };
+    if (async) {
+        dispatch_async(dispatch_get_main_queue(), updateCellTimes);
+    } else {
+        updateCellTimes();
     }
 
 }
@@ -246,6 +257,7 @@
     cell.heading = heading - DEG_TO_RAD(_locationManager.heading.trueHeading);
     
     NSArray *times = [_stationsTimes objectForKey:station.id];
+    
     if(!times) {
         [EPDTime findWhere:@"station_id = ? AND daytype = ?" 
                     params:[NSArray arrayWithObjects:station.id, [NSNumber numberWithInt:[EPDTime dayTypeForDate:[NSDate date]]], nil]

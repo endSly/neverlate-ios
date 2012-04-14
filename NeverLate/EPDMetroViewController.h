@@ -25,6 +25,8 @@
     NSTimer *_reloadAllDataTimer;
     
     GADBannerView *_bannerView;
+    
+    int _currentTime; // In minutes from 00:00
 }
 
 - (IBAction)orderSelectionChanged:(UISegmentedControl *)sender;

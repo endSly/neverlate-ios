@@ -35,6 +35,7 @@
 		0D7F8381152CC1A9003C650E /* map-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F837F152CC1A9003C650E /* map-white.png */; };
 		0D7F8382152CC1A9003C650E /* map-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F8380152CC1A9003C650E /* map-white@2x.png */; };
 		0D7F8385152CC396003C650E /* EPDMetroStationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F8384152CC396003C650E /* EPDMetroStationCell.m */; };
+		0D8001381539B113000B2F2C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8001371539B113000B2F2C /* libsqlite3.dylib */; };
 		0D8776251525B32B000C7AB6 /* metro-annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8776231525B32B000C7AB6 /* metro-annotation.png */; };
 		0D8776261525B32B000C7AB6 /* metro-annotation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */; };
 		0D8936881525C8D200FB839B /* atrotissemisans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D8936871525C8CA00FB839B /* atrotissemisans.ttf */; };
@@ -43,7 +44,6 @@
 		0DB9C54915248850006B337C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB9C54815248850006B337C /* CoreData.framework */; };
 		0DB9C57515248CF2006B337C /* libFMDB_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB9C57215248CEA006B337C /* libFMDB_iOS.a */; };
 		0DB9C57815248D31006B337C /* EPDObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DB9C57715248D31006B337C /* EPDObjectManager.m */; };
-		0DB9C58415249E55006B337C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DB9C58315249E55006B337C /* libsqlite3.dylib */; };
 		0DC9D47D1524A04400B855AD /* EPDStation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D47C1524A04400B855AD /* EPDStation.m */; };
 		0DC9D4A91524A8C600B855AD /* EPDTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4A81524A8C600B855AD /* EPDTime.m */; };
 		0DC9D4AC1524AA1E00B855AD /* EPDStationLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4AB1524AA1E00B855AD /* EPDStationLocation.m */; };
@@ -149,6 +149,7 @@
 		0D7F8380152CC1A9003C650E /* map-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-white@2x.png"; sourceTree = "<group>"; };
 		0D7F8383152CC396003C650E /* EPDMetroStationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDMetroStationCell.h; sourceTree = "<group>"; };
 		0D7F8384152CC396003C650E /* EPDMetroStationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDMetroStationCell.m; sourceTree = "<group>"; };
+		0D8001371539B113000B2F2C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0D8776231525B32B000C7AB6 /* metro-annotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-annotation.png"; sourceTree = "<group>"; };
 		0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-annotation@2x.png"; sourceTree = "<group>"; };
 		0D8936871525C8CA00FB839B /* atrotissemisans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = atrotissemisans.ttf; sourceTree = "<group>"; };
@@ -158,7 +159,6 @@
 		0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = fmdb.xcodeproj; path = fmdb/fmdb.xcodeproj; sourceTree = "<group>"; };
 		0DB9C57615248D31006B337C /* EPDObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDObjectManager.h; sourceTree = "<group>"; };
 		0DB9C57715248D31006B337C /* EPDObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDObjectManager.m; sourceTree = "<group>"; };
-		0DB9C58315249E55006B337C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0DC9D47B1524A04400B855AD /* EPDStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDStation.h; sourceTree = "<group>"; };
 		0DC9D47C1524A04400B855AD /* EPDStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDStation.m; sourceTree = "<group>"; };
 		0DC9D4A71524A8C600B855AD /* EPDTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDTime.h; sourceTree = "<group>"; };
@@ -195,11 +195,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D8001381539B113000B2F2C /* libsqlite3.dylib in Frameworks */,
 				0D7F837E152CBDA8003C650E /* AudioToolbox.framework in Frameworks */,
 				0D7F837C152CBD84003C650E /* SystemConfiguration.framework in Frameworks */,
 				0D7F837A152CBD7F003C650E /* MessageUI.framework in Frameworks */,
 				0DF53863152C78190045DAE9 /* libTapkuLibrary.a in Frameworks */,
-				0DB9C58415249E55006B337C /* libsqlite3.dylib in Frameworks */,
 				0DB9C57515248CF2006B337C /* libFMDB_iOS.a in Frameworks */,
 				0DB9C54915248850006B337C /* CoreData.framework in Frameworks */,
 				0D4A32B11524863F004C515E /* MapKit.framework in Frameworks */,
@@ -218,6 +218,7 @@
 		0D4A324C15247B01004C515E = {
 			isa = PBXGroup;
 			children = (
+				0D8001371539B113000B2F2C /* libsqlite3.dylib */,
 				0D4A328315247B08004C515E /* Assets */,
 				0D4A326115247B01004C515E /* NeverLate */,
 				0D4A325A15247B01004C515E /* Frameworks */,
@@ -239,7 +240,6 @@
 				0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */,
 				0DF53855152C77A80045DAE9 /* TapkuLibrary.xcodeproj */,
 				0DCAB7891525BB3D00B5D386 /* libGoogleAdMobAds.a */,
-				0DB9C58315249E55006B337C /* libsqlite3.dylib */,
 				0D7F837D152CBDA8003C650E /* AudioToolbox.framework */,
 				0D7F8379152CBD7F003C650E /* MessageUI.framework */,
 				0D7F837B152CBD84003C650E /* SystemConfiguration.framework */,
@@ -623,6 +623,7 @@
 		0D4A328115247B01004C515E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -647,6 +648,7 @@
 		0D4A328215247B01004C515E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
