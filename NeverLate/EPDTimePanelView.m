@@ -14,28 +14,19 @@
 
 @synthesize stationLabel = _stationLabel;
 
-@synthesize dest1Label1 = _dest1Label1;
-@synthesize time1Label1 = _time1Label1;
-@synthesize dest1Label2 = _dest1Label2;
-@synthesize time1Label2 = _time1Label2;
+@synthesize panels = _panels;
 
-@synthesize dest2Label1 = _dest2Label1;
-@synthesize time2Label1 = _time2Label1;
-@synthesize dest2Label2 = _dest2Label2;
-@synthesize time2Label2 = _time2Label2;
-
-- (id)init
+- (id)initWithPanelsCount:(int)panelsCount
 {
-    self = [super initWithFrame:CGRectMake(0, 0, 300, 192)];
+    self = [super initWithFrame:CGRectMake(0, 0, 320, 28 + 65 * panelsCount)];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         self.layer.masksToBounds = NO;
-        self.layer.shadowOffset = CGSizeMake(0, 8);
+        self.layer.shadowOffset = CGSizeMake(0, 4);
         self.layer.shadowRadius = 4;
         self.layer.shadowOpacity = 0.5;
         
         UIFont *boldFont = [UIFont fontWithName:@"AtRotisSemiSans" size:18.0f];
-        UIFont *regularFont = [UIFont fontWithName:@"MyriadPro-Regular" size:30.0f];
         
         _stationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 28)];
         _stationLabel.font = boldFont;
@@ -43,73 +34,14 @@
         _stationLabel.backgroundColor = [UIColor redColor];
         [self addSubview:_stationLabel];
         
-        UIColor *panelColor = [UIColor colorWithRed:0xAA/255.0 green:0xAA/255.0 blue:0x66/255.0 alpha:1];
-        
-        {
-            UIView *panelContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 28, 320, 80)];
-            panelContainer.backgroundColor = [UIColor colorWithRed:0x77/255.0 green:0x77/255.0 blue:0x40/255.0 alpha:1];
-            
-            _dest1Label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 280, 35)];
-            _dest1Label1.backgroundColor = [UIColor clearColor];
-            _dest1Label1.textColor = panelColor;
-            _dest1Label1.font = regularFont;
-            [panelContainer addSubview:_dest1Label1];
-            
-            _dest1Label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 45, 280, 35)];
-            _dest1Label2.backgroundColor = [UIColor clearColor];
-            _dest1Label2.textColor = panelColor;
-            _dest1Label2.font = regularFont;
-            [panelContainer addSubview:_dest1Label2];
-            
-            _time1Label1 = [[UILabel alloc] initWithFrame:CGRectMake(240, 5, 75, 35)];
-            _time1Label1.textAlignment = UITextAlignmentRight;
-            _time1Label1.backgroundColor = [UIColor clearColor];
-            _time1Label1.textColor = panelColor;
-            _time1Label1.font = regularFont;
-            [panelContainer addSubview:_time1Label1];
-            
-            _time1Label2 = [[UILabel alloc] initWithFrame:CGRectMake(240, 45, 75, 35)];
-            _time1Label2.textAlignment = UITextAlignmentRight;
-            _time1Label2.backgroundColor = [UIColor clearColor];
-            _time1Label2.textColor = panelColor;
-            _time1Label2.font = regularFont;
-            [panelContainer addSubview:_time1Label2];
-            
-            [self addSubview:panelContainer];
+        NSMutableArray *panels = [NSMutableArray arrayWithCapacity:panelsCount];
+        for (int i = 0; i < panelsCount; i++) {
+            EPDPanelView *panel = [[EPDPanelView alloc] init];
+            panel.frame = CGRectMake(0, 28 + 65 * i, 320, 65);
+            [panels addObject:panel];
+            [self addSubview:panel];
         }
-        
-        {
-            UIView *panelContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 110, 320, 80)];
-            panelContainer.backgroundColor = [UIColor colorWithRed:0x77/255.0 green:0x77/255.0 blue:0x40/255.0 alpha:1];
-            
-            _dest2Label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 280, 35)];
-            _dest2Label1.backgroundColor = [UIColor clearColor];
-            _dest2Label1.textColor = panelColor;
-            _dest2Label1.font = regularFont;
-            [panelContainer addSubview:_dest2Label1];
-            
-            _dest2Label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 45, 280, 35)];
-            _dest2Label2.backgroundColor = [UIColor clearColor];
-            _dest2Label2.textColor = panelColor;
-            _dest2Label2.font = regularFont;
-            [panelContainer addSubview:_dest2Label2];
-            
-            _time2Label1 = [[UILabel alloc] initWithFrame:CGRectMake(240, 5, 75, 35)];
-            _time2Label1.textAlignment = UITextAlignmentRight;
-            _time2Label1.backgroundColor = [UIColor clearColor];
-            _time2Label1.textColor = panelColor;
-            _time2Label1.font = regularFont;
-            [panelContainer addSubview:_time2Label1];
-            
-            _time2Label2 = [[UILabel alloc] initWithFrame:CGRectMake(240, 45, 75, 35)];
-            _time2Label2.textAlignment = UITextAlignmentRight;
-            _time2Label2.backgroundColor = [UIColor clearColor];
-            _time2Label2.textColor = panelColor;
-            _time2Label2.font = regularFont;
-            [panelContainer addSubview:_time2Label2];
-            
-            [self addSubview:panelContainer];
-        }
+        _panels = panels;
     }
     return self;
 }
@@ -122,5 +54,56 @@
     // Drawing code
 }
 */
+
+@end
+
+@implementation EPDPanelView
+
+@synthesize destLabel1 = _destLabel1;
+@synthesize timeLabel1 = _timeLabel1;
+@synthesize destLabel2 = _destLabel2;
+@synthesize timeLabel2 = _timeLabel2;
+
+- (id)init
+{
+    self = [super initWithFrame:CGRectMake(0, 0, 320, 65)];
+    if (self) {
+        UIFont *regularFont = [UIFont fontWithName:@"MyriadPro-Regular" size:28.0f];
+
+        
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"PanelBackground"]];
+        
+        UIColor *panelColor = [UIColor colorWithRed:0x88/255.0 green:0x88/255.0 blue:0x50/255.0 alpha:1];
+        
+        
+        _destLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 280, 32)];
+        _destLabel1.backgroundColor = [UIColor clearColor];
+        _destLabel1.textColor = panelColor;
+        _destLabel1.font = regularFont;
+        [self addSubview:_destLabel1];
+        
+        _destLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 35, 280, 32)];
+        _destLabel2.backgroundColor = [UIColor clearColor];
+        _destLabel2.textColor = panelColor;
+        _destLabel2.font = regularFont;
+        [self addSubview:_destLabel2];
+        
+        _timeLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(240, 5, 75, 32)];
+        _timeLabel1.textAlignment = UITextAlignmentRight;
+        _timeLabel1.backgroundColor = [UIColor clearColor];
+        _timeLabel1.textColor = panelColor;
+        _timeLabel1.font = regularFont;
+        [self addSubview:_timeLabel1];
+        
+        _timeLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(240, 35, 75, 32)];
+        _timeLabel2.textAlignment = UITextAlignmentRight;
+        _timeLabel2.backgroundColor = [UIColor clearColor];
+        _timeLabel2.textColor = panelColor;
+        _timeLabel2.font = regularFont;
+        [self addSubview:_timeLabel2];
+
+    }
+    return self;
+}
 
 @end

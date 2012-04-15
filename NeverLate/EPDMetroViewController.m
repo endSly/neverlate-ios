@@ -14,6 +14,8 @@
 #import "EPDTime.h"
 #import "EPDStation.h"
 #import "EPDStationLocation.h"
+#import "EPDMenuViewController.h"
+#import "ECSlidingViewController.h"
 
 @interface EPDMetroViewController ()
 
@@ -31,11 +33,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     _bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     _bannerView.adUnitID = @"a14f75833f65366";
     _bannerView.rootViewController = self;
     [_bannerView loadRequest:[GADRequest request]];
+    
+    self.navigationController.navigationBar.layer.shadowRadius = 4.0;
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
+    self.navigationController.navigationBar.layer.masksToBounds = NO;
+    self.navigationController.navigationBar.layer.shouldRasterize = YES;
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0,4);
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:0xc0 / 255.0 green:0xc0 / 255.0 blue:0xc0 / 255.0 alpha:1];
     
     [self reloadAllData];
     
@@ -73,9 +84,9 @@
     [self reloadData];
 }
 
-- (IBAction)orderSelectionChanged:(UISegmentedControl *)sender
+- (void)order
 {
-    switch (sender.selectedSegmentIndex) {
+    switch (_stationsOrder) {
         case 0:
             [self orderStationsByProximity];
             break;
@@ -86,6 +97,13 @@
     }
     
     [self.tableView reloadData];
+}
+
+- (IBAction)orderSelectionChanged:(UISegmentedControl *)sender
+{
+    _stationsOrder = sender.selectedSegmentIndex;
+    
+    [self order];
 }
 
 #define PI 3.14159265f
@@ -283,8 +301,6 @@
     
     if (!cell) {
         cell = [[EPDMetroStationCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    
-        cell.textLabel.font = [UIFont fontWithName:@"AtRotisSemiSans" size:20.0f];
     }
 
     [self configureCell:cell forStation:[_stations objectAtIndex:indexPath.row]];
@@ -294,7 +310,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 56.0f;
+    return 65.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -329,7 +345,7 @@
                             accuracy:newLocation.horizontalAccuracy];
     [_bannerView loadRequest:request];
     
-    [self orderStationsByProximity];
+    [self order];
     [self.tableView reloadData];
 }
 

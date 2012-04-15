@@ -8,18 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface EPDTimePanelView : UIView
 
 @property (nonatomic, readonly) UILabel * stationLabel;
+@property (nonatomic, readonly) NSArray * panels;
 
-@property (nonatomic, readonly) UILabel * dest1Label1;
-@property (nonatomic, readonly) UILabel * time1Label1;
-@property (nonatomic, readonly) UILabel * dest1Label2;
-@property (nonatomic, readonly) UILabel * time1Label2;
+- (id)initWithPanelsCount:(int)panelsCount;
 
-@property (nonatomic, readonly) UILabel * dest2Label1;
-@property (nonatomic, readonly) UILabel * time2Label1;
-@property (nonatomic, readonly) UILabel * dest2Label2;
-@property (nonatomic, readonly) UILabel * time2Label2;
+@end
+
+
+@interface EPDPanelView : UIView
+
+@property (nonatomic, readonly) UILabel * destLabel1;
+@property (nonatomic, readonly) UILabel * timeLabel1;
+@property (nonatomic, readonly) UILabel * destLabel2;
+@property (nonatomic, readonly) UILabel * timeLabel2;
 
 @end

@@ -8,13 +8,37 @@
 
 #import "EPDAppDelegate.h"
 
+#import "iRate.h"
+#import "ECSlidingViewController.h"
+
 @implementation EPDAppDelegate
 
 @synthesize window = _window;
 
++ (void)initialize
+{
+	//set the app and bundle ID. normally you wouldn't need to do this
+    //but we need to test with an app that's actually on the store
+	//[iRate sharedInstance].appStoreID = 355313284;
+    //[iRate sharedInstance].applicationBundleID = @"com.charcoaldesign.rainbowblocks";
+	
+    [iRate sharedInstance].messageTitle = @"Vota NeverLate";
+    [iRate sharedInstance].message = @"Sí te gusta NeverLate ayudanos valorando NeverLate en la AppStore. No te llevará más de un minuto. ¡Gracias!";
+    
+    //enable debug mode
+    //[iRate sharedInstance].debug = YES;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
+
+    ECSlidingViewController *slidingViewController = (ECSlidingViewController *)self.window.rootViewController;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    
+    slidingViewController.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"RootTabBar"];
+    
+    
     return YES;
 }
 							

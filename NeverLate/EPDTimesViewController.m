@@ -27,24 +27,24 @@
 
     [_originStation timeToStation:_destinationStation time:&_travelTime direction:&_direction];
 
-    [EPDTime findWhere:@"station_id = ? AND daytype = ?" 
-                params:[NSArray arrayWithObjects:_originStation.id, [NSNumber numberWithInt:[EPDTime dayTypeForDate:_date]], nil] 
-                 block:^(NSArray *times) {
-                     
-                     NSMutableArray *selectedTimes = [NSMutableArray arrayWithCapacity:times.count / 2];
-                     for (EPDTime *time in times) {
-                         if ([self.originStation getDirectionToStation:time.directionStation] == _direction)
-                             [selectedTimes addObject:time];
-                     }
-                     
-                     _times = selectedTimes;
-                     dispatch_async(dispatch_get_main_queue(), ^{
-                         [self.tableView reloadData];
-                     });
-                     
-                     self.title = [NSString stringWithFormat:@"%@ - %@", _originStation.name, _destinationStation.name];
-                     
-                 }];
+    NSArray *times = [EPDTime findWhere:@"station_id = ? AND daytype = ?" 
+                params:[NSArray arrayWithObjects:_originStation.id, [NSNumber numberWithInt:[EPDTime dayTypeForDate:_date]], nil]];
+    
+    NSMutableArray *selectedTimes = [NSMutableArray arrayWithCapacity:times.count / 2];
+    for (EPDTime *time in times) {
+        int t, d;
+        [self.originStation timeToStation:time.directionStation time:&t direction:&d];
+        if (d == _direction)
+            [selectedTimes addObject:time];
+    }
+    
+    _times = selectedTimes;
+    
+    
+    
+    self.title = [NSString stringWithFormat:@"%@ - %@", _originStation.name, _destinationStation.name];
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated

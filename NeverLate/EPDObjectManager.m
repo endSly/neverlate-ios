@@ -138,14 +138,18 @@
 
 - (void)findObjectsOfType:(__unsafe_unretained Class)class block:(void(^)(NSArray *))block
 {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     dispatch_async(_databaseQueue, ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         block([self findObjectsOfType:class]);
     });
 }
 
 - (void)findObjectsOfType:(__unsafe_unretained Class)class  where:(NSString *)predicate params:(NSArray *)params block:(void(^)(NSArray *))block
 {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     dispatch_async(_databaseQueue, ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         block([self findObjectsOfType:class where:predicate params:params]);
     });
 }

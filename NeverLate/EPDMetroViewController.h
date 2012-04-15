@@ -17,6 +17,8 @@
     
     EPDStation *_selectedStation;
     
+    NSInteger _stationsOrder;
+    
     CLLocationManager *_locationManager;
     
     NSMutableDictionary *_stationsTimes;

@@ -134,15 +134,7 @@
     int totalTime = -1, dir = 0;
     
     for (EPDConnection *c in from.connections) {
-        EPDStation *otherStation;
-        
-        if (c.stationFrom == from) { 
-            otherStation = c.stationTo;
-            dir = 1;
-        } else {
-            otherStation = c.stationFrom;
-            dir = -1;
-        }
+        EPDStation *otherStation = (c.stationFrom == from) ? c.stationTo : c.stationFrom;
         
         if (otherStation == last)
             continue;
@@ -152,12 +144,12 @@
         
         if (t >= 0) {
             totalTime = t + c.gap.intValue;
+            dir = [from.connections indexOfObject:c];
             break;
         }
     }
     
-    if (!*direction)
-        *direction = dir;
+    *direction = dir;
     *time = totalTime;
 }
 

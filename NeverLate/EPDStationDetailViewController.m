@@ -34,7 +34,7 @@
 
     self.title = _station.name;
     
-    _headerView = [[EPDTimePanelView alloc] init];
+    _headerView = [[EPDTimePanelView alloc] initWithPanelsCount:_station.connections.count];
     
     NSMutableArray *mutableStations = [[EPDStation findAll] mutableCopy];
     [mutableStations removeObject:_station];
@@ -130,26 +130,61 @@
         NSLog(@"From: %@ To: %@ Time:%i Direction: %i", self.station.name, self.destinationStation.name, totalTime, stationDirection);
     }
     
-    EPDTime *soonTimes[4] = {nil, nil, nil, nil};
-    int dir1 = 0, dir2 = 0, dir0 = 0;
+    int connectionsCount = self.destinationStation ? 1 : _station.connections.count;
+    NSMutableArray *soonTimes = [NSMutableArray arrayWithCapacity:connectionsCount];
+    for (int i = 0; i < connectionsCount; i++) {
+        [soonTimes addObject:[NSMutableArray arrayWithCapacity:2]];
+    }
+    
+    int timesAdded = 0;
     
     for (EPDTime *time in _times) {
-        int direction = [_station getDirectionToStation:time.directionStation];
-        if (direction == 0)
-            dir0++;
+        int direction, t;
+        [self.station  timeToStation:time.directionStation time:&t  direction:&direction];
         
-        if (direction < 0 && dir1 < 2 && !(self.destinationStation && stationDirection > 0)) {
-            soonTimes[dir1] = time;
-            dir1++;
-        }
+        if (!t || direction < 0)
+            continue;
         
-        if (direction > 0 && dir2 < 2 &&  !(self.destinationStation && stationDirection < 0)) {
-            soonTimes[2 + dir2] = time;
-            dir2++;
-        }
+        if (self.destinationStation && stationDirection != direction)
+            continue;
         
-        if (dir0 + dir1 + dir2 > 4)
+        NSMutableArray *times = [soonTimes objectAtIndex:self.destinationStation ? 0 : direction];
+        if (times.count > 2)
+            continue;
+        
+        [times addObject:time];
+        
+        if (++timesAdded > connectionsCount * 2)
             break;
+        
+    }
+    
+    for (int i = 0; i < connectionsCount; i++) {
+        @try {
+            EPDPanelView *panel = [_headerView.panels objectAtIndex:i];
+            EPDTime *time1 = [[soonTimes objectAtIndex:i] objectAtIndex:0];
+            
+            panel.destLabel1.text = time1.directionStation.name;
+            if (time1.time.intValue - current >= 120) {
+                panel.timeLabel1.text = @"+120";
+            } else {
+                panel.timeLabel1.text = [NSString stringWithFormat:@"%i", time1.time.intValue - current + 1];
+            }
+            
+            EPDTime *time2 = [[soonTimes objectAtIndex:i] objectAtIndex:1];
+            panel.destLabel2.text = time2.directionStation.name;
+            if (time2.time.intValue - current >= 120) {
+                panel.timeLabel2.text = @"+120";
+            } else {
+                panel.timeLabel2.text = [NSString stringWithFormat:@"%i", time2.time.intValue - current + 1];
+            }
+
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Exception: %@", exception);
+        }
+        
+                
     }
     
     if (self.destinationStation) {
@@ -158,64 +193,6 @@
         _headerView.stationLabel.text = [NSString stringWithFormat:@"%@ > %@ en %i minutos", _station.name, self.destinationStation.name, time];
     } else {
         _headerView.stationLabel.text = _station.name;
-    }
-    
-    EPDTime *time = soonTimes[0];
-    if (time) {
-        _headerView.dest1Label1.text = time.directionStation.name;
-        NSLog(@"%i, %i - %i", time.time.intValue - current + 1, time.time.intValue, current);
-        int waitTime = time.time.intValue - current + 1;
-        if (waitTime < 0 || waitTime > 120)
-            _headerView.time1Label1.text = [NSString stringWithFormat:@"+120"];
-        else
-            _headerView.time1Label1.text = [NSString stringWithFormat:@"%i", waitTime];
-    } else {
-        _headerView.dest1Label1.text = nil;
-        _headerView.time1Label1.text = nil;
-        _headerView.time1Label1.text = nil;
-        
-    }
-    time = soonTimes[1];
-    if (time) {
-        _headerView.dest1Label2.text = time.directionStation.name;
-        int waitTime = time.time.intValue - current + 1;
-        if (waitTime < 0 || waitTime > 120)
-            _headerView.time1Label2.text = [NSString stringWithFormat:@"+120"];
-        else
-            _headerView.time1Label2.text = [NSString stringWithFormat:@"%i", waitTime];
-    } else {
-        _headerView.dest1Label2.text = nil;
-        _headerView.time1Label2.text = nil;
-        _headerView.time1Label2.text = nil;
-        
-    }
-    time = soonTimes[2];
-    if (time) {
-        _headerView.dest2Label1.text = time.directionStation.name;
-        int waitTime = time.time.intValue - current + 1;
-        if (waitTime < 0 || waitTime > 120)
-            _headerView.time2Label1.text = [NSString stringWithFormat:@"+120"];
-        else
-            _headerView.time2Label1.text = [NSString stringWithFormat:@"%i", waitTime];
-    } else {
-        _headerView.dest2Label1.text = nil;
-        _headerView.time2Label1.text = nil;
-        _headerView.time2Label1.text = nil;
-        
-    }
-    time = soonTimes[3];
-    if (time) {
-        _headerView.dest2Label2.text = time.directionStation.name;
-        int waitTime = time.time.intValue - current + 1;
-        if (waitTime < 0 || waitTime > 120)
-            _headerView.time2Label2.text = [NSString stringWithFormat:@"+120"];
-        else
-            _headerView.time2Label2.text = [NSString stringWithFormat:@"%i", waitTime];
-    } else {
-        _headerView.dest2Label2.text = nil;
-        _headerView.time2Label2.text = nil;
-        _headerView.time2Label2.text = nil;
-        
     }
     
     [self.tableView reloadData];
@@ -278,7 +255,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 192.0f;
+    return _headerView.frame.size.height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -301,9 +278,10 @@
         }
         _times = newTimes;
         
-        [self.tableView reloadData];
+        _headerView = [[EPDTimePanelView alloc] initWithPanelsCount:1];
         [self updateTimeTable];
-        self.tableView.contentOffset = CGPointMake(0,0);
+        [self.tableView reloadData];
+        
     }
 }
 
