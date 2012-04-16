@@ -173,18 +173,24 @@
                 EPDTime *time1 = [[soonTimes objectAtIndex:i] objectAtIndex:0];
                 
                 panel.destLabel1.text = time1.directionStation.name;
-                if (time1.time.intValue - current >= 120) {
+                int minutes1 = time1.time.intValue - current + 1;
+                if (minutes1 <= 0)
+                    minutes1 += 24*60;
+                if (minutes1 >= 120) {
                     panel.timeLabel1.text = @"+120";
                 } else {
-                    panel.timeLabel1.text = [NSString stringWithFormat:@"%i", time1.time.intValue - current + 1];
+                    panel.timeLabel1.text = [NSString stringWithFormat:@"%i", minutes1];
                 }
                 
                 EPDTime *time2 = [[soonTimes objectAtIndex:i] objectAtIndex:1];
                 panel.destLabel2.text = time2.directionStation.name;
-                if (time2.time.intValue - current >= 120) {
+                int minutes2 = time2.time.intValue - current + 1;
+                if (minutes2 <= 0)
+                    minutes2 += 24*60;
+                if (minutes2 >= 120) {
                     panel.timeLabel2.text = @"+120";
                 } else {
-                    panel.timeLabel2.text = [NSString stringWithFormat:@"%i", time2.time.intValue - current + 1];
+                    panel.timeLabel2.text = [NSString stringWithFormat:@"%i", minutes2];
                 }
                 
             }

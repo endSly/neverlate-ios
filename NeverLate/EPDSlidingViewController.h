@@ -9,9 +9,11 @@
 #import "ECSlidingViewController.h"
 
 @class EPDObjectManager;
+@class EPDMenuViewController;
 
 @interface EPDSlidingViewController : ECSlidingViewController
 
 @property (nonatomic, retain) EPDObjectManager * objectManager;
+@property (nonatomic, readonly) EPDMenuViewController * menuController;
 
 @end

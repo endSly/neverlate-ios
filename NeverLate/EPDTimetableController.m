@@ -24,6 +24,8 @@
     
     self.tableView.frame = CGRectMake(0, 264, 320, 148);
     self.navigationController.navigationBarHidden = YES;
+    
+    self.navigationController.navigationBar.tintColor = ((EPDSlidingViewController *) self.slidingViewController).objectManager.color;
 }
 
 - (void)viewDidAppear:(BOOL)animated

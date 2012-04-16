@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EPDMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-    int _selectedIndex;
-}
+@class EPDObjectManager;
+
+@interface EPDMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic) int selectedIndex;
 
 @property (nonatomic, assign) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, assign) IBOutlet UITableView *tableView;
+
++ (EPDObjectManager *)objectManagerForIndex:(int)index;
 
 @end

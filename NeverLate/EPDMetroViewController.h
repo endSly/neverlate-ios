@@ -31,8 +31,6 @@
     int _currentTime; // In minutes from 00:00
     
     UIButton *_sortButton;
-    
-    
 }
 
 - (IBAction)orderSelectionChanged:(id)sender;

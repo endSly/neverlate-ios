@@ -8,6 +8,8 @@
 
 #import "EPDSlidingViewController.h"
 
+#import "EPDMenuViewController.h"
+
 @interface EPDSlidingViewController ()
 
 @end
@@ -35,6 +37,14 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+}
+
+- (EPDMenuViewController *)menuController
+{
+    if ([self.underLeftViewController isKindOfClass:[EPDMenuViewController class]]) {
+        return (EPDMenuViewController *) self.underLeftViewController;
+    }
+    return nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

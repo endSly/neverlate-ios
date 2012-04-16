@@ -30,6 +30,8 @@
 {
     [super viewDidLoad];
 
+    self.navigationController.navigationBar.tintColor = ((EPDSlidingViewController *) self.slidingViewController).objectManager.color;
+    
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
     
     float minLat = locationManager.location.coordinate.latitude, 

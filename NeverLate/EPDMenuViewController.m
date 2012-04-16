@@ -18,6 +18,7 @@
 
 @implementation EPDMenuViewController
 
+@synthesize selectedIndex = _selectedIndex;
 @synthesize navigationBar = _navigationBar;
 @synthesize tableView = _tableView;
 
@@ -87,7 +88,6 @@
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"Metro Bilbao";
-            ;
             cell.imageView.image = [UIImage imageNamed:(_selectedIndex == 0 ? @"MetroBilbaoSelected" : @"MetroBilbao")];
             break;
             
@@ -104,13 +104,34 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (_selectedIndex == indexPath.row) {
+        [self.slidingViewController resetTopView];
+        return;
+    }
+    
     _selectedIndex = indexPath.row;
     
     EPDRootTabBarController *rootTabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"RootTabBar"];
     
+    EPDObjectManager *objectManager = [[self class] objectManagerForIndex:indexPath.row];
+    
+    ((EPDSlidingViewController *) self.slidingViewController).objectManager = objectManager;
+    
+    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+        [self.tableView reloadData];
+        
+        CGRect frame = self.slidingViewController.topViewController.view.frame;
+        self.slidingViewController.topViewController = rootTabBarController;
+        self.slidingViewController.topViewController.view.frame = frame;
+        [self.slidingViewController resetTopView];
+    }];
+}
+
++ (EPDObjectManager *)objectManagerForIndex:(int)index
+{
     EPDObjectManager *objectManager;
     
-    switch (indexPath.row) {
+    switch (index) {
         case 0:
             objectManager = [[EPDObjectManager alloc] initWithDatabasePath:
                              [[NSBundle mainBundle] pathForResource:@"metro-times" 
@@ -129,16 +150,7 @@
             break;
     }
     
-    ((EPDSlidingViewController *) self.slidingViewController).objectManager = objectManager;
-    
-    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
-        [self.tableView reloadData];
-        
-        CGRect frame = self.slidingViewController.topViewController.view.frame;
-        self.slidingViewController.topViewController = rootTabBarController;
-        self.slidingViewController.topViewController.view.frame = frame;
-        [self.slidingViewController resetTopView];
-    }];
+    return objectManager;
 }
 
 @end

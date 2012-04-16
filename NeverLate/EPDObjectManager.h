@@ -18,10 +18,6 @@
 
 + (NSString *)tableName;
 
-- (NSArray *)hasMany:(Class)class foreignKey:(NSString *)key value:(NSObject *)value;
-- (EPDManagedObject *)hasOne:(Class)class foreignKey:(NSString *)key value:(NSObject *)value;
-- (EPDManagedObject *)belongsTo:(Class)class foreignKey:(NSString *)key value:(NSObject *)value;
-
 @end
 
 @class EPDStation;

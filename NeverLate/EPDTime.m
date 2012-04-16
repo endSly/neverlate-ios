@@ -19,6 +19,11 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
 @synthesize daytype;
 @synthesize time;
 
++ (int)dayTypeForWeekday:(int)weekday
+{
+    return daytypes[weekday];
+}
+
 + (int)dayTypeForDate:(NSDate *)date
 {
     NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSWeekdayCalendarUnit) fromDate:date];

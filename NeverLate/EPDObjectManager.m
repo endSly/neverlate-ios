@@ -26,29 +26,6 @@
     return @"";
 }
 
-- (NSArray *)hasMany:(Class)class foreignKey:(NSString *)key value:(NSObject *)value
-{
-    return [_objectManager findObjectsOfType:class 
-                                       where:[NSString stringWithFormat:@"%@ = ?", key] 
-                                      params:[NSArray arrayWithObject:value]];
-}
-
-- (EPDManagedObject *)hasOne:(Class)class foreignKey:(NSString *)key value:(NSObject *)value
-{
-    return [[_objectManager findObjectsOfType:class 
-                                        where:[NSString stringWithFormat:@"%@ = ?", key] 
-                                       params:[NSArray arrayWithObject:value]]
-            lastObject];
-}
-
-- (EPDManagedObject *)belongsTo:(Class)class foreignKey:(NSString *)key value:(NSObject *)value
-{
-    return [[_objectManager findObjectsOfType:class 
-                                        where:[NSString stringWithFormat:@"%@ = ?", key] 
-                                       params:[NSArray arrayWithObject:value]]
-            lastObject];
-}
-
 - (void)setObjectManager:(EPDObjectManager *)manager
 {
     _objectManager = manager;
@@ -100,7 +77,6 @@
             for (int i = 0; i < resultSet.columnCount; i++) {
                 [object setValue:[resultSet objectForColumnIndex:i] forKey:[resultSet columnNameForIndex:i]];
             }
-            
             
             [objects addObject:object];
         }
@@ -194,21 +170,49 @@
 
 - (NSArray *)timesForStation:(EPDStation *)station date:(NSDate *)date
 {
-    int daytype = [EPDTime dayTypeForDate:date];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) 
+                                                              fromDate:date];
+    
+    int daytype = [EPDTime dayTypeForWeekday:comps.weekday];
+    int nextDaytype = [EPDTime dayTypeForWeekday:((comps.weekday % 7) + 1)];
+    
     NSArray *times = [self findObjectsOfType:[EPDTime class] 
                                        where:@"station_id = ? AND daytype = ?" 
                                       params:[NSArray arrayWithObjects:station.id, [NSNumber numberWithInt:daytype], nil]];
+    
+    if (comps.hour > 22 && nextDaytype != daytype) {
+        // Merge two days times
+        
+        int currentTime = comps.hour * 60 + comps.minute;
+        NSMutableArray *resultTimes = [NSMutableArray arrayWithCapacity:times.count * 1.2];
+        
+        NSArray *nextTimes = [self findObjectsOfType:[EPDTime class] 
+                                               where:@"station_id = ? AND daytype = ?" 
+                                              params:[NSArray arrayWithObjects:station.id, [NSNumber numberWithInt:nextDaytype], nil]];
+        
+        for (EPDTime *t in times) {
+            if (t.time.intValue >= currentTime) {
+                [resultTimes addObject:t];
+            }
+        }
+        
+        for (EPDTime *t in nextTimes) {
+            if (t.time.intValue < currentTime) {
+                [resultTimes addObject:t];
+            }
+        }
+        
+        return resultTimes;
+    }
     
     return times;
 }
 
 - (void)timesForStation:(EPDStation *)station date:(NSDate *)date block:(void(^)(NSArray *))block
 {
-    int daytype = [EPDTime dayTypeForDate:date];
-    [self findObjectsOfType:[EPDTime class] 
-                      where:@"station_id = ? AND daytype = ?" 
-                     params:[NSArray arrayWithObjects:station.id, [NSNumber numberWithInt:daytype], nil]
-                      block:block];
+    dispatch_async(_databaseQueue, ^{
+        block([self timesForStation:station date:date]);
+    });
 }
 
 @end

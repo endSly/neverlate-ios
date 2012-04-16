@@ -64,7 +64,7 @@
     [super layoutSubviews];
     
     self.textLabel.frame = CGRectMake(5, 5, 240, 24);
-    self.detailTextLabel.frame = CGRectMake(220, 5, 76, 24);
+    self.detailTextLabel.frame = CGRectMake(200, 5, 96, 24);
 }
 
 - (void)prepareForReuse

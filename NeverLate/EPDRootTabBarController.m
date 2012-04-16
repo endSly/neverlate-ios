@@ -33,10 +33,6 @@
     self.view.layer.shadowRadius = 10.0f;
     self.view.layer.shadowColor = [UIColor blackColor].CGColor;
     
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[EPDMenuViewController class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-    }
-    
     self.slidingViewController.anchorRightRevealAmount = 70.0f;
     self.slidingViewController.underRightWidthLayout = ECFullWidth;
 

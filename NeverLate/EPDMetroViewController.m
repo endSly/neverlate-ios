@@ -231,7 +231,7 @@
 - (void)updateTimes:(NSArray *)times ofStation:(EPDStation *)station forCell:(EPDMetroStationCell *)cell async:(BOOL)async
 {
     @try {
-        if (((EPDTime *)[times objectAtIndex:0]).time.intValue < _currentTime) {
+        //if (((EPDTime *)[times objectAtIndex:0]).time.intValue < _currentTime) {
             times = [times sortedArrayUsingComparator:^NSComparisonResult(EPDTime *time1, EPDTime *time2) {
                 int time1Diff = time1.time.intValue - _currentTime;
                 if (time1Diff < 0)
@@ -243,7 +243,7 @@
                 
                 return time1Diff > time2Diff;
             }];
-        }
+        //}
         
         [_stationsTimes setObject:times forKey:station.id];
     }
@@ -262,6 +262,11 @@
             
             int minutes1 = time1.time.intValue - _currentTime + 1;
             int minutes2 = time2.time.intValue - _currentTime + 1;
+            
+            if (minutes1 <= 0)
+                minutes1 += 24*60;
+            if (minutes2 <= 0)
+                minutes2 += 24*60;
             
             if (minutes1 <= 120) {
                 cell.time1Label.text = [NSString stringWithFormat:@"%@ %02i", time1.directionStation.name,  minutes1];

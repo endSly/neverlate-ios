@@ -11,6 +11,7 @@
 #import "iRate.h"
 #import "EPDSlidingViewController.h"
 #import "EPDObjectManager.h"
+#import "EPDMenuViewController.h"
 
 #import "GTFSDataSource.h"
 
@@ -24,8 +25,6 @@
     //but we need to test with an app that's actually on the store
 	//[iRate sharedInstance].appStoreID = 355313284;
     //[iRate sharedInstance].applicationBundleID = @"com.charcoaldesign.rainbowblocks";
-	
-    id a = [[GTFSDataSource alloc] initWithPath:@""];
     
     [iRate sharedInstance].messageTitle = @"Vota NeverLate";
     [iRate sharedInstance].message = @"Sí te gusta NeverLate ayudanos valorando NeverLate en la AppStore. No te llevará más de un minuto. ¡Gracias!";
@@ -38,17 +37,15 @@
 {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 
-    EPDSlidingViewController *slidingViewController = (EPDSlidingViewController *)self.window.rootViewController;
+    EPDSlidingViewController *slidingViewController = (EPDSlidingViewController *) self.window.rootViewController;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 
-    slidingViewController.objectManager = [[EPDObjectManager alloc] initWithDatabasePath:
-                                           [[NSBundle mainBundle] pathForResource:@"metro-times" 
-                                                                           ofType:@"sqlite3"]];
-    slidingViewController.objectManager.color = [UIColor redColor];
-    slidingViewController.objectManager.name = @"Metro Bilbao";
+    EPDMenuViewController *menuController = [storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+    slidingViewController.underLeftViewController = menuController;
+    menuController.selectedIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"EPDLastMenuSelected"];
     
+    slidingViewController.objectManager = [EPDMenuViewController objectManagerForIndex:menuController.selectedIndex];
     slidingViewController.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"RootTabBar"];
-    
     
     return YES;
 }
@@ -57,6 +54,13 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    EPDSlidingViewController *slidingViewController = (EPDSlidingViewController *) self.window.rootViewController;
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:slidingViewController.menuController.selectedIndex
+                                               forKey:@"EPDLastMenuSelected"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
