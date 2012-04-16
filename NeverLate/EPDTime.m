@@ -33,12 +33,12 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
 
 - (EPDStation *)directionStation
 {
-    return [EPDStation findById:self.direction];
+    return [_objectManager stationWithId:self.direction];
 }
 
 - (EPDStation *)station
 {
-    return [EPDStation findById:self.station_id];
+    return [_objectManager stationWithId:self.station_id];
 }
 
 

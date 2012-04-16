@@ -29,8 +29,14 @@
     GADBannerView *_bannerView;
     
     int _currentTime; // In minutes from 00:00
+    
+    UIButton *_sortButton;
+    
+    
 }
 
-- (IBAction)orderSelectionChanged:(UISegmentedControl *)sender;
+- (IBAction)orderSelectionChanged:(id)sender;
+
+- (IBAction)showMenu:(id)sender;
 
 @end

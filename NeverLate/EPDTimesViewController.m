@@ -8,6 +8,7 @@
 
 #import "EPDTimesViewController.h"
 
+#import "EPDSlidingViewController.h"
 #import "EPDStation.h"
 #import "EPDTime.h"
 
@@ -27,8 +28,7 @@
 
     [_originStation timeToStation:_destinationStation time:&_travelTime direction:&_direction];
 
-    NSArray *times = [EPDTime findWhere:@"station_id = ? AND daytype = ?" 
-                params:[NSArray arrayWithObjects:_originStation.id, [NSNumber numberWithInt:[EPDTime dayTypeForDate:_date]], nil]];
+    NSArray *times = [((EPDSlidingViewController *) self.slidingViewController).objectManager timesForStation:_originStation date:_date];
     
     NSMutableArray *selectedTimes = [NSMutableArray arrayWithCapacity:times.count / 2];
     for (EPDTime *time in times) {

@@ -8,6 +8,7 @@
 
 #import "EPDStationDetailViewController.h"
 
+#import "EPDSlidingViewController.h"
 #import "EPDTimePanelView.h"
 #import "EPDStation.h"
 #import "EPDConnection.h"
@@ -32,11 +33,13 @@
 {
     [super viewDidLoad];
 
+    _objectManager = ((EPDSlidingViewController *) self.slidingViewController).objectManager;
+    
     self.title = _station.name;
     
     _headerView = [[EPDTimePanelView alloc] initWithPanelsCount:_station.connections.count];
     
-    NSMutableArray *mutableStations = [[EPDStation findAll] mutableCopy];
+    NSMutableArray *mutableStations = [[_objectManager allStations] mutableCopy];
     [mutableStations removeObject:_station];
     _stations = [mutableStations sortedArrayUsingComparator:^NSComparisonResult(EPDStation *obj1, EPDStation *obj2) {
         return [obj1.name compare:obj2.name];
@@ -47,8 +50,6 @@
                                                        selector:@selector(reloadTimeTable) 
                                                        userInfo:nil 
                                                         repeats:YES];
-    
-    _connections = [EPDConnection findAll];
     
     [self reloadTimeTable];
 }
@@ -72,12 +73,7 @@
 
 - (void)reloadTimeTable
 {
-    NSNumber *daytype = [NSNumber numberWithInt:[EPDTime dayTypeForDate:[NSDate date]]];
-    
-    NSArray *times = [EPDTime findWhere:@"station_id = ? AND daytype = ?" 
-                                 params:[NSArray arrayWithObjects:_station.id, daytype, nil]];
-    
-    [self updateTimes:times];
+    [self updateTimes:[_objectManager timesForStation:_station date:[NSDate date]]];
 }
 
 - (IBAction)showMap:(id)sender
@@ -119,83 +115,91 @@
 
 - (void)updateTimeTable
 {
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit) 
-                                                              fromDate:[NSDate date]];
-    
-    const int current = comps.hour * 60 + comps.minute;
-    
-    int stationDirection = 0, totalTime = 0;
-    if (self.destinationStation) {
-        [self.station  timeToStation:self.destinationStation time:&totalTime  direction:&stationDirection];
-        NSLog(@"From: %@ To: %@ Time:%i Direction: %i", self.station.name, self.destinationStation.name, totalTime, stationDirection);
-    }
-    
-    int connectionsCount = self.destinationStation ? 1 : _station.connections.count;
-    NSMutableArray *soonTimes = [NSMutableArray arrayWithCapacity:connectionsCount];
-    for (int i = 0; i < connectionsCount; i++) {
-        [soonTimes addObject:[NSMutableArray arrayWithCapacity:2]];
-    }
-    
-    int timesAdded = 0;
-    
-    for (EPDTime *time in _times) {
-        int direction, t;
-        [self.station  timeToStation:time.directionStation time:&t  direction:&direction];
+    @try {
         
-        if (!t || direction < 0)
-            continue;
-        
-        if (self.destinationStation && stationDirection != direction)
-            continue;
-        
-        NSMutableArray *times = [soonTimes objectAtIndex:self.destinationStation ? 0 : direction];
-        if (times.count > 2)
-            continue;
-        
-        [times addObject:time];
-        
-        if (++timesAdded > connectionsCount * 2)
-            break;
-        
-    }
-    
-    for (int i = 0; i < connectionsCount; i++) {
-        @try {
-            EPDPanelView *panel = [_headerView.panels objectAtIndex:i];
-            EPDTime *time1 = [[soonTimes objectAtIndex:i] objectAtIndex:0];
-            
-            panel.destLabel1.text = time1.directionStation.name;
-            if (time1.time.intValue - current >= 120) {
-                panel.timeLabel1.text = @"+120";
-            } else {
-                panel.timeLabel1.text = [NSString stringWithFormat:@"%i", time1.time.intValue - current + 1];
-            }
-            
-            EPDTime *time2 = [[soonTimes objectAtIndex:i] objectAtIndex:1];
-            panel.destLabel2.text = time2.directionStation.name;
-            if (time2.time.intValue - current >= 120) {
-                panel.timeLabel2.text = @"+120";
-            } else {
-                panel.timeLabel2.text = [NSString stringWithFormat:@"%i", time2.time.intValue - current + 1];
-            }
-
-        }
-        @catch (NSException *exception) {
-            NSLog(@"Exception: %@", exception);
+        _headerView.stationLabel.backgroundColor = _objectManager.color;
+        if (self.destinationStation) {
+            int time, direction;
+            [_station timeToStation:self.destinationStation time:&time direction:&direction];
+            _headerView.stationLabel.text = [NSString stringWithFormat:@"%@ > %@ en %i minutos", _station.name, self.destinationStation.name, time];
+        } else {
+            _headerView.stationLabel.text = _station.name;
         }
         
+        
+        NSDateComponents *comps = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit) 
+                                                                  fromDate:[NSDate date]];
+        
+        const int current = comps.hour * 60 + comps.minute;
+        
+        int stationDirection = 0, totalTime = 0;
+        if (self.destinationStation) {
+            [self.station  timeToStation:self.destinationStation time:&totalTime  direction:&stationDirection];
+            NSLog(@"From: %@ To: %@ Time:%i Direction: %i", self.station.name, self.destinationStation.name, totalTime, stationDirection);
+        }
+        
+        int connectionsCount = MAX(1, self.destinationStation ? 1 : _station.connections.count);
+        NSMutableArray *soonTimes = [NSMutableArray arrayWithCapacity:connectionsCount];
+        for (int i = 0; i < connectionsCount; i++) {
+            [soonTimes addObject:[NSMutableArray arrayWithCapacity:2]];
+        }
+        
+        int timesAdded = 0;
+        
+        for (EPDTime *time in _times) {
+            int direction, t;
+            [self.station  timeToStation:time.directionStation time:&t  direction:&direction];
+            
+            if (!t 
+                || direction < 0 
+                || (self.destinationStation && stationDirection != direction)) {
+                continue;
+            }
+            
+            NSMutableArray *times = [soonTimes objectAtIndex:self.destinationStation ? 0 : direction];
+            if (times.count > 2)
+                continue;
+            
+            [times addObject:time];
+            
+            if (++timesAdded > connectionsCount * 2)
+                break;
+            
+        }
+        
+        for (int i = 0; i < connectionsCount; i++) {
+            @try {
+                EPDPanelView *panel = [_headerView.panels objectAtIndex:i];
+                EPDTime *time1 = [[soonTimes objectAtIndex:i] objectAtIndex:0];
                 
+                panel.destLabel1.text = time1.directionStation.name;
+                if (time1.time.intValue - current >= 120) {
+                    panel.timeLabel1.text = @"+120";
+                } else {
+                    panel.timeLabel1.text = [NSString stringWithFormat:@"%i", time1.time.intValue - current + 1];
+                }
+                
+                EPDTime *time2 = [[soonTimes objectAtIndex:i] objectAtIndex:1];
+                panel.destLabel2.text = time2.directionStation.name;
+                if (time2.time.intValue - current >= 120) {
+                    panel.timeLabel2.text = @"+120";
+                } else {
+                    panel.timeLabel2.text = [NSString stringWithFormat:@"%i", time2.time.intValue - current + 1];
+                }
+                
+            }
+            @catch (NSException *exception) {
+                NSLog(@"Exception: %@", exception);
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception in %@#updateTimeTable: %@", self.class, exception);
+    }
+    @finally {
+        [self.tableView reloadData];
     }
     
-    if (self.destinationStation) {
-        int time, direction;
-        [_station timeToStation:self.destinationStation time:&time direction:&direction];
-        _headerView.stationLabel.text = [NSString stringWithFormat:@"%@ > %@ en %i minutos", _station.name, self.destinationStation.name, time];
-    } else {
-        _headerView.stationLabel.text = _station.name;
-    }
-    
-    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -270,10 +274,14 @@
     if (!self.destinationStation) {
         self.destinationStation = [_stations objectAtIndex:indexPath.row];
         
-        int direction = [_station getDirectionToStation:self.destinationStation];
+        int direction, time;
+        [_station timeToStation:self.destinationStation time:&time direction:&direction];
+        
         NSMutableArray *newTimes = [NSMutableArray arrayWithCapacity:_times.count / 2];
         for (EPDTime *t in _times) {
-            if ([_station getDirectionToStation:t.directionStation] == direction)
+            int timeDirection;
+            [_station timeToStation:self.destinationStation time:&time direction:&timeDirection];
+            if (timeDirection == direction)
                 [newTimes addObject:t];
         }
         _times = newTimes;

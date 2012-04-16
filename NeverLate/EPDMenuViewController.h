@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EPDMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface EPDMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    int _selectedIndex;
+}
 
 @property (nonatomic, assign) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, assign) IBOutlet UITableView *tableView;

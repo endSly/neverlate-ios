@@ -18,71 +18,19 @@
 @synthesize name;
 @synthesize joints;
 
-+ (NSDictionary *)getCache
-{
-    static NSDictionary *stationsCache = nil;
-    
-    if (!stationsCache) {
-        NSArray *stations = [[EPDObjectManager sharedManager] findObjectsOfType:self];
-        NSMutableArray *ids = [NSMutableArray arrayWithCapacity:stations.count];
-        
-        for (EPDStation *s in stations) {
-            [ids addObject:s.id];
-        }
-        stationsCache = [NSDictionary dictionaryWithObjects:stations forKeys:ids];
-    }
-    
-    return stationsCache;
-}
-
-+ (id)findById:(NSNumber *)id
-{
-    return [[self getCache] objectForKey:id];
-}
-
-+ (NSArray *)findAll
-{
-    return [[self getCache] allValues];
-}
-
-+ (void)findAll:(void(^)(NSArray *))block
-{
-    block([[self getCache] allValues]);
-}
-
 + (NSString *)tableName
 {
     return @"stations";
 }
 
-- (NSArray *)times 
-{
-    return [self hasMany:[EPDTime class] foreignKey:@"station_id" value:self.id];
-}
-
 - (NSArray *)stationLocations 
 {
-    if (!_locations) {
-        _locations = [self hasMany:[EPDStationLocation class] foreignKey:@"station_id" value:self.id];
-    }
-    
-    return _locations;
+    return [_objectManager locationsForStation:self];
 }
 
 - (NSArray *)connections
 {
-    if (!_connections) {
-        NSMutableArray *connections = [[NSMutableArray alloc] initWithCapacity:2];
-        
-        for (EPDConnection *c in [EPDConnection findAll]) {
-            if ([c.station_1_id isEqualToNumber:self.id] || [c.station_2_id isEqualToNumber:self.id])
-                [connections addObject:c];
-        }
-        
-        _connections = connections;
-    }
-    
-    return _connections;
+    return [_objectManager connectionsForStation:self];
 }
 
 - (NSArray *)connectedStations
@@ -95,26 +43,6 @@
         _connectedStations = connectedStations;
     }
     return _connectedStations;
-}
-
-- (int)getDirectionToStation:(EPDStation *)to
-{
-    // Returns
-    if (self == to)
-        return 0;
-    
-    for (EPDConnection *connection in [EPDConnection findAll]) {
-        if (connection.stationFrom == to
-            || connection.stationTo == to) {
-            return -1;
-        }
-        
-        if (connection.stationFrom == self
-            || connection.stationTo == self) {
-            return 1;
-        }
-    }
-    return 2; // Should not return 2
 }
 
 - (void)timeToStation:(EPDStation *)to time:(int *)time direction:(int *)direction

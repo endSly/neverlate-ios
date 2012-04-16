@@ -145,20 +145,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Metro" id="tSP-zy-uzs">
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="nJv-FX-bfK">
-                            <rect key="frame" x="91" y="7" width="138" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Cerca"/>
-                                <segment title="Todas"/>
-                            </segments>
-                            <color key="tintColor" red="0.98823529480000005" green="0.15686275059999999" blue="0.039215687659999998" alpha="0.0" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="orderSelectionChanged:" destination="90O-EK-UfE" eventType="valueChanged" id="k3e-9c-Kh9"/>
-                            </connections>
-                        </segmentedControl>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Metro" id="tSP-zy-uzs"/>
                     <connections>
                         <segue destination="4NL-gU-xpG" kind="push" identifier="StationDetailSegue" id="JYw-KV-pjp"/>
                     </connections>
@@ -321,6 +308,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EPDMetroViewController.h"/>
             <relationships>
                 <relationship kind="action" name="orderSelectionChanged:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="showMenu:"/>
             </relationships>
         </class>
         <class className="EPDRootTabBarController" superclassName="UITabBarController">

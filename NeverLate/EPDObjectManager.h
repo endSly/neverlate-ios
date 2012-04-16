@@ -10,41 +10,54 @@
 
 #import <FMDatabase.h>
 
-@interface EPDManagedObject : NSObject <NSCoding>
+@class EPDObjectManager;
+
+@interface EPDManagedObject : NSObject {
+    EPDObjectManager *_objectManager;
+}
 
 + (NSString *)tableName;
 
-+ (id)findById:(NSNumber *)id;
-
-+ (NSArray *)findAll;
-+ (NSArray *)findWhere:(NSString *)predicate params:(NSArray *)params;
-+ (void)findAll:(void(^)(NSArray *))block;
-+ (void)findWhere:(NSString *)predicate params:(NSArray *)params block:(void(^)(NSArray *))block;
-
-- (NSArray *)hasMany:(__unsafe_unretained Class)class foreignKey:(NSString *)key value:(NSObject *)value;
-- (EPDManagedObject *)hasOne:(__unsafe_unretained Class)class foreignKey:(NSString *)key value:(NSObject *)value;
-- (EPDManagedObject *)belongsTo:(__unsafe_unretained Class)class foreignKey:(NSString *)key value:(NSObject *)value;
+- (NSArray *)hasMany:(Class)class foreignKey:(NSString *)key value:(NSObject *)value;
+- (EPDManagedObject *)hasOne:(Class)class foreignKey:(NSString *)key value:(NSObject *)value;
+- (EPDManagedObject *)belongsTo:(Class)class foreignKey:(NSString *)key value:(NSObject *)value;
 
 @end
+
+@class EPDStation;
 
 @interface EPDObjectManager : NSObject {
     dispatch_queue_t _databaseQueue;
     
     NSMutableDictionary *_queriesCache;
+    
+    NSMutableDictionary *_allStations;
+    NSMutableDictionary *_allConnections;
+    NSMutableDictionary *_allLocations;
 }
 
 @property (nonatomic, readonly) FMDatabase * database;
 
-+ (EPDObjectManager *)sharedManager;
+@property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) UIColor * color;
+
+- (id)initWithDatabasePath:(NSString *)databasePath;
 
 - (void)drainCache;
 
-- (NSArray *)cachedObjectsOfType:(__unsafe_unretained Class)class  where:(NSString *)predicate params:(NSArray *)params;
+- (NSArray *)cachedObjectsOfType:(Class)class  where:(NSString *)predicate params:(NSArray *)params;
 
-- (NSArray *)findObjectsOfType:(__unsafe_unretained Class)class;
-- (NSArray *)findObjectsOfType:(__unsafe_unretained Class)class  where:(NSString *)predicate params:(NSArray *)params;
+- (NSArray *)findObjectsOfType:(Class)class;
+- (NSArray *)findObjectsOfType:(Class)class  where:(NSString *)predicate params:(NSArray *)params;
 
-- (void)findObjectsOfType:(__unsafe_unretained Class)class block:(void(^)(NSArray *))block;
-- (void)findObjectsOfType:(__unsafe_unretained Class)class  where:(NSString *)predicate params:(NSArray *)params block:(void(^)(NSArray *))block;
+- (void)findObjectsOfType:(Class)class block:(void(^)(NSArray *))block;
+- (void)findObjectsOfType:(Class)class  where:(NSString *)predicate params:(NSArray *)params block:(void(^)(NSArray *))block;
+
+- (NSArray *)allStations;
+- (EPDStation *)stationWithId:(NSNumber *)stationId;
+- (NSArray *)locationsForStation:(EPDStation *)station;
+- (NSArray *)connectionsForStation:(EPDStation *)station;
+- (NSArray *)timesForStation:(EPDStation *)station date:(NSDate *)date;
+- (void)timesForStation:(EPDStation *)station date:(NSDate *)date block:(void(^)(NSArray *))block;
 
 @end

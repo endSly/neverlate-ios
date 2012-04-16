@@ -8,6 +8,7 @@
 
 #import "EPDTimetableController.h"
 
+#import "EPDSlidingViewController.h"
 #import "EPDTimesViewController.h"
 #import "EPDStation.h"
 
@@ -33,7 +34,7 @@
     _destinationStation = nil;
     _date = [NSDate date];
     
-    _stations = [[EPDStation findAll] sortedArrayUsingComparator:^NSComparisonResult(EPDStation *obj1, EPDStation *obj2) {
+    _stations = [[((EPDSlidingViewController *) self.slidingViewController).objectManager allStations] sortedArrayUsingComparator:^NSComparisonResult(EPDStation *obj1, EPDStation *obj2) {
         return [obj1.name compare:obj2.name];
     }];
     

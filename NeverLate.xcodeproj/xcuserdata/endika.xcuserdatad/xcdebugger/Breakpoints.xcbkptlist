@@ -7,14 +7,14 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "NeverLate/EPDStationDetailViewController.m"
-         timestampString = "356194820.82069"
+         filePath = "CrashKit/Classes/CrashController.m"
+         timestampString = "356281440.003432"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "145"
-         endingLineNumber = "145"
-         landmarkName = "-updateTimeTable"
-         landmarkType = "5">
+         startingLineNumber = "41"
+         endingLineNumber = "41"
+         landmarkName = "uncaughtExceptionHandler()"
+         landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -9,6 +9,7 @@
 #import "EPDMetroViewController.h"
 
 #import <math.h>
+#import "EPDSlidingViewController.h"
 #import "EPDMetroStationCell.h"
 #import "EPDStationDetailViewController.h"
 #import "EPDTime.h"
@@ -46,9 +47,20 @@
     self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0,4);
     
-    self.tableView.backgroundColor = [UIColor colorWithRed:0xc0 / 255.0 green:0xc0 / 255.0 blue:0xc0 / 255.0 alpha:1];
+    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [menuButton setImage:[UIImage imageNamed:@"ShowMenu"] forState:UIControlStateNormal];
+    [menuButton addTarget:self action:@selector(showMenu:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     
-    [self reloadAllData];
+    _sortButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [_sortButton setImage:[UIImage imageNamed:@"MenuSortAlphabetically"] forState:UIControlStateNormal];
+    [_sortButton addTarget:self action:@selector(orderSelectionChanged:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_sortButton];
+    
+    self.navigationController.navigationBar.tintColor = ((EPDSlidingViewController *) self.slidingViewController).objectManager.color;
+    self.title = ((EPDSlidingViewController *) self.slidingViewController).objectManager.name;
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:0xc0 / 255.0 green:0xc0 / 255.0 blue:0xc0 / 255.0 alpha:1];
     
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
@@ -59,7 +71,7 @@
     
     _reloadAllDataTimer = [NSTimer scheduledTimerWithTimeInterval:120 target:self selector:@selector(reloadAllData) userInfo:nil repeats:YES];
     
-    [self reloadData];
+    [self reloadAllData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -74,13 +86,15 @@
                                                               fromDate:[NSDate date]];
     
     _currentTime = comps.hour * 60 + comps.minute;
+    
+    [self order];
 }
 
 - (void)reloadAllData
 {
-    _stations = [EPDStation findAll];
+    _stations = [((EPDSlidingViewController *) self.slidingViewController).objectManager allStations];
     _stationsTimes = [NSMutableDictionary dictionaryWithCapacity:_stations.count];
-
+    
     [self reloadData];
 }
 
@@ -99,11 +113,22 @@
     [self.tableView reloadData];
 }
 
-- (IBAction)orderSelectionChanged:(UISegmentedControl *)sender
+- (IBAction)orderSelectionChanged:(id)sender
 {
-    _stationsOrder = sender.selectedSegmentIndex;
+    if (_stationsOrder == 0) {
+        [_sortButton setImage:[UIImage imageNamed:@"MenuRadar"] forState:UIControlStateNormal];
+        _stationsOrder = 1;
+    } else {
+        [_sortButton setImage:[UIImage imageNamed:@"MenuSortAlphabetically"] forState:UIControlStateNormal];
+        _stationsOrder = 0;
+    }
     
     [self order];
+}
+
+- (IBAction)showMenu:(id)sender
+{
+    [self.slidingViewController anchorTopViewTo:ECRight];
 }
 
 #define PI 3.14159265f
@@ -205,43 +230,55 @@
 
 - (void)updateTimes:(NSArray *)times ofStation:(EPDStation *)station forCell:(EPDMetroStationCell *)cell async:(BOOL)async
 {
-    if (((EPDTime *)[times objectAtIndex:0]).time.intValue < _currentTime) {
-        times = [times sortedArrayUsingComparator:^NSComparisonResult(EPDTime *time1, EPDTime *time2) {
-            int time1Diff = time1.time.intValue - _currentTime;
-            if (time1Diff < 0)
-                time1Diff += 24 * 60;
-            
-            int time2Diff = time2.time.intValue - _currentTime;
-            if (time2Diff < 0)
-                time2Diff += 24 * 60;
-            
-            return time1Diff > time2Diff;
-        }];
+    @try {
+        if (((EPDTime *)[times objectAtIndex:0]).time.intValue < _currentTime) {
+            times = [times sortedArrayUsingComparator:^NSComparisonResult(EPDTime *time1, EPDTime *time2) {
+                int time1Diff = time1.time.intValue - _currentTime;
+                if (time1Diff < 0)
+                    time1Diff += 24 * 60;
+                
+                int time2Diff = time2.time.intValue - _currentTime;
+                if (time2Diff < 0)
+                    time2Diff += 24 * 60;
+                
+                return time1Diff > time2Diff;
+            }];
+        }
+        
+        [_stationsTimes setObject:times forKey:station.id];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Exception: %@", exception);
     }
     
-    [_stationsTimes setObject:times forKey:station.id];
     
     const dispatch_block_t updateCellTimes = ^{
-        if (cell.station != ((EPDTime *)[times objectAtIndex:0]).station)
-            return;
-        
-        EPDTime *time1 = [times objectAtIndex:0];
-        EPDTime *time2 = [times objectAtIndex:1];
-        
-        int minutes1 = time1.time.intValue - _currentTime + 1;
-        int minutes2 = time2.time.intValue - _currentTime + 1;
-        
-        if (minutes1 <= 120) {
-            cell.time1Label.text = [NSString stringWithFormat:@"%@ %02i", time1.directionStation.name,  minutes1];
-        } else {
-            cell.time1Label.text = [NSString stringWithFormat:@"%@ +120", time1.directionStation.name];
+        @try {
+            if (cell.station != ((EPDTime *)[times objectAtIndex:0]).station)
+                return;
+            
+            EPDTime *time1 = [times objectAtIndex:0];
+            EPDTime *time2 = [times objectAtIndex:1];
+            
+            int minutes1 = time1.time.intValue - _currentTime + 1;
+            int minutes2 = time2.time.intValue - _currentTime + 1;
+            
+            if (minutes1 <= 120) {
+                cell.time1Label.text = [NSString stringWithFormat:@"%@ %02i", time1.directionStation.name,  minutes1];
+            } else {
+                cell.time1Label.text = [NSString stringWithFormat:@"%@ +120", time1.directionStation.name];
+            }
+            
+            if (minutes2 <= 120) {
+                cell.time2Label.text = [NSString stringWithFormat:@"%@ %02i", time2.directionStation.name, minutes2];
+            } else {
+                cell.time2Label.text = [NSString stringWithFormat:@"%@ +120", time2.directionStation.name];
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Eception: %@", exception);
         }
         
-        if (minutes2 <= 120) {
-            cell.time2Label.text = [NSString stringWithFormat:@"%@ %02i", time2.directionStation.name, minutes2];
-        } else {
-            cell.time2Label.text = [NSString stringWithFormat:@"%@ +120", time2.directionStation.name];
-        }
     };
     if (async) {
         dispatch_async(dispatch_get_main_queue(), updateCellTimes);
@@ -277,11 +314,10 @@
     NSArray *times = [_stationsTimes objectForKey:station.id];
     
     if(!times) {
-        [EPDTime findWhere:@"station_id = ? AND daytype = ?" 
-                    params:[NSArray arrayWithObjects:station.id, [NSNumber numberWithInt:[EPDTime dayTypeForDate:[NSDate date]]], nil]
-                     block:^(NSArray *t) {
-                         [self updateTimes:t ofStation:station forCell:cell async:YES];
-                     }];
+        [((EPDSlidingViewController *) self.slidingViewController).objectManager timesForStation:station date:[NSDate date] block:^(NSArray *t) {
+            [self updateTimes:t ofStation:station forCell:cell async:YES];
+        }];
+
     } else {
         [self updateTimes:times ofStation:station forCell:cell async:NO];
     }

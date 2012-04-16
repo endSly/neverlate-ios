@@ -11,6 +11,7 @@
 
 @class EPDStation;
 @class EPDTimePanelView;
+@class EPDObjectManager;
 
 @interface EPDStationDetailViewController : UITableViewController {
     NSTimer *_timeRefreshTimer;
@@ -18,9 +19,9 @@
     NSArray *_times;
     EPDTimePanelView *_headerView;
     
-    NSArray *_connections;
-    
     NSArray *_stations;
+    
+    EPDObjectManager *_objectManager;
 }
 
 @property (nonatomic, retain) EPDStation * station;

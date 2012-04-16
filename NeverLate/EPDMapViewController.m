@@ -10,6 +10,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import "EPDSlidingViewController.h"
 #import "EPDStation.h"
 #import "EPDStationLocation.h"
 #import "EPDStationDetailViewController.h"
@@ -41,7 +42,7 @@
     if (_stationToShow) {
         stations = [NSArray arrayWithObject:_stationToShow];
     } else {
-        stations = [EPDStation findAll];
+        stations = [((EPDSlidingViewController *) self.slidingViewController).objectManager allStations];
     }
     
     for (EPDStation *station in stations) {
@@ -90,7 +91,7 @@
 {
     NSNumber *stationId = [NSNumber numberWithInt:sender.tag];
     
-    _selectedStation = [EPDStation findById:stationId];
+    _selectedStation = [((EPDSlidingViewController *) self.slidingViewController).objectManager stationWithId:stationId];
     
     [self performSegueWithIdentifier:@"StationDetailSegue" sender:self];
 }

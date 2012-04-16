@@ -9,7 +9,8 @@
 #import "EPDAppDelegate.h"
 
 #import "iRate.h"
-#import "ECSlidingViewController.h"
+#import "EPDSlidingViewController.h"
+#import "EPDObjectManager.h"
 
 @implementation EPDAppDelegate
 
@@ -33,8 +34,14 @@
 {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 
-    ECSlidingViewController *slidingViewController = (ECSlidingViewController *)self.window.rootViewController;
+    EPDSlidingViewController *slidingViewController = (EPDSlidingViewController *)self.window.rootViewController;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+
+    slidingViewController.objectManager = [[EPDObjectManager alloc] initWithDatabasePath:
+                                           [[NSBundle mainBundle] pathForResource:@"metro-times" 
+                                                                           ofType:@"sqlite3"]];
+    slidingViewController.objectManager.color = [UIColor redColor];
+    slidingViewController.objectManager.name = @"Metro Bilbao";
     
     slidingViewController.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"RootTabBar"];
     

@@ -24,7 +24,7 @@
 
 - (EPDStation *)station
 {
-    return [EPDStation findById:self.station_id];
+    return [_objectManager stationWithId:self.station_id];
 }
 
 @end

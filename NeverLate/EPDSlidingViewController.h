@@ -8,6 +8,10 @@
 
 #import "ECSlidingViewController.h"
 
+@class EPDObjectManager;
+
 @interface EPDSlidingViewController : ECSlidingViewController
+
+@property (nonatomic, retain) EPDObjectManager * objectManager;
 
 @end

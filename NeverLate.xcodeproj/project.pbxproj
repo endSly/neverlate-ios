@@ -45,6 +45,12 @@
 		0D4BA452153AECF000A8EAD4 /* MenuCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4BA450153AECEF00A8EAD4 /* MenuCellBackground@2x.png */; };
 		0D4BA454153B132000A8EAD4 /* PanelBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4BA453153B132000A8EAD4 /* PanelBackground@2x.png */; };
 		0D4BA456153B1B0500A8EAD4 /* PanelBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4BA455153B1B0500A8EAD4 /* PanelBackground.png */; };
+		0D792317153C862F000AEA89 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 0D7922FE153C862F000AEA89 /* ioapi.c */; };
+		0D792318153C862F000AEA89 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 0D792300153C862F000AEA89 /* mztools.c */; };
+		0D792319153C862F000AEA89 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 0D792302153C862F000AEA89 /* unzip.c */; };
+		0D79231A153C862F000AEA89 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 0D792304153C862F000AEA89 /* zip.c */; };
+		0D79231C153C862F000AEA89 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D792308153C862F000AEA89 /* SSZipArchive.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0D792328153C8719000AEA89 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D792327153C8719000AEA89 /* libz.dylib */; };
 		0D7B59A3152E15A000DC8A31 /* EPDTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7B59A2152E15A000DC8A31 /* EPDTimesViewController.m */; };
 		0D7F837A152CBD7F003C650E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7F8379152CBD7F003C650E /* MessageUI.framework */; };
 		0D7F837C152CBD84003C650E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7F837B152CBD84003C650E /* SystemConfiguration.framework */; };
@@ -52,6 +58,22 @@
 		0D7F8381152CC1A9003C650E /* map-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F837F152CC1A9003C650E /* map-white.png */; };
 		0D7F8382152CC1A9003C650E /* map-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7F8380152CC1A9003C650E /* map-white@2x.png */; };
 		0D7F8385152CC396003C650E /* EPDMetroStationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F8384152CC396003C650E /* EPDMetroStationCell.m */; };
+		0D7FEC23153C365300F6F2AD /* MetroBilbaoSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC1D153C365300F6F2AD /* MetroBilbaoSelected.png */; };
+		0D7FEC24153C365300F6F2AD /* MetroBilbao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC1E153C365300F6F2AD /* MetroBilbao@2x.png */; };
+		0D7FEC25153C365300F6F2AD /* MetroBilbao.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC1F153C365300F6F2AD /* MetroBilbao.png */; };
+		0D7FEC26153C365300F6F2AD /* MetroBilbaoSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC20153C365300F6F2AD /* MetroBilbaoSelected@2x.png */; };
+		0D7FEC2F153C3A4000F6F2AD /* TranviaBilbao.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC2B153C3A4000F6F2AD /* TranviaBilbao.png */; };
+		0D7FEC30153C3A4000F6F2AD /* TranviaBilbaoSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC2C153C3A4000F6F2AD /* TranviaBilbaoSelected@2x.png */; };
+		0D7FEC31153C3A4000F6F2AD /* TranviaBilbao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC2D153C3A4000F6F2AD /* TranviaBilbao@2x.png */; };
+		0D7FEC32153C3A4000F6F2AD /* TranviaBilbaoSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC2E153C3A4000F6F2AD /* TranviaBilbaoSelected.png */; };
+		0D7FEC3D153C420800F6F2AD /* ShowMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC3B153C420800F6F2AD /* ShowMenu.png */; };
+		0D7FEC3E153C420800F6F2AD /* ShowMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC3C153C420800F6F2AD /* ShowMenu@2x.png */; };
+		0D7FEC41153C56C000F6F2AD /* MenuSortAlphabetically.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC3F153C56C000F6F2AD /* MenuSortAlphabetically.png */; };
+		0D7FEC42153C56C000F6F2AD /* MenuSortAlphabetically@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC40153C56C000F6F2AD /* MenuSortAlphabetically@2x.png */; };
+		0D7FEC45153C5C0900F6F2AD /* MenuRadar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC43153C5C0900F6F2AD /* MenuRadar@2x.png */; };
+		0D7FEC46153C5C0900F6F2AD /* MenuRadar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC44153C5C0900F6F2AD /* MenuRadar.png */; };
+		0D7FEC49153C642A00F6F2AD /* UIColor+CopyWithZone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7FEC48153C642A00F6F2AD /* UIColor+CopyWithZone.m */; };
+		0D7FECD1153C74A200F6F2AD /* tranvia-times.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FECD0153C748E00F6F2AD /* tranvia-times.sqlite3 */; };
 		0D8001381539B113000B2F2C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8001371539B113000B2F2C /* libsqlite3.dylib */; };
 		0D8776251525B32B000C7AB6 /* metro-annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8776231525B32B000C7AB6 /* metro-annotation.png */; };
 		0D8776261525B32B000C7AB6 /* metro-annotation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */; };
@@ -180,6 +202,18 @@
 		0D4BA450153AECEF00A8EAD4 /* MenuCellBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuCellBackground@2x.png"; sourceTree = "<group>"; };
 		0D4BA453153B132000A8EAD4 /* PanelBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PanelBackground@2x.png"; sourceTree = "<group>"; };
 		0D4BA455153B1B0500A8EAD4 /* PanelBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PanelBackground.png; sourceTree = "<group>"; };
+		0D7922FD153C862F000AEA89 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		0D7922FE153C862F000AEA89 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		0D7922FF153C862F000AEA89 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		0D792300153C862F000AEA89 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		0D792301153C862F000AEA89 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		0D792302153C862F000AEA89 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		0D792303153C862F000AEA89 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		0D792304153C862F000AEA89 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		0D792305153C862F000AEA89 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		0D792307153C862F000AEA89 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		0D792308153C862F000AEA89 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		0D792327153C8719000AEA89 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		0D7B59A1152E15A000DC8A31 /* EPDTimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDTimesViewController.h; sourceTree = "<group>"; };
 		0D7B59A2152E15A000DC8A31 /* EPDTimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDTimesViewController.m; sourceTree = "<group>"; };
 		0D7F8379152CBD7F003C650E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -189,6 +223,23 @@
 		0D7F8380152CC1A9003C650E /* map-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-white@2x.png"; sourceTree = "<group>"; };
 		0D7F8383152CC396003C650E /* EPDMetroStationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDMetroStationCell.h; sourceTree = "<group>"; };
 		0D7F8384152CC396003C650E /* EPDMetroStationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDMetroStationCell.m; sourceTree = "<group>"; };
+		0D7FEC1D153C365300F6F2AD /* MetroBilbaoSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MetroBilbaoSelected.png; sourceTree = "<group>"; };
+		0D7FEC1E153C365300F6F2AD /* MetroBilbao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MetroBilbao@2x.png"; sourceTree = "<group>"; };
+		0D7FEC1F153C365300F6F2AD /* MetroBilbao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MetroBilbao.png; sourceTree = "<group>"; };
+		0D7FEC20153C365300F6F2AD /* MetroBilbaoSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MetroBilbaoSelected@2x.png"; sourceTree = "<group>"; };
+		0D7FEC2B153C3A4000F6F2AD /* TranviaBilbao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TranviaBilbao.png; sourceTree = "<group>"; };
+		0D7FEC2C153C3A4000F6F2AD /* TranviaBilbaoSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TranviaBilbaoSelected@2x.png"; sourceTree = "<group>"; };
+		0D7FEC2D153C3A4000F6F2AD /* TranviaBilbao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TranviaBilbao@2x.png"; sourceTree = "<group>"; };
+		0D7FEC2E153C3A4000F6F2AD /* TranviaBilbaoSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TranviaBilbaoSelected.png; sourceTree = "<group>"; };
+		0D7FEC3B153C420800F6F2AD /* ShowMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShowMenu.png; sourceTree = "<group>"; };
+		0D7FEC3C153C420800F6F2AD /* ShowMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ShowMenu@2x.png"; sourceTree = "<group>"; };
+		0D7FEC3F153C56C000F6F2AD /* MenuSortAlphabetically.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuSortAlphabetically.png; sourceTree = "<group>"; };
+		0D7FEC40153C56C000F6F2AD /* MenuSortAlphabetically@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuSortAlphabetically@2x.png"; sourceTree = "<group>"; };
+		0D7FEC43153C5C0900F6F2AD /* MenuRadar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuRadar@2x.png"; sourceTree = "<group>"; };
+		0D7FEC44153C5C0900F6F2AD /* MenuRadar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuRadar.png; sourceTree = "<group>"; };
+		0D7FEC47153C642A00F6F2AD /* UIColor+CopyWithZone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CopyWithZone.h"; sourceTree = "<group>"; };
+		0D7FEC48153C642A00F6F2AD /* UIColor+CopyWithZone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CopyWithZone.m"; sourceTree = "<group>"; };
+		0D7FECD0153C748E00F6F2AD /* tranvia-times.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tranvia-times.sqlite3"; sourceTree = "<group>"; };
 		0D8001371539B113000B2F2C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0D8776231525B32B000C7AB6 /* metro-annotation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-annotation.png"; sourceTree = "<group>"; };
 		0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "metro-annotation@2x.png"; sourceTree = "<group>"; };
@@ -235,6 +286,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D792328153C8719000AEA89 /* libz.dylib in Frameworks */,
 				0D8001381539B113000B2F2C /* libsqlite3.dylib in Frameworks */,
 				0D7F837E152CBDA8003C650E /* AudioToolbox.framework in Frameworks */,
 				0D7F837C152CBD84003C650E /* SystemConfiguration.framework in Frameworks */,
@@ -258,7 +310,6 @@
 		0D4A324C15247B01004C515E = {
 			isa = PBXGroup;
 			children = (
-				0D8001371539B113000B2F2C /* libsqlite3.dylib */,
 				0D4A328315247B08004C515E /* Assets */,
 				0D4A326115247B01004C515E /* NeverLate */,
 				0D4A325A15247B01004C515E /* Frameworks */,
@@ -277,6 +328,8 @@
 		0D4A325A15247B01004C515E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0D792327153C8719000AEA89 /* libz.dylib */,
+				0D8001371539B113000B2F2C /* libsqlite3.dylib */,
 				0DB9C54E15248C5F006B337C /* fmdb.xcodeproj */,
 				0DF53855152C77A80045DAE9 /* TapkuLibrary.xcodeproj */,
 				0DCAB7891525BB3D00B5D386 /* libGoogleAdMobAds.a */,
@@ -297,6 +350,7 @@
 		0D4A326115247B01004C515E /* NeverLate */ = {
 			isa = PBXGroup;
 			children = (
+				0D792329153C8737000AEA89 /* Categories */,
 				0D4BA43B1539DB9300A8EAD4 /* Vendor */,
 				0DCAB78B1525BB4700B5D386 /* GoogleAdsMob */,
 				0DC9D4BC1524C3D800B855AD /* Views */,
@@ -324,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				0DC9D4CA1525090E00B855AD /* metro-times.sqlite3 */,
+				0D7FECD0153C748E00F6F2AD /* tranvia-times.sqlite3 */,
 				0D4BA44B1539EDAA00A8EAD4 /* MainStoryboard.storyboard */,
 				0DC9D4C01524C58F00B855AD /* myriadpro.ttf */,
 				0D8936871525C8CA00FB839B /* atrotissemisans.ttf */,
@@ -357,6 +412,21 @@
 				0D0907BC1539978000162D44 /* arrow-small@2x.png */,
 				0D8936B21525CEC100FB839B /* location-arrow.png */,
 				0D8936B31525CEC100FB839B /* location-arrow@2x.png */,
+				0D7FEC43153C5C0900F6F2AD /* MenuRadar@2x.png */,
+				0D7FEC44153C5C0900F6F2AD /* MenuRadar.png */,
+				0D7FEC3F153C56C000F6F2AD /* MenuSortAlphabetically.png */,
+				0D7FEC40153C56C000F6F2AD /* MenuSortAlphabetically@2x.png */,
+				0D7FEC3B153C420800F6F2AD /* ShowMenu.png */,
+				0D7FEC3C153C420800F6F2AD /* ShowMenu@2x.png */,
+				0D7FEC2B153C3A4000F6F2AD /* TranviaBilbao.png */,
+				0D7FEC2C153C3A4000F6F2AD /* TranviaBilbaoSelected@2x.png */,
+				0D7FEC2D153C3A4000F6F2AD /* TranviaBilbao@2x.png */,
+				0D7FEC2E153C3A4000F6F2AD /* TranviaBilbaoSelected.png */,
+				0D792323153C865F000AEA89 /* iRate */,
+				0D7FEC1D153C365300F6F2AD /* MetroBilbaoSelected.png */,
+				0D7FEC1E153C365300F6F2AD /* MetroBilbao@2x.png */,
+				0D7FEC1F153C365300F6F2AD /* MetroBilbao.png */,
+				0D7FEC20153C365300F6F2AD /* MetroBilbaoSelected@2x.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -375,11 +445,56 @@
 		0D4BA43B1539DB9300A8EAD4 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				0D4BA4261539D58D00A8EAD4 /* iRate.h */,
-				0D4BA4271539D58D00A8EAD4 /* iRate.m */,
+				0D7922F8153C862F000AEA89 /* SSZipArchive */,
 				0D4BA4341539DB8F00A8EAD4 /* ECSlidingViewController */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		0D7922F8153C862F000AEA89 /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				0D7922FC153C862F000AEA89 /* minizip */,
+				0D792307153C862F000AEA89 /* SSZipArchive.h */,
+				0D792308153C862F000AEA89 /* SSZipArchive.m */,
+			);
+			name = SSZipArchive;
+			path = ssziparchive;
+			sourceTree = "<group>";
+		};
+		0D7922FC153C862F000AEA89 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				0D7922FD153C862F000AEA89 /* crypt.h */,
+				0D7922FE153C862F000AEA89 /* ioapi.c */,
+				0D7922FF153C862F000AEA89 /* ioapi.h */,
+				0D792300153C862F000AEA89 /* mztools.c */,
+				0D792301153C862F000AEA89 /* mztools.h */,
+				0D792302153C862F000AEA89 /* unzip.c */,
+				0D792303153C862F000AEA89 /* unzip.h */,
+				0D792304153C862F000AEA89 /* zip.c */,
+				0D792305153C862F000AEA89 /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
+		0D792323153C865F000AEA89 /* iRate */ = {
+			isa = PBXGroup;
+			children = (
+				0D4BA4261539D58D00A8EAD4 /* iRate.h */,
+				0D4BA4271539D58D00A8EAD4 /* iRate.m */,
+			);
+			name = iRate;
+			path = NeverLate;
+			sourceTree = "<group>";
+		};
+		0D792329153C8737000AEA89 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				0D7FEC47153C642A00F6F2AD /* UIColor+CopyWithZone.h */,
+				0D7FEC48153C642A00F6F2AD /* UIColor+CopyWithZone.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		0DB9C54F15248C5F006B337C /* Products */ = {
@@ -568,6 +683,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D7FECD1153C74A200F6F2AD /* tranvia-times.sqlite3 in Resources */,
 				0D8936881525C8D200FB839B /* atrotissemisans.ttf in Resources */,
 				0DC9D4CB1525091700B855AD /* metro-times.sqlite3 in Resources */,
 				0DC9D4C71524EF3700B855AD /* myriadpro.ttf in Resources */,
@@ -603,6 +719,20 @@
 				0D4BA452153AECF000A8EAD4 /* MenuCellBackground@2x.png in Resources */,
 				0D4BA454153B132000A8EAD4 /* PanelBackground@2x.png in Resources */,
 				0D4BA456153B1B0500A8EAD4 /* PanelBackground.png in Resources */,
+				0D7FEC23153C365300F6F2AD /* MetroBilbaoSelected.png in Resources */,
+				0D7FEC24153C365300F6F2AD /* MetroBilbao@2x.png in Resources */,
+				0D7FEC25153C365300F6F2AD /* MetroBilbao.png in Resources */,
+				0D7FEC26153C365300F6F2AD /* MetroBilbaoSelected@2x.png in Resources */,
+				0D7FEC2F153C3A4000F6F2AD /* TranviaBilbao.png in Resources */,
+				0D7FEC30153C3A4000F6F2AD /* TranviaBilbaoSelected@2x.png in Resources */,
+				0D7FEC31153C3A4000F6F2AD /* TranviaBilbao@2x.png in Resources */,
+				0D7FEC32153C3A4000F6F2AD /* TranviaBilbaoSelected.png in Resources */,
+				0D7FEC3D153C420800F6F2AD /* ShowMenu.png in Resources */,
+				0D7FEC3E153C420800F6F2AD /* ShowMenu@2x.png in Resources */,
+				0D7FEC41153C56C000F6F2AD /* MenuSortAlphabetically.png in Resources */,
+				0D7FEC42153C56C000F6F2AD /* MenuSortAlphabetically@2x.png in Resources */,
+				0D7FEC45153C5C0900F6F2AD /* MenuRadar@2x.png in Resources */,
+				0D7FEC46153C5C0900F6F2AD /* MenuRadar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +763,12 @@
 				0D4BA43E1539DC3200A8EAD4 /* EPDSlidingViewController.m in Sources */,
 				0D4BA4411539DE1D00A8EAD4 /* EPDMenuViewController.m in Sources */,
 				0D4BA4461539E09600A8EAD4 /* EPDRootTabBarController.m in Sources */,
+				0D7FEC49153C642A00F6F2AD /* UIColor+CopyWithZone.m in Sources */,
+				0D792317153C862F000AEA89 /* ioapi.c in Sources */,
+				0D792318153C862F000AEA89 /* mztools.c in Sources */,
+				0D792319153C862F000AEA89 /* unzip.c in Sources */,
+				0D79231A153C862F000AEA89 /* zip.c in Sources */,
+				0D79231C153C862F000AEA89 /* SSZipArchive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,6 +854,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "fmdb/src/** tapkulibrary/src CrashKit/Classes";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -743,6 +880,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "fmdb/src/** tapkulibrary/src CrashKit/Classes";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
