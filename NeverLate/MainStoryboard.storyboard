@@ -197,7 +197,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YLe-rq-mIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="q3x-aM-NrW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Metro Bilbao" image="metro-bilbao.png" id="cqa-1l-MW1"/>
+                    <tabBarItem key="tabBarItem" title="Metro Bilbao" image="bus.png" id="cqa-1l-MW1"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ml7-o0-DoY">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.98823529480000005" green="0.15686275059999999" blue="0.039215687659999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -281,10 +281,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bus.png" width="22" height="28"/>
         <image name="calendar.png" width="23" height="25"/>
         <image name="location-arrow.png" width="18" height="18"/>
         <image name="map.png" width="26" height="21"/>
-        <image name="metro-bilbao.png" width="39" height="24"/>
     </resources>
     <classes>
         <class className="ECSlidingViewController" superclassName="UIViewController">
@@ -307,7 +307,7 @@
         <class className="EPDMetroViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EPDMetroViewController.h"/>
             <relationships>
-                <relationship kind="action" name="orderSelectionChanged:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="orderSelectionChanged:"/>
                 <relationship kind="action" name="showMenu:"/>
             </relationships>
         </class>

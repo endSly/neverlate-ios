@@ -12,6 +12,8 @@
 #import "EPDSlidingViewController.h"
 #import "EPDObjectManager.h"
 
+#import "GTFSDataSource.h"
+
 @implementation EPDAppDelegate
 
 @synthesize window = _window;
@@ -23,6 +25,8 @@
 	//[iRate sharedInstance].appStoreID = 355313284;
     //[iRate sharedInstance].applicationBundleID = @"com.charcoaldesign.rainbowblocks";
 	
+    id a = [[GTFSDataSource alloc] initWithPath:@""];
+    
     [iRate sharedInstance].messageTitle = @"Vota NeverLate";
     [iRate sharedInstance].message = @"Sí te gusta NeverLate ayudanos valorando NeverLate en la AppStore. No te llevará más de un minuto. ¡Gracias!";
     

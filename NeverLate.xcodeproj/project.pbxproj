@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0D0907BD1539978000162D44 /* arrow-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D0907BB1539978000162D44 /* arrow-small.png */; };
 		0D0907BE1539978000162D44 /* arrow-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D0907BC1539978000162D44 /* arrow-small@2x.png */; };
+		0D2DDB72153C9F2500C3C91F /* CSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2DDB71153C9EE900C3C91F /* CSVParser.m */; };
 		0D4A325C15247B01004C515E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325B15247B01004C515E /* UIKit.framework */; };
 		0D4A325E15247B01004C515E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325D15247B01004C515E /* Foundation.framework */; };
 		0D4A326015247B01004C515E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325F15247B01004C515E /* CoreGraphics.framework */; };
@@ -95,6 +96,10 @@
 		0DC9D4CB1525091700B855AD /* metro-times.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9D4CA1525090E00B855AD /* metro-times.sqlite3 */; };
 		0DC9D4CE1525093900B855AD /* EPDConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4CD1525093800B855AD /* EPDConnection.m */; };
 		0DCAB78A1525BB3D00B5D386 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCAB7891525BB3D00B5D386 /* libGoogleAdMobAds.a */; };
+		0DDB6F14153CA1BF00ED135B /* GTAgency.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DDB6F13153CA1BF00ED135B /* GTAgency.m */; };
+		0DDB6F25153CABA300ED135B /* GTFSDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DDB6F24153CA5E100ED135B /* GTFSDataSource.m */; };
+		0DDB6F26153CABA300ED135B /* GTStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DDB6F1F153CA49D00ED135B /* GTStop.m */; };
+		0DDB6F27153CABA300ED135B /* GTRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DDB6F1D153CA49D00ED135B /* GTRoute.m */; };
 		0DF53862152C77B50045DAE9 /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0DF53861152C77B50045DAE9 /* TapkuLibrary.bundle */; };
 		0DF53863152C78190045DAE9 /* libTapkuLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF5385E152C77A80045DAE9 /* libTapkuLibrary.a */; };
 		0DF53891152C78DF0045DAE9 /* EPDTimetableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF53890152C78DF0045DAE9 /* EPDTimetableController.m */; };
@@ -155,6 +160,8 @@
 /* Begin PBXFileReference section */
 		0D0907BB1539978000162D44 /* arrow-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-small.png"; sourceTree = "<group>"; };
 		0D0907BC1539978000162D44 /* arrow-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-small@2x.png"; sourceTree = "<group>"; };
+		0D2DDB70153C9EE900C3C91F /* CSVParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSVParser.h; sourceTree = "<group>"; };
+		0D2DDB71153C9EE900C3C91F /* CSVParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSVParser.m; sourceTree = "<group>"; };
 		0D4A325715247B01004C515E /* NeverLate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeverLate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4A325B15247B01004C515E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0D4A325D15247B01004C515E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -275,6 +282,14 @@
 		0DCAB78F1525BB5800B5D386 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
 		0DCAB7901525BB5800B5D386 /* GADRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
 		0DCAB7911525BB5800B5D386 /* GADRequestError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		0DDB6F12153CA1BF00ED135B /* GTAgency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTAgency.h; path = GTFS/GTAgency.h; sourceTree = "<group>"; };
+		0DDB6F13153CA1BF00ED135B /* GTAgency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTAgency.m; path = GTFS/GTAgency.m; sourceTree = "<group>"; };
+		0DDB6F1C153CA49D00ED135B /* GTRoute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GTRoute.h; path = GTFS/GTRoute.h; sourceTree = "<group>"; };
+		0DDB6F1D153CA49D00ED135B /* GTRoute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GTRoute.m; path = GTFS/GTRoute.m; sourceTree = "<group>"; };
+		0DDB6F1E153CA49D00ED135B /* GTStop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GTStop.h; path = GTFS/GTStop.h; sourceTree = "<group>"; };
+		0DDB6F1F153CA49D00ED135B /* GTStop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GTStop.m; path = GTFS/GTStop.m; sourceTree = "<group>"; };
+		0DDB6F23153CA5E100ED135B /* GTFSDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GTFSDataSource.h; path = GTFS/GTFSDataSource.h; sourceTree = "<group>"; };
+		0DDB6F24153CA5E100ED135B /* GTFSDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GTFSDataSource.m; path = GTFS/GTFSDataSource.m; sourceTree = "<group>"; };
 		0DF53855152C77A80045DAE9 /* TapkuLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapkuLibrary.xcodeproj; path = tapkulibrary/src/TapkuLibrary.xcodeproj; sourceTree = "<group>"; };
 		0DF53861152C77B50045DAE9 /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TapkuLibrary.bundle; path = tapkulibrary/src/TapkuLibrary.bundle; sourceTree = "<group>"; };
 		0DF5388F152C78DF0045DAE9 /* EPDTimetableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDTimetableController.h; sourceTree = "<group>"; };
@@ -307,6 +322,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D2DDB6F153C9ECC00C3C91F /* CSVParser */ = {
+			isa = PBXGroup;
+			children = (
+				0D2DDB70153C9EE900C3C91F /* CSVParser.h */,
+				0D2DDB71153C9EE900C3C91F /* CSVParser.m */,
+			);
+			name = CSVParser;
+			sourceTree = "<group>";
+		};
 		0D4A324C15247B01004C515E = {
 			isa = PBXGroup;
 			children = (
@@ -350,9 +374,9 @@
 		0D4A326115247B01004C515E /* NeverLate */ = {
 			isa = PBXGroup;
 			children = (
+				0DDB6F11153CA16100ED135B /* GTFS */,
 				0D792329153C8737000AEA89 /* Categories */,
 				0D4BA43B1539DB9300A8EAD4 /* Vendor */,
-				0DCAB78B1525BB4700B5D386 /* GoogleAdsMob */,
 				0DC9D4BC1524C3D800B855AD /* Views */,
 				0DC9D4B01524B01800B855AD /* Controllers */,
 				0DC9D47A1524A02700B855AD /* Models */,
@@ -422,7 +446,6 @@
 				0D7FEC2C153C3A4000F6F2AD /* TranviaBilbaoSelected@2x.png */,
 				0D7FEC2D153C3A4000F6F2AD /* TranviaBilbao@2x.png */,
 				0D7FEC2E153C3A4000F6F2AD /* TranviaBilbaoSelected.png */,
-				0D792323153C865F000AEA89 /* iRate */,
 				0D7FEC1D153C365300F6F2AD /* MetroBilbaoSelected.png */,
 				0D7FEC1E153C365300F6F2AD /* MetroBilbao@2x.png */,
 				0D7FEC1F153C365300F6F2AD /* MetroBilbao.png */,
@@ -445,6 +468,9 @@
 		0D4BA43B1539DB9300A8EAD4 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				0DCAB78B1525BB4700B5D386 /* GoogleAdsMob */,
+				0D2DDB6F153C9ECC00C3C91F /* CSVParser */,
+				0D792323153C865F000AEA89 /* iRate */,
 				0D7922F8153C862F000AEA89 /* SSZipArchive */,
 				0D4BA4341539DB8F00A8EAD4 /* ECSlidingViewController */,
 			);
@@ -485,7 +511,6 @@
 				0D4BA4271539D58D00A8EAD4 /* iRate.m */,
 			);
 			name = iRate;
-			path = NeverLate;
 			sourceTree = "<group>";
 		};
 		0D792329153C8737000AEA89 /* Categories */ = {
@@ -569,6 +594,29 @@
 				0DCAB7911525BB5800B5D386 /* GADRequestError.h */,
 			);
 			name = GoogleAdsMob;
+			sourceTree = "<group>";
+		};
+		0DDB6F11153CA16100ED135B /* GTFS */ = {
+			isa = PBXGroup;
+			children = (
+				0DDB6F23153CA5E100ED135B /* GTFSDataSource.h */,
+				0DDB6F24153CA5E100ED135B /* GTFSDataSource.m */,
+				0DDB6F15153CA1CD00ED135B /* Models */,
+			);
+			name = GTFS;
+			sourceTree = "<group>";
+		};
+		0DDB6F15153CA1CD00ED135B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0DDB6F12153CA1BF00ED135B /* GTAgency.h */,
+				0DDB6F13153CA1BF00ED135B /* GTAgency.m */,
+				0DDB6F1E153CA49D00ED135B /* GTStop.h */,
+				0DDB6F1F153CA49D00ED135B /* GTStop.m */,
+				0DDB6F1C153CA49D00ED135B /* GTRoute.h */,
+				0DDB6F1D153CA49D00ED135B /* GTRoute.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		0DF53856152C77A80045DAE9 /* Products */ = {
@@ -743,6 +791,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DDB6F25153CABA300ED135B /* GTFSDataSource.m in Sources */,
+				0DDB6F26153CABA300ED135B /* GTStop.m in Sources */,
+				0DDB6F27153CABA300ED135B /* GTRoute.m in Sources */,
+				0D2DDB72153C9F2500C3C91F /* CSVParser.m in Sources */,
 				0D4BA42E1539D68800A8EAD4 /* iRate.m in Sources */,
 				0D4A326815247B01004C515E /* main.m in Sources */,
 				0D4A326C15247B01004C515E /* EPDAppDelegate.m in Sources */,
@@ -769,6 +821,7 @@
 				0D792319153C862F000AEA89 /* unzip.c in Sources */,
 				0D79231A153C862F000AEA89 /* zip.c in Sources */,
 				0D79231C153C862F000AEA89 /* SSZipArchive.m in Sources */,
+				0DDB6F14153CA1BF00ED135B /* GTAgency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
