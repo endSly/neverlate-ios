@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber *direction;
 @property (nonatomic, retain) NSNumber *daytype;
 @property (nonatomic, retain) NSNumber *time;
+@property (nonatomic, readonly) NSInteger timeInt;
 
 @property (nonatomic, readonly) EPDStation *directionStation;
 @property (nonatomic, readonly) EPDStation *station;

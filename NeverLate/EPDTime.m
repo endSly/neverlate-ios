@@ -17,7 +17,7 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
 @synthesize station_id;
 @synthesize direction;
 @synthesize daytype;
-@synthesize time;
+@synthesize timeInt = _timeInt;
 
 + (int)dayTypeForWeekday:(int)weekday
 {
@@ -34,6 +34,16 @@ static const int daytypes[] = {-1, 3, 0, 0, 0, 0, 1, 2}; // Sunday is 1
 + (NSString *)tableName
 {
     return @"times";
+}
+
+- (NSNumber *)time
+{
+    return [NSNumber numberWithInt:_timeInt];
+}
+
+- (void)setTime:(NSNumber *)time
+{
+    _timeInt = time.intValue;
 }
 
 - (EPDStation *)directionStation

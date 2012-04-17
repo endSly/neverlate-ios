@@ -231,19 +231,19 @@
 - (void)updateTimes:(NSArray *)times ofStation:(EPDStation *)station forCell:(EPDMetroStationCell *)cell async:(BOOL)async
 {
     @try {
-        //if (((EPDTime *)[times objectAtIndex:0]).time.intValue < _currentTime) {
+        if (async || ((EPDTime *)[times objectAtIndex:0]).timeInt < _currentTime) {
             times = [times sortedArrayUsingComparator:^NSComparisonResult(EPDTime *time1, EPDTime *time2) {
-                int time1Diff = time1.time.intValue - _currentTime;
+                int time1Diff = time1.timeInt - _currentTime;
                 if (time1Diff < 0)
                     time1Diff += 24 * 60;
                 
-                int time2Diff = time2.time.intValue - _currentTime;
+                int time2Diff = time2.timeInt - _currentTime;
                 if (time2Diff < 0)
                     time2Diff += 24 * 60;
                 
                 return time1Diff > time2Diff;
             }];
-        //}
+        }
         
         [_stationsTimes setObject:times forKey:station.id];
     }
@@ -257,11 +257,25 @@
             if (cell.station != ((EPDTime *)[times objectAtIndex:0]).station)
                 return;
             
-            EPDTime *time1 = [times objectAtIndex:0];
-            EPDTime *time2 = [times objectAtIndex:1];
+            // Get next times
+            int index = 0;
+            EPDTime *time1 = nil;
+            while (!time1 && index < times.count) {
+                EPDTime *t = [times objectAtIndex:index];
+                if (t.directionStation != station)
+                    time1 = t;
+                index++;
+            }
+            EPDTime *time2 = nil;
+            while (!time2 && index < times.count) {
+                EPDTime *t = [times objectAtIndex:index];
+                if (t.directionStation != station)
+                    time2 = t;
+                index++;
+            }
             
-            int minutes1 = time1.time.intValue - _currentTime + 1;
-            int minutes2 = time2.time.intValue - _currentTime + 1;
+            int minutes1 = time1.timeInt - _currentTime + 1;
+            int minutes2 = time2.timeInt - _currentTime + 1;
             
             if (minutes1 <= 0)
                 minutes1 += 24*60;

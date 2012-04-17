@@ -88,7 +88,7 @@
     
     // Configure the cell...
     EPDTime *time = ((EPDTime *) [_times objectAtIndex:indexPath.row]);
-    int minutes = time.time.intValue;
+    int minutes = time.timeInt;
     int arrivalTime = (minutes + _travelTime) % (24 * 60);
     
     static UIFont *font = nil;

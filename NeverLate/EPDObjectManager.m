@@ -180,30 +180,31 @@
                                        where:@"station_id = ? AND daytype = ?" 
                                       params:[NSArray arrayWithObjects:station.id, [NSNumber numberWithInt:daytype], nil]];
     
-    if (comps.hour > 22 && nextDaytype != daytype) {
-        // Merge two days times
-        
+    if (nextDaytype != daytype) {
+        NSMutableArray *resultTimes = [NSMutableArray arrayWithCapacity:times.count];
         int currentTime = comps.hour * 60 + comps.minute;
-        NSMutableArray *resultTimes = [NSMutableArray arrayWithCapacity:times.count * 1.2];
-        
-        NSArray *nextTimes = [self findObjectsOfType:[EPDTime class] 
-                                               where:@"station_id = ? AND daytype = ?" 
-                                              params:[NSArray arrayWithObjects:station.id, [NSNumber numberWithInt:nextDaytype], nil]];
         
         for (EPDTime *t in times) {
-            if (t.time.intValue >= currentTime) {
+            if (t.timeInt >= currentTime)
                 [resultTimes addObject:t];
-            }
         }
         
-        for (EPDTime *t in nextTimes) {
-            if (t.time.intValue < currentTime) {
-                [resultTimes addObject:t];
+        if (comps.hour >= 22) {
+            // Merge next times
+            NSArray *nextTimes = [self findObjectsOfType:[EPDTime class] 
+                                                   where:@"station_id = ? AND daytype = ?" 
+                                                  params:[NSArray arrayWithObjects:station.id, [NSNumber numberWithInt:nextDaytype], nil]];
+            
+            for (EPDTime *t in nextTimes) {
+                if (t.timeInt < currentTime)
+                    [resultTimes addObject:t];
             }
         }
-        
-        return resultTimes;
+    
+        times = resultTimes;
     }
+    
+    
     
     return times;
 }

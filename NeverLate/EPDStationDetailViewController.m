@@ -94,11 +94,11 @@
     
     const int current = comps.hour * 60 + comps.minute;
     _times = [times sortedArrayUsingComparator:^NSComparisonResult(EPDTime *time1, EPDTime *time2) {
-        int time1Diff = time1.time.intValue - current;
+        int time1Diff = time1.timeInt - current;
         if (time1Diff < 0)
             time1Diff += 24 * 60;
         
-        int time2Diff = time2.time.intValue - current;
+        int time2Diff = time2.timeInt - current;
         if (time2Diff < 0)
             time2Diff += 24 * 60;
         
@@ -173,7 +173,7 @@
                 EPDTime *time1 = [[soonTimes objectAtIndex:i] objectAtIndex:0];
                 
                 panel.destLabel1.text = time1.directionStation.name;
-                int minutes1 = time1.time.intValue - current + 1;
+                int minutes1 = time1.timeInt - current + 1;
                 if (minutes1 <= 0)
                     minutes1 += 24*60;
                 if (minutes1 >= 120) {
@@ -184,7 +184,7 @@
                 
                 EPDTime *time2 = [[soonTimes objectAtIndex:i] objectAtIndex:1];
                 panel.destLabel2.text = time2.directionStation.name;
-                int minutes2 = time2.time.intValue - current + 1;
+                int minutes2 = time2.timeInt - current + 1;
                 if (minutes2 <= 0)
                     minutes2 += 24*60;
                 if (minutes2 >= 120) {
@@ -242,7 +242,7 @@
         
         cell.textLabel.text = time.directionStation.name;
         
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%i:%02i", time.time.intValue / 60, time.time.intValue % 60];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%i:%02i", time.timeInt / 60, time.timeInt % 60];
         
     } else {
         EPDStation *station = [_stations objectAtIndex:indexPath.row];
@@ -286,8 +286,8 @@
         NSMutableArray *newTimes = [NSMutableArray arrayWithCapacity:_times.count / 2];
         for (EPDTime *t in _times) {
             int timeDirection;
-            [_station timeToStation:self.destinationStation time:&time direction:&timeDirection];
-            if (timeDirection == direction)
+            [_station timeToStation:t.directionStation time:&time direction:&timeDirection];
+            if (timeDirection == direction && t.directionStation != _station)
                 [newTimes addObject:t];
         }
         _times = newTimes;
