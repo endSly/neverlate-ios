@@ -10,6 +10,11 @@
 		0D0907BD1539978000162D44 /* arrow-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D0907BB1539978000162D44 /* arrow-small.png */; };
 		0D0907BE1539978000162D44 /* arrow-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D0907BC1539978000162D44 /* arrow-small@2x.png */; };
 		0D2DDB72153C9F2500C3C91F /* CSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2DDB71153C9EE900C3C91F /* CSVParser.m */; };
+		0D384ABA153D9C7500A69DDD /* MenuNavigate.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D384AB8153D9C7500A69DDD /* MenuNavigate.png */; };
+		0D384ABB153D9C7500A69DDD /* MenuNavigate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D384AB9153D9C7500A69DDD /* MenuNavigate@2x.png */; };
+		0D384ACA153DA7D800A69DDD /* BarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D384AC8153DA7D800A69DDD /* BarBackButton@2x.png */; };
+		0D384ACB153DA7D800A69DDD /* BarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D384AC9153DA7D800A69DDD /* BarBackButton.png */; };
+		0D384ACE153DA9F800A69DDD /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D384ACD153DA85700A69DDD /* CustomNavigationBar.m */; };
 		0D4A325C15247B01004C515E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325B15247B01004C515E /* UIKit.framework */; };
 		0D4A325E15247B01004C515E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325D15247B01004C515E /* Foundation.framework */; };
 		0D4A326015247B01004C515E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D4A325F15247B01004C515E /* CoreGraphics.framework */; };
@@ -162,6 +167,12 @@
 		0D0907BC1539978000162D44 /* arrow-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-small@2x.png"; sourceTree = "<group>"; };
 		0D2DDB70153C9EE900C3C91F /* CSVParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSVParser.h; sourceTree = "<group>"; };
 		0D2DDB71153C9EE900C3C91F /* CSVParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSVParser.m; sourceTree = "<group>"; };
+		0D384AB8153D9C7500A69DDD /* MenuNavigate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MenuNavigate.png; sourceTree = "<group>"; };
+		0D384AB9153D9C7500A69DDD /* MenuNavigate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuNavigate@2x.png"; sourceTree = "<group>"; };
+		0D384AC8153DA7D800A69DDD /* BarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarBackButton@2x.png"; sourceTree = "<group>"; };
+		0D384AC9153DA7D800A69DDD /* BarBackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarBackButton.png; sourceTree = "<group>"; };
+		0D384ACC153DA85700A69DDD /* CustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
+		0D384ACD153DA85700A69DDD /* CustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
 		0D4A325715247B01004C515E /* NeverLate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NeverLate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D4A325B15247B01004C515E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0D4A325D15247B01004C515E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -440,6 +451,10 @@
 				0D7FEC44153C5C0900F6F2AD /* MenuRadar.png */,
 				0D7FEC3F153C56C000F6F2AD /* MenuSortAlphabetically.png */,
 				0D7FEC40153C56C000F6F2AD /* MenuSortAlphabetically@2x.png */,
+				0D384AB8153D9C7500A69DDD /* MenuNavigate.png */,
+				0D384AB9153D9C7500A69DDD /* MenuNavigate@2x.png */,
+				0D384AC8153DA7D800A69DDD /* BarBackButton@2x.png */,
+				0D384AC9153DA7D800A69DDD /* BarBackButton.png */,
 				0D7FEC3B153C420800F6F2AD /* ShowMenu.png */,
 				0D7FEC3C153C420800F6F2AD /* ShowMenu@2x.png */,
 				0D7FEC2B153C3A4000F6F2AD /* TranviaBilbao.png */,
@@ -468,6 +483,8 @@
 		0D4BA43B1539DB9300A8EAD4 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				0D384ACC153DA85700A69DDD /* CustomNavigationBar.h */,
+				0D384ACD153DA85700A69DDD /* CustomNavigationBar.m */,
 				0DCAB78B1525BB4700B5D386 /* GoogleAdsMob */,
 				0D2DDB6F153C9ECC00C3C91F /* CSVParser */,
 				0D792323153C865F000AEA89 /* iRate */,
@@ -781,6 +798,10 @@
 				0D7FEC42153C56C000F6F2AD /* MenuSortAlphabetically@2x.png in Resources */,
 				0D7FEC45153C5C0900F6F2AD /* MenuRadar@2x.png in Resources */,
 				0D7FEC46153C5C0900F6F2AD /* MenuRadar.png in Resources */,
+				0D384ABA153D9C7500A69DDD /* MenuNavigate.png in Resources */,
+				0D384ABB153D9C7500A69DDD /* MenuNavigate@2x.png in Resources */,
+				0D384ACA153DA7D800A69DDD /* BarBackButton@2x.png in Resources */,
+				0D384ACB153DA7D800A69DDD /* BarBackButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -791,6 +812,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D384ACE153DA9F800A69DDD /* CustomNavigationBar.m in Sources */,
 				0DDB6F25153CABA300ED135B /* GTFSDataSource.m in Sources */,
 				0DDB6F26153CABA300ED135B /* GTStop.m in Sources */,
 				0DDB6F27153CABA300ED135B /* GTRoute.m in Sources */,

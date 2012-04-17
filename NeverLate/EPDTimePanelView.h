@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-
 @interface EPDTimePanelView : UIView
 
 @property (nonatomic, readonly) UILabel * stationLabel;

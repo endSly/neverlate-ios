@@ -32,6 +32,11 @@
 
     self.navigationController.navigationBar.tintColor = ((EPDSlidingViewController *) self.slidingViewController).objectManager.color;
     
+    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [menuButton setImage:[UIImage imageNamed:@"MenuNavigate"] forState:UIControlStateNormal];
+    [menuButton addTarget:self action:@selector(showUserHeadding:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
     
     float minLat = locationManager.location.coordinate.latitude, 

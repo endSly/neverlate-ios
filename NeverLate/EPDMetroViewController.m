@@ -17,6 +17,7 @@
 #import "EPDStationLocation.h"
 #import "EPDMenuViewController.h"
 #import "ECSlidingViewController.h"
+#import "CustomNavigationBar.h"
 
 @interface EPDMetroViewController ()
 
@@ -34,6 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    ((CustomNavigationBar *)self.navigationController.navigationBar).navigationController = self.navigationController;
     
     _bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     _bannerView.adUnitID = @"a14f75833f65366";

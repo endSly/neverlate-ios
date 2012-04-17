@@ -15,7 +15,7 @@
 #import "EPDTime.h"
 #import "EPDStationLocation.h"
 #import "EPDMapViewController.h"
-
+#import "CustomNavigationBar.h"
 
 @interface EPDStationDetailViewController ()
 
@@ -36,6 +36,15 @@
     _objectManager = ((EPDSlidingViewController *) self.slidingViewController).objectManager;
     
     self.title = _station.name;
+    
+    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [menuButton setImage:[UIImage imageNamed:@"MenuNavigate"] forState:UIControlStateNormal];
+    [menuButton addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    
+    UIButton* backButton = [((CustomNavigationBar *)self.navigationController.navigationBar) backButtonWith:[UIImage imageNamed:@"BarBackButton.png"] highlight:nil leftCapWidth:14.0];
+    backButton.titleLabel.textColor = [UIColor colorWithRed:254.0/255.0 green:239.0/255.0 blue:218.0/225.0 alpha:1];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
     _headerView = [[EPDTimePanelView alloc] initWithPanelsCount:_station.connections.count];
     
