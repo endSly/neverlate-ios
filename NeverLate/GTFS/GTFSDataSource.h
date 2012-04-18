@@ -26,4 +26,6 @@
 
 - (id)initWithPath:(NSString *)path;
 
+- (NSArray *)mapCSV:(NSString *)path;
+
 @end

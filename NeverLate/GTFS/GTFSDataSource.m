@@ -16,11 +16,21 @@
 {
     self = [super init];
     if (self) {
-        CSVParser *parser = [[CSVParser alloc] initWithFile:@"/Users/endika/Downloads/google_transit/stop_times.txt"];
-        NSArray *a = [parser parseFile];
-        NSLog(@"%@", a);
+        [self mapCSV:@"/Users/endika/Downloads/transitemt/stop_times.txt"];
+        
     }
     return self;
+}
+
+- (NSArray *)mapCSV:(NSString *)path
+{
+    CSVParser *parser = [[CSVParser alloc] initWithFile:path];
+    NSLog(@"begin");
+    [parser parseFileLines:^(NSArray *line) {
+        //NSLog(@"%@", line);
+    }];
+    NSLog(@"end");
+    return nil;
 }
 
 @end

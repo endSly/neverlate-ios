@@ -11,9 +11,6 @@
 
 @interface CSVParser : NSObject {
 	int fileHandle;
-    int columns;
-    NSMutableArray *csvLine;
-    bool firstLine;
 }
 
 @property (nonatomic) char delimiter;
@@ -27,8 +24,6 @@
 
 -(char)autodetectDelimiter;
 
--(NSMutableArray*)parseFile;
-
--(NSArray*)nextRow;
+-(void)parseFileLines:(void(^)(NSArray *line))lineCallback;
 
 @end

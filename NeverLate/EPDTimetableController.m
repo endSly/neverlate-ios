@@ -11,6 +11,7 @@
 #import "EPDSlidingViewController.h"
 #import "EPDTimesViewController.h"
 #import "EPDStation.h"
+#import "CustomNavigationBar.h"
 
 @interface EPDTimetableController ()
 
@@ -21,6 +22,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    ((CustomNavigationBar *)self.navigationController.navigationBar).navigationController = self.navigationController;
     
     self.tableView.frame = CGRectMake(0, 264, 320, 148);
     self.navigationController.navigationBarHidden = YES;

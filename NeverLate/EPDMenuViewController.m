@@ -37,7 +37,8 @@
 	
     [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"MenuNavBar.png"] forBarMetrics:UIBarMetricsDefault];
     
-    self.tableView.backgroundColor = [UIColor colorWithRed:0xc0/255.0 green:0xc0/255.0 blue:0xc0/255.0 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:0xc0/255.0 green:0xc0/255.0 blue:0xc0/255.0 alpha:1];
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     self.slidingViewController.anchorRightRevealAmount = 224.0f;
     self.slidingViewController.underRightWidthLayout = ECFullWidth;

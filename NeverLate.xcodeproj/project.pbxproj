@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D03CE1E153DD4C300515869 /* TenzingWatermark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D03CE1C153DD4C300515869 /* TenzingWatermark.png */; };
+		0D03CE1F153DD4C300515869 /* TenzingWatermark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D03CE1D153DD4C300515869 /* TenzingWatermark@2x.png */; };
 		0D0907BD1539978000162D44 /* arrow-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D0907BB1539978000162D44 /* arrow-small.png */; };
 		0D0907BE1539978000162D44 /* arrow-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D0907BC1539978000162D44 /* arrow-small@2x.png */; };
 		0D2DDB72153C9F2500C3C91F /* CSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2DDB71153C9EE900C3C91F /* CSVParser.m */; };
@@ -163,6 +165,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D03CE1C153DD4C300515869 /* TenzingWatermark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TenzingWatermark.png; sourceTree = "<group>"; };
+		0D03CE1D153DD4C300515869 /* TenzingWatermark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TenzingWatermark@2x.png"; sourceTree = "<group>"; };
 		0D0907BB1539978000162D44 /* arrow-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-small.png"; sourceTree = "<group>"; };
 		0D0907BC1539978000162D44 /* arrow-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-small@2x.png"; sourceTree = "<group>"; };
 		0D2DDB70153C9EE900C3C91F /* CSVParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSVParser.h; sourceTree = "<group>"; };
@@ -333,6 +337,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D03CE20153EF4D000515869 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				0D2DDB6F153C9ECC00C3C91F /* CSVParser */,
+				0D7922F8153C862F000AEA89 /* SSZipArchive */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
 		0D2DDB6F153C9ECC00C3C91F /* CSVParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +478,8 @@
 				0D7FEC1E153C365300F6F2AD /* MetroBilbao@2x.png */,
 				0D7FEC1F153C365300F6F2AD /* MetroBilbao.png */,
 				0D7FEC20153C365300F6F2AD /* MetroBilbaoSelected@2x.png */,
+				0D03CE1C153DD4C300515869 /* TenzingWatermark.png */,
+				0D03CE1D153DD4C300515869 /* TenzingWatermark@2x.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -486,9 +501,7 @@
 				0D384ACC153DA85700A69DDD /* CustomNavigationBar.h */,
 				0D384ACD153DA85700A69DDD /* CustomNavigationBar.m */,
 				0DCAB78B1525BB4700B5D386 /* GoogleAdsMob */,
-				0D2DDB6F153C9ECC00C3C91F /* CSVParser */,
 				0D792323153C865F000AEA89 /* iRate */,
-				0D7922F8153C862F000AEA89 /* SSZipArchive */,
 				0D4BA4341539DB8F00A8EAD4 /* ECSlidingViewController */,
 			);
 			name = Vendor;
@@ -616,6 +629,7 @@
 		0DDB6F11153CA16100ED135B /* GTFS */ = {
 			isa = PBXGroup;
 			children = (
+				0D03CE20153EF4D000515869 /* Vendor */,
 				0DDB6F23153CA5E100ED135B /* GTFSDataSource.h */,
 				0DDB6F24153CA5E100ED135B /* GTFSDataSource.m */,
 				0DDB6F15153CA1CD00ED135B /* Models */,
@@ -802,6 +816,8 @@
 				0D384ABB153D9C7500A69DDD /* MenuNavigate@2x.png in Resources */,
 				0D384ACA153DA7D800A69DDD /* BarBackButton@2x.png in Resources */,
 				0D384ACB153DA7D800A69DDD /* BarBackButton.png in Resources */,
+				0D03CE1E153DD4C300515869 /* TenzingWatermark.png in Resources */,
+				0D03CE1F153DD4C300515869 /* TenzingWatermark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

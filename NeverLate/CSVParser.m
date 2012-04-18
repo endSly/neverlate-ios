@@ -14,6 +14,8 @@
 
 #import "CSVParser.h"
 
+static const char possibleDelimiters[4] = ",;\t\0";
+
 /* Macros for determining if the given character is End Of Line or not */
 #define EOL(x) ((*(x) == '\r' || *(x) == '\n') && *(x) != '\0')
 #define NOT_EOL(x) (*(x) != '\0' && *(x) != '\r' && *(x) != '\n')
@@ -127,154 +129,28 @@ static char *cstrstr(const char *haystack, const char needle) {
 
 	return 0;
 }
-/*
--(NSArray*)nextRow
-{
-    if (fileHandle <= 0)
-		return nil;
-    
-	csvLine = [NSMutableArray array];
 
-	int n = 1, diff;
-	unsigned int quoteCount = 0;
-	char *buffer = malloc(sizeof(char) * (bufferSize + 1));
-	char *textp, *laststop, *lineBeginning, *lastLineBuffer = NULL;
-	lseek(fileHandle, 0, SEEK_SET);
-	while (n > 0) {
-		if (lastLineBuffer != NULL) {
-			if (strlen(lastLineBuffer) == bufferSize) {
-				@throw [NSException exceptionWithName:@"CSVBufferTooSmall" reason:@"ERROR: Buffer too small" userInfo:nil];
-			}
-            
-			// Care for the quotes in lastLineBuffer!
-			textp = lastLineBuffer;
-			while (*textp != '\0') {
-				if (*textp == '\"')
-					quoteCount++;
-				textp++;
-			}
-			strcpy(buffer, lastLineBuffer);
-			diff = strlen(lastLineBuffer);
-			// Make the buffer bigger
-			buffer = realloc(buffer, diff + bufferSize);
-			if (!buffer) {
-                @throw [NSException exceptionWithName:@"CSVAllocateFailed" reason:@"ERROR: Could not allocate bytes for buffer" userInfo:nil];
-				return nil;
-			}
-			lastLineBuffer = NULL;
-		} else diff = 0;
-		n = read(fileHandle, (buffer + diff), bufferSize);
-		if (n <= 0)
-			break;
-		// Terminate buffer correctly
-		if ((diff+n) <= (bufferSize + diff))
-			buffer[diff+n] = '\0';
-		
-		textp = (char*)buffer;
-        
-		while (*textp != '\0') {
-			// If we don't have a delimiter yet and this is the first line...
-			if (firstLine && delimiter == '\0') {
-				firstLine = false;
-				// ...we assume that this is the header which also contains the separation character
-				while (NOT_EOL(textp) && cstrstr(possibleDelimiters, *textp) == NULL)
-					textp++;
-                
-				// Check if a delimiter was found and set it
-				if (NOT_EOL(textp)) {
-					delimiter = *cstrstr((const char*)possibleDelimiters, *textp);
-					printf("delim is %c / %d :-)\n", delimiter, delimiter);
-					while (NOT_EOL(textp))
-						textp++;
-				}
-                
-				textp = (char*)buffer;
-			} 
-            
-			if (strlen(textp) > 0) {
-				// This is data
-				laststop = textp;
-				lineBeginning = textp;
-                
-				// Parsing is splitted in parts till EOL
-				while (NOT_EOL(textp) || (*textp != '\0' && (quoteCount % 2) != 0)) {
-					// If we got two quotes and a delimiter before and after, this is an empty value
-					if (	*textp == '\"' && 
-						*(textp+1) == '\"') {
-						// we'll just skip this, but firstly check if it's an empty value
-						if (	(textp > (const char*)buffer) && 
-							*(textp-1) == delimiter && 
-							*(textp+2) == delimiter) {
-							[csvLine addObject: @""];
-						}
-						textp++;
-					} else if (*textp == '\"')
-						quoteCount++;
-					else if (*textp == delimiter && (quoteCount % 2) == 0) {
-						// There is a delimiter which is not between an unmachted pair of quotes?
-						[csvLine addObject: [self parseString:textp withLastStop:laststop]];
-						laststop = textp + 1;
-					}
-                    
-					// Go to the next character
-					textp++;
-				}
-                
-				if (laststop == textp && *(textp-1) == delimiter) {
-					[csvLine addObject:@""];
-					if ((int)(buffer + bufferSize + diff - textp) > 0) {
-						lineBeginning = textp + 1;
-						return csvLine;
-					}
-				}
-				if (laststop != textp && (quoteCount % 2) == 0) {
-					[csvLine addObject: [self parseString:textp withLastStop:laststop]];
-					
-					if ((int)(buffer + bufferSize + diff - textp) > 0) {
-						lineBeginning = textp + 1;
-						return csvLine;
-					}
-				} 
-				if ((*textp == '\0' || (quoteCount % 2) != 0) && lineBeginning != textp) {
-					lastLineBuffer = lineBeginning;
-					csvLine = [NSMutableArray new];
-				}
-			}
-            
-			while (EOL(textp))
-				textp++;
-		}
-	}
-    
-	free(buffer);
-	buffer = NULL;
-    
-	return csvLine;
-}
-*/
 /*
  * Parses the CSV-file with the given filename and stores the result in a
  * NSMutableArray.
  *
  */
--(NSMutableArray*)parseFile {
-	NSMutableArray *csvLine = [NSMutableArray array];
-	NSMutableArray *csvContent = [NSMutableArray array];
+-(void)parseFileLines:(void(^)(NSArray *line))lineCallback {
+	NSMutableArray *csvLine = [NSMutableArray arrayWithCapacity:10];
 	if (fileHandle <= 0)
-		return csvContent;
-	char possibleDelimiters[4] = ",;\t\0";
+		return;
+	
 	int n = 1, diff;
 	unsigned int quoteCount = 0;
-	bool firstLine = true;
 	char *buffer = malloc(sizeof(char) * (bufferSize + 1));
 	char *textp, *laststop, *lineBeginning, *lastLineBuffer = NULL;
+    bool firstLine = YES;
 	lseek(fileHandle, 0, SEEK_SET);
 	while (n > 0) {
 		if (lastLineBuffer != NULL) {
 			if (strlen(lastLineBuffer) == bufferSize) {
-				[csvContent removeAllObjects];
-				[csvContent addObject: [NSArray arrayWithObject: @"ERROR: Buffer too small"]];
-				return csvContent;
+                free(buffer);
+				@throw [NSException exceptionWithName:@"CSVCouldNotReallocate" reason:@"Buffer too small" userInfo:nil];
 			}
 
 			// Care for the quotes in lastLineBuffer!
@@ -289,9 +165,7 @@ static char *cstrstr(const char *haystack, const char needle) {
 			// Make the buffer bigger
 			buffer = realloc(buffer, diff + bufferSize);
 			if (buffer == NULL) {
-				[csvContent removeAllObjects];
-				[csvContent addObject: [NSArray arrayWithObject: @"ERROR: Could not allocate bytes for buffer"]];
-				return csvContent;
+				@throw [NSException exceptionWithName:@"CSVCouldNotReallocate" reason:@"Could not allocate bytes for buffer" userInfo:nil];
 			}
 			lastLineBuffer = NULL;
 		} else diff = 0;
@@ -356,23 +230,21 @@ static char *cstrstr(const char *haystack, const char needle) {
 					[csvLine addObject:@""];
 					if ((int)(buffer + bufferSize + diff - textp) > 0) {
 						lineBeginning = textp + 1;
-						[csvContent addObject: csvLine];
+						lineCallback(csvLine);
 					}
-					csvLine = [NSMutableArray new];
 				}
 				if (laststop != textp && (quoteCount % 2) == 0) {
 					[csvLine addObject: [self parseString:textp withLastStop:laststop]];
 					
 					if ((int)(buffer + bufferSize + diff - textp) > 0) {
 						lineBeginning = textp + 1;
-						[csvContent addObject: csvLine];
+						lineCallback(csvLine);
 					}
-					csvLine = [NSMutableArray new];
 				} 
 				if ((*textp == '\0' || (quoteCount % 2) != 0) && lineBeginning != textp) {
 					lastLineBuffer = lineBeginning;
-					csvLine = [NSMutableArray new];
 				}
+                [csvLine removeAllObjects];
 			}
 
 			while (EOL(textp))
@@ -382,13 +254,10 @@ static char *cstrstr(const char *haystack, const char needle) {
 
 	free(buffer);
 	buffer = NULL;
-
-	return csvContent;
 }
 
 -(BOOL)openFile:(NSString*)fileName {
 	fileHandle = open([fileName UTF8String], O_RDONLY);
-    firstLine = true;
 	return (fileHandle > 0);
 }
 

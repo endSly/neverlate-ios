@@ -14,6 +14,7 @@
 #import "EPDStation.h"
 #import "EPDStationLocation.h"
 #import "EPDStationDetailViewController.h"
+#import "CustomNavigationBar.h"
 
 @interface EPDStationAnnotation : NSObject <MKAnnotation>
 
@@ -30,12 +31,20 @@
 {
     [super viewDidLoad];
 
+    ((CustomNavigationBar *)self.navigationController.navigationBar).navigationController = self.navigationController;
+    
     self.navigationController.navigationBar.tintColor = ((EPDSlidingViewController *) self.slidingViewController).objectManager.color;
     
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     [menuButton setImage:[UIImage imageNamed:@"MenuNavigate"] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(showUserHeadding:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    
+    if (self != self.navigationController.topViewController) {
+        UIButton* backButton = [((CustomNavigationBar *)self.navigationController.navigationBar) backButtonWith:[UIImage imageNamed:@"BarBackButton.png"] highlight:nil leftCapWidth:14.0];
+        backButton.titleLabel.textColor = [UIColor colorWithRed:254.0/255.0 green:239.0/255.0 blue:218.0/225.0 alpha:1];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    }
     
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
     

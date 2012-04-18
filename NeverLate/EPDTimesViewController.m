@@ -11,6 +11,7 @@
 #import "EPDSlidingViewController.h"
 #import "EPDStation.h"
 #import "EPDTime.h"
+#import "CustomNavigationBar.h"
 
 @interface EPDTimesViewController ()
 
@@ -29,6 +30,10 @@
     [_originStation timeToStation:_destinationStation time:&_travelTime direction:&_direction];
 
     NSArray *times = [((EPDSlidingViewController *) self.slidingViewController).objectManager timesForStation:_originStation date:_date];
+    
+    UIButton* backButton = [((CustomNavigationBar *)self.navigationController.navigationBar) backButtonWith:[UIImage imageNamed:@"BarBackButton.png"] highlight:nil leftCapWidth:14.0];
+    backButton.titleLabel.textColor = [UIColor colorWithRed:254.0/255.0 green:239.0/255.0 blue:218.0/225.0 alpha:1];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
     NSMutableArray *selectedTimes = [NSMutableArray arrayWithCapacity:times.count / 2];
     for (EPDTime *time in times) {
