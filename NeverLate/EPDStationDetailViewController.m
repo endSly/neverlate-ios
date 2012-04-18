@@ -16,6 +16,7 @@
 #import "EPDStationLocation.h"
 #import "EPDMapViewController.h"
 #import "CustomNavigationBar.h"
+#import "EPDBannerController.h"
 
 @interface EPDStationDetailViewController ()
 
@@ -27,7 +28,6 @@
 
 @synthesize station = _station;
 @synthesize destinationStation = _destinationStation;
-@synthesize bannerView = _bannerView;
 
 - (void)viewDidLoad
 {
@@ -267,14 +267,14 @@
     return _headerView;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return _bannerView;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return _headerView.frame.size.height;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [EPDBannerController sharedBanner].bannerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

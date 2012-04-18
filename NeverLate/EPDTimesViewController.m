@@ -12,6 +12,7 @@
 #import "EPDStation.h"
 #import "EPDTime.h"
 #import "CustomNavigationBar.h"
+#import "EPDBannerController.h"
 
 @interface EPDTimesViewController ()
 
@@ -68,6 +69,16 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [EPDBannerController sharedBanner].bannerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 50.0f;
 }
 
 #pragma mark - Table view data source

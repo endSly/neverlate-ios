@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 
 @class EPDStation;
+@class EPDBannerController;
 
 @interface EPDMapViewController : UIViewController <MKMapViewDelegate> {
     

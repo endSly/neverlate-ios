@@ -15,6 +15,7 @@
 #import "EPDStationLocation.h"
 #import "EPDStationDetailViewController.h"
 #import "CustomNavigationBar.h"
+#import "EPDBannerController.h"
 
 @interface EPDStationAnnotation : NSObject <MKAnnotation>
 
@@ -32,7 +33,6 @@
     [super viewDidLoad];
 
     ((CustomNavigationBar *)self.navigationController.navigationBar).navigationController = self.navigationController;
-    
     self.navigationController.navigationBar.tintColor = ((EPDSlidingViewController *) self.slidingViewController).objectManager.color;
     
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];

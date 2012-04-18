@@ -17,6 +17,7 @@
 #import "EPDStationLocation.h"
 #import "EPDMenuViewController.h"
 #import "ECSlidingViewController.h"
+#import "EPDBannerController.h"
 #import "CustomNavigationBar.h"
 
 @interface EPDMetroViewController ()
@@ -36,12 +37,9 @@
 {
     [super viewDidLoad];
     
-    ((CustomNavigationBar *)self.navigationController.navigationBar).navigationController = self.navigationController;
+    [EPDBannerController sharedBanner].bannerView.rootViewController = self.slidingViewController;
     
-    _bannerView = [[GADBannerView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-    _bannerView.adUnitID = @"a14f75833f65366";
-    _bannerView.rootViewController = self;
-    [_bannerView loadRequest:[GADRequest request]];
+    ((CustomNavigationBar *)self.navigationController.navigationBar).navigationController = self.navigationController;
     
     self.navigationController.navigationBar.layer.shadowRadius = 4.0;
     self.navigationController.navigationBar.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
@@ -216,7 +214,6 @@
 {
     EPDStationDetailViewController *controller = segue.destinationViewController;
     controller.station = _selectedStation;
-    controller.bannerView = _bannerView;
 }
 
 #pragma mark - Table view data source
@@ -373,7 +370,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return _bannerView;
+    return [EPDBannerController sharedBanner].bannerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -397,11 +394,14 @@
 	didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    GADRequest *request = [GADRequest request];
-    [request setLocationWithLatitude:newLocation.coordinate.latitude 
-                           longitude:newLocation.coordinate.longitude 
-                            accuracy:newLocation.horizontalAccuracy];
-    [_bannerView loadRequest:request];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        GADRequest *request = [GADRequest request];
+        [request setLocationWithLatitude:newLocation.coordinate.latitude 
+                               longitude:newLocation.coordinate.longitude 
+                                accuracy:newLocation.horizontalAccuracy];
+        [[EPDBannerController sharedBanner].bannerView loadRequest:request];
+        
+    });
     
     [self order];
     [self.tableView reloadData];

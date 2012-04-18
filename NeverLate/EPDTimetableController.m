@@ -12,6 +12,7 @@
 #import "EPDTimesViewController.h"
 #import "EPDStation.h"
 #import "CustomNavigationBar.h"
+#import "EPDBannerController.h"
 
 @interface EPDTimetableController ()
 
@@ -122,6 +123,16 @@
         _destinationStation = (EPDStation *) [_stations objectAtIndex:indexPath.row];
         [self performSegueWithIdentifier:@"TimesSegue" sender:self];
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [EPDBannerController sharedBanner].bannerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 50.0f;
 }
 
 #pragma mark - Month View data source

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "GADBannerView.h"
 
 @class EPDStation;
 
@@ -25,8 +24,6 @@
     
     NSTimer *_reloadTimer;
     NSTimer *_reloadAllDataTimer;
-    
-    GADBannerView *_bannerView;
     
     int _currentTime; // In minutes from 00:00
     

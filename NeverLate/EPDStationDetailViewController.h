@@ -27,8 +27,6 @@
 @property (nonatomic, retain) EPDStation * station;
 @property (nonatomic, retain) EPDStation * destinationStation;
 
-@property (nonatomic, assign) GADBannerView * bannerView;
-
 - (IBAction)showMap:(id)sender;
 
 @end
