@@ -38,6 +38,7 @@
 
 @synthesize database = _database;
 @synthesize color = _color;
+@synthesize annotationName = _annotationName;
 @synthesize name = _name;
 
 - (id)initWithDatabasePath:(NSString *)databasePath

@@ -35,6 +35,7 @@
 @property (nonatomic, readonly) FMDatabase * database;
 
 @property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) NSString * annotationName;
 @property (nonatomic, copy) UIColor * color;
 
 - (id)initWithDatabasePath:(NSString *)databasePath;

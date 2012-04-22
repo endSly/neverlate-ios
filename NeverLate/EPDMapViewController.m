@@ -141,7 +141,7 @@
         if (!annotationView) {
             annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
             
-            annotationView.image = [UIImage imageNamed:@"metro-annotation"];
+            annotationView.image = [UIImage imageNamed:((EPDSlidingViewController *) self.slidingViewController).objectManager.annotationName];
             
             annotationView.enabled = YES;
             annotationView.canShowCallout = YES;

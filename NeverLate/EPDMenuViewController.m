@@ -140,6 +140,7 @@
             
             objectManager.color = [UIColor redColor];
             objectManager.name = @"Metro Bilbao";
+            objectManager.annotationName = @"metro-annotation";
             break;
             
         case 1:
@@ -148,6 +149,7 @@
                                                              ofType:@"sqlite3"]];
             objectManager.color = [UIColor colorWithCGColor:[UIColor colorWithRed:102/255.0 green:152/255.0 blue:51/255.0 alpha:1].CGColor];
             objectManager.name = @"Tranvía Bilbao";
+            objectManager.annotationName = @"tranvia-annotation";
             break;
     }
     
