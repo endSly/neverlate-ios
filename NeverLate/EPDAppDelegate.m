@@ -36,7 +36,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-
+    
     EPDSlidingViewController *slidingViewController = (EPDSlidingViewController *) self.window.rootViewController;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 

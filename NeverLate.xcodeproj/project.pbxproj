@@ -52,7 +52,6 @@
 		0D4BA452153AECF000A8EAD4 /* MenuCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4BA450153AECEF00A8EAD4 /* MenuCellBackground@2x.png */; };
 		0D4BA454153B132000A8EAD4 /* PanelBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4BA453153B132000A8EAD4 /* PanelBackground@2x.png */; };
 		0D4BA456153B1B0500A8EAD4 /* PanelBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D4BA455153B1B0500A8EAD4 /* PanelBackground.png */; };
-		0D792328153C8719000AEA89 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D792327153C8719000AEA89 /* libz.dylib */; };
 		0D7B59A3152E15A000DC8A31 /* EPDTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7B59A2152E15A000DC8A31 /* EPDTimesViewController.m */; };
 		0D7F837A152CBD7F003C650E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7F8379152CBD7F003C650E /* MessageUI.framework */; };
 		0D7F837C152CBD84003C650E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D7F837B152CBD84003C650E /* SystemConfiguration.framework */; };
@@ -74,7 +73,6 @@
 		0D7FEC46153C5C0900F6F2AD /* MenuRadar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FEC44153C5C0900F6F2AD /* MenuRadar.png */; };
 		0D7FEC49153C642A00F6F2AD /* UIColor+CopyWithZone.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7FEC48153C642A00F6F2AD /* UIColor+CopyWithZone.m */; };
 		0D7FECD1153C74A200F6F2AD /* tranvia-times.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 0D7FECD0153C748E00F6F2AD /* tranvia-times.sqlite3 */; };
-		0D8001381539B113000B2F2C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8001371539B113000B2F2C /* libsqlite3.dylib */; };
 		0D8776251525B32B000C7AB6 /* metro-annotation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8776231525B32B000C7AB6 /* metro-annotation.png */; };
 		0D8776261525B32B000C7AB6 /* metro-annotation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D8776241525B32B000C7AB6 /* metro-annotation@2x.png */; };
 		0D8936881525C8D200FB839B /* atrotissemisans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D8936871525C8CA00FB839B /* atrotissemisans.ttf */; };
@@ -95,6 +93,8 @@
 		0DC9D4CB1525091700B855AD /* metro-times.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 0DC9D4CA1525090E00B855AD /* metro-times.sqlite3 */; };
 		0DC9D4CE1525093900B855AD /* EPDConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC9D4CD1525093800B855AD /* EPDConnection.m */; };
 		0DCAB78A1525BB3D00B5D386 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DCAB7891525BB3D00B5D386 /* libGoogleAdMobAds.a */; };
+		0DCD0460169F07FC002101D8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D792327153C8719000AEA89 /* libz.dylib */; };
+		0DCD0461169F0801002101D8 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8001371539B113000B2F2C /* libsqlite3.dylib */; };
 		0DCD0739153F557700D1BF8E /* EPDBannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCD0738153F557700D1BF8E /* EPDBannerController.m */; };
 		0DCD074D153F5F9900D1BF8E /* TranviaBilbaoSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DCD074B153F5F9900D1BF8E /* TranviaBilbaoSelected.png */; };
 		0DCD074E153F5F9900D1BF8E /* TranviaBilbaoSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DCD074C153F5F9900D1BF8E /* TranviaBilbaoSelected@2x.png */; };
@@ -313,8 +313,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D792328153C8719000AEA89 /* libz.dylib in Frameworks */,
-				0D8001381539B113000B2F2C /* libsqlite3.dylib in Frameworks */,
+				0DCD0461169F0801002101D8 /* libsqlite3.dylib in Frameworks */,
+				0DCD0460169F07FC002101D8 /* libz.dylib in Frameworks */,
 				0D7F837E152CBDA8003C650E /* AudioToolbox.framework in Frameworks */,
 				0D7F837C152CBD84003C650E /* SystemConfiguration.framework in Frameworks */,
 				0D7F837A152CBD7F003C650E /* MessageUI.framework in Frameworks */,
@@ -921,6 +921,7 @@
 		0D4A328115247B01004C515E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
@@ -929,7 +930,7 @@
 					tapkulibrary/src,
 				);
 				INFOPLIST_FILE = "NeverLate/NeverLate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -947,6 +948,7 @@
 		0D4A328215247B01004C515E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = armv7;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NeverLate/NeverLate-Prefix.pch";
@@ -955,7 +957,7 @@
 					tapkulibrary/src,
 				);
 				INFOPLIST_FILE = "NeverLate/NeverLate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
